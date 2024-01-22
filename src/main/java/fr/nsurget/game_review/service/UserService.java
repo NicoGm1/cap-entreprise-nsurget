@@ -29,6 +29,7 @@ public class UserService implements UserDetailsService {
 
     public Gamer create(UserPostDTO dto){
         Gamer gamer = new Gamer();
+        gamer.setNickname(dto.getNickname());
         gamer.setEmail(dto.getEmail());
         gamer.setPassword(passwordEncoder.encode(dto.getPassword()));
         return userRepository.saveAndFlush(gamer);
