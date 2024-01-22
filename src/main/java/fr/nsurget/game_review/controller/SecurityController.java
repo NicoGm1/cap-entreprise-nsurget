@@ -37,7 +37,7 @@ public class SecurityController {
             return mav;
         }
         userService.create(userPostDTO);
-        mav.setViewName("redirect:" + UrlRoute.URL_HOME);
+        mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
         return mav;
     }
 

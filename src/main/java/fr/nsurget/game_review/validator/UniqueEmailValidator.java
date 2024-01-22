@@ -1,8 +1,9 @@
 package fr.nsurget.game_review.validator;
 
 
-import fr.nsurget.nicolasexamspringboot.Centrafake.repository.UserRepository;
-import fr.nsurget.nicolasexamspringboot.Centrafake.validator.annotation.UniqueEmail;
+
+import fr.nsurget.game_review.repository.UserRepository;
+import fr.nsurget.game_review.validator.annotation.UniqueEmail;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;

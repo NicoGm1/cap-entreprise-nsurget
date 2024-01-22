@@ -1,8 +1,10 @@
 package fr.nsurget.game_review.validator;
 
 
-import fr.nsurget.nicolasexamspringboot.Centrafake.repository.EntitySlugRepository;
-import fr.nsurget.nicolasexamspringboot.Centrafake.validator.annotation.UniqueName;
+
+import fr.nsurget.game_review.repository.interfaces.EntityNameRepository;
+import fr.nsurget.game_review.repository.interfaces.EntitySlugRepository;
+import fr.nsurget.game_review.validator.annotation.UniqueName;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -11,7 +13,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
 public class UniqueNameValidator implements ConstraintValidator<UniqueName, String> {
 
-    private Class<? extends EntitySlugRepository<?>> repositoryClass;
+    private Class<? extends EntityNameRepository<?>> repositoryClass;
 
     private final EntityManager em;
 
@@ -28,8 +30,8 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName, Stri
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         JpaRepositoryFactory factory = new JpaRepositoryFactory(em);
-        EntitySlugRepository<?> repository = factory.getRepository(repositoryClass);
-        return repository.findBySlug(s).isEmpty();
+        EntityNameRepository<?> repository = factory.getRepository(repositoryClass);
+        return repository.findByName(s).isEmpty();
     }
 
 }

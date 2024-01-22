@@ -1,6 +1,8 @@
 package fr.nsurget.game_review.DTO;
 
+import fr.nsurget.game_review.repository.UserRepository;
 import fr.nsurget.game_review.validator.annotation.UniqueEmail;
+import fr.nsurget.game_review.validator.annotation.UniqueName;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class UserPostDTO {
+
+    @UniqueName(repositoryClass = UserRepository.class)
+    private String nickname;
 
     @Email
     @UniqueEmail

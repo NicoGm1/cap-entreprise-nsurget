@@ -2,8 +2,8 @@ package fr.nsurget.game_review.validator.annotation;
 
 
 
-import fr.nsurget.nicolasexamspringboot.Centrafake.repository.EntitySlugRepository;
-import fr.nsurget.nicolasexamspringboot.Centrafake.validator.UniqueNameValidator;
+import fr.nsurget.game_review.repository.interfaces.EntityNameRepository;
+import fr.nsurget.game_review.validator.UniqueNameValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface UniqueName {
 
-    Class<? extends EntitySlugRepository<?>> repositoryClass();
+    Class<? extends EntityNameRepository<?>> repositoryClass();
 
     String message() default "This name already exists !";
 

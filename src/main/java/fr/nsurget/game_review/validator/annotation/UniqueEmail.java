@@ -1,6 +1,6 @@
 package fr.nsurget.game_review.validator.annotation;
 
-import fr.nsurget.nicolasexamspringboot.Centrafake.validator.UniqueEmailValidator;
+import fr.nsurget.game_review.validator.UniqueEmailValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
