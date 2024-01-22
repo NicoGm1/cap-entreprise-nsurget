@@ -6,20 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
-
 @Controller
 @AllArgsConstructor
-public class HomeController {
+public class SitemapController {
 
-    @GetMapping(UrlRoute.URL_HOME)
-    public ModelAndView index(ModelAndView mav) {
-//        if (principal == null){
-//              mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
-//              return mav;
-//        }
-        mav.setViewName("index");
+    private UrlRoute urlRoute;
+
+    @GetMapping(UrlRoute.URL_SITEMAP)
+    public ModelAndView showSitemap(ModelAndView mav) {
+        mav.setViewName("utils/sitemap");
+        mav.addObject("links", urlRoute.getSiteMapLinks());
         return mav;
     }
+
 
 }

@@ -4,22 +4,21 @@ import fr.nsurget.game_review.mapping.UrlRoute;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
-
 @Controller
 @AllArgsConstructor
-public class HomeController {
+public class SearchControler {
 
-    @GetMapping(UrlRoute.URL_HOME)
-    public ModelAndView index(ModelAndView mav) {
-//        if (principal == null){
-//              mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
-//              return mav;
-//        }
-        mav.setViewName("index");
+
+
+    @GetMapping(UrlRoute.URL_SEARCH + "/{searched}")
+    public ModelAndView showSitemap(ModelAndView mav, @PathVariable String searched) {
+        mav.setViewName("search/search");
+        mav.addObject("search", searched);
+
         return mav;
     }
+
 
 }

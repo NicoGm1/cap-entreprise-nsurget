@@ -35,14 +35,14 @@ public class UserService implements UserDetailsService {
     }
 
     public User findByName(String name) {
-        Optional<User> optionalUser = userRepository.findByName(name);
+        Optional<User> optionalUser = userRepository.findByNickname(name);
         optionalUser.orElseThrow(() -> new NotFoundException("User", "name", name));
         return optionalUser.get();
     }
 
     @Override
     public UserDetails loadUserByUsername(String name) {
-        Optional<User> optionalUser = userRepository.findByName(name);
+        Optional<User> optionalUser = userRepository.findByNickname(name);
         optionalUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
         User user = optionalUser.get();
         return new org.springframework.security.core.userdetails.User(
