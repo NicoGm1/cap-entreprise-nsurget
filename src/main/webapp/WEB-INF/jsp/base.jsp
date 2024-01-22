@@ -3,7 +3,7 @@
 <%
     Object title = request.getAttribute("title");
     if (title == null) {
-        title = "Centrafake";
+        title = "GameReview";
     }
     request.setAttribute("title", title);
 %>
@@ -57,7 +57,7 @@
                                     </span>
                     </div>
                     <div class="text-end">
-                        <form method="POST" action="${WebUrlRoute.URL_LOGOUT}" autocomplete="off">
+                        <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                             <button class="btn btn-link" type="submit" tabindex="3">Logout</button>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>

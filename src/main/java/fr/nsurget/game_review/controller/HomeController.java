@@ -13,11 +13,11 @@ import java.security.Principal;
 public class HomeController {
 
     @GetMapping(UrlRoute.URL_HOME)
-    public ModelAndView index(ModelAndView mav) {
-//        if (principal == null){
-//              mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
-//              return mav;
-//        }
+    public ModelAndView index(ModelAndView mav, Principal principal) {
+        if (principal == null){
+              mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+              return mav;
+        }
         mav.setViewName("index");
         return mav;
     }
