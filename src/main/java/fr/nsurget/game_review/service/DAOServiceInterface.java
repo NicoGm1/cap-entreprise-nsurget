@@ -1,4 +1,4 @@
-package fr.kevin.exam.service;
+package fr.nsurget.game_review.service;
 
 import java.util.List;
 

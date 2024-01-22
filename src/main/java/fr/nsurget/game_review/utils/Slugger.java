@@ -1,4 +1,4 @@
-package fr.kevin.exam.utils;
+package fr.nsurget.game_review.utils;
 
 import org.springframework.stereotype.Component;
 
