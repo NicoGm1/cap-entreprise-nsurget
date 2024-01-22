@@ -1,4 +1,4 @@
-package fr.nsurget.GameReview.entity;
+package fr.nsurget.game_review.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

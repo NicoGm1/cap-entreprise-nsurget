@@ -1,4 +1,4 @@
-package fr.nsurget.GameReview.entity;
+package fr.nsurget.game_review.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class Game {
 
     private String description;
 
-    private LocalDate releaseDate;
+    private LocalDate publishedAt;
 
     private String image;
 

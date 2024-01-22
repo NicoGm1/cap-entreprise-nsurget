@@ -1,4 +1,4 @@
-package fr.nsurget.GameReview.entity;
+package fr.nsurget.game_review.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Publisher {
+public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,6 @@ public class Publisher {
 
     private String name;
 
-    @OneToMany(mappedBy = "publisher")
+    @OneToMany(mappedBy = "genre")
     private List<Game> games;
-
 }

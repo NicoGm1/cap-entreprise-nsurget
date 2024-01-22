@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.nsurget</groupId>
-	<artifactId>cap-entreprise-nsurget</artifactId>
+	<artifactId>game_review</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>GameReview</name>
@@ -41,6 +41,7 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<!-- Dépendances pour les Getter,Setter, Constructor ect... -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

@@ -1,4 +1,4 @@
-package fr.kevin.exam;
+package fr.nsurget.game_review;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

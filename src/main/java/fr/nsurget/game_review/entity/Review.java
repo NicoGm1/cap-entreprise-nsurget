@@ -1,4 +1,4 @@
-package fr.nsurget.GameReview.entity;
+package fr.nsurget.game_review.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,9 +23,9 @@ public class Review {
 
     private Float rating;
 
-    private LocalDateTime sendDate;
+    private LocalDateTime createdAt;
 
-    private LocalDateTime moderateDate;
+    private LocalDateTime moderatedAt;
 
     @ManyToOne
     private Game game;

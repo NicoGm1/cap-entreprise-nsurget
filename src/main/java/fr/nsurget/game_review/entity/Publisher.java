@@ -1,4 +1,4 @@
-package fr.nsurget.GameReview.entity;
+package fr.nsurget.game_review.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class BusinessModel {
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class BusinessModel {
 
     private String name;
 
-    @OneToMany(mappedBy = "businessModel")
+    @OneToMany(mappedBy = "publisher")
     private List<Game> games;
 
 }

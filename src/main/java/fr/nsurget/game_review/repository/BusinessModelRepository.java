@@ -1,6 +1,6 @@
-package fr.nsurget.GameReview.repository;
+package fr.nsurget.game_review.repository;
 
-import fr.nsurget.GameReview.entity.BusinessModel;
+import fr.nsurget.game_review.entity.BusinessModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

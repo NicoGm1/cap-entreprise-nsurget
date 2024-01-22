@@ -1,5 +1,5 @@
 
-package fr.nsurget.GameReview.repository.interfaces;
+package fr.nsurget.game_review.repository.interfaces;
 
 import java.util.Optional;
 
