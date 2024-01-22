@@ -6,7 +6,7 @@
   <security:authorize access="!isAuthenticated()">
     <h1 class="text-center mt-5 mb-1 main-title">User Register</h1>
     <div class="justify-content-md-center">
-      <f:form modelAttribute="userPostDTO" method="post" action="${WebUrlRoute.URL_REGISTER}"
+      <f:form modelAttribute="userPostDTO" method="post" action="${UrlRoute.URL_REGISTER}"
               class="form-signin" cssClass="p-5 col-lg-6 col-md-8 col-sm-12 mx-auto">
         <div class="mb-3 row">
           <div class="form-group ${status.error ? 'has-error' : ''}">
