@@ -1,5 +1,6 @@
 package fr.nsurget.game_review.configuration;
 
+import fr.nsurget.game_review.mapping.UrlRoute;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,17 +17,15 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth ->
                 auth
                         .requestMatchers("/**").permitAll()
-//                        .requestMatchers("/**").authenticated()
-
             )
             .formLogin(formLogin ->
                 formLogin
-                    .loginPage("/login")
+                    .loginPage(UrlRoute.URL_LOGIN)
                     .permitAll()
             )
             .logout(logout ->
                  logout
-                    .logoutSuccessUrl("/")
+                    .logoutSuccessUrl(UrlRoute.URL_LOGIN)
                     .permitAll()
             );
 

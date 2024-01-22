@@ -1,6 +1,6 @@
 .navbar {
     height: 11vh;
-    color: #1a1e21;
+    --bs-body-bg: #1a1e21;
 }
 
 .logo-navbar{
