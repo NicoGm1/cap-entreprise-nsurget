@@ -33,7 +33,6 @@ public abstract class User implements UserDetails, SluggerInterface {
     @Column(nullable = false)
     protected String email;
 
-    @Column(nullable = false)
     protected String slug;
 
 

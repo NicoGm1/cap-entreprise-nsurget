@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -25,6 +27,8 @@ public class UserPostDTO {
 
     @Size(message = "The account password must have at least 5 characters", min = 5)
     private String password;
+
+    private LocalDate birthAt;
 
 
 

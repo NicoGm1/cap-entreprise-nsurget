@@ -14,7 +14,6 @@ import lombok.Setter;
 @DiscriminatorValue("MODERATOR")
 public class Moderator extends User {
 
-    @Column(nullable = false)
     private String phoneNumber;
 
 }

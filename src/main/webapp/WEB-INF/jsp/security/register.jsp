@@ -24,18 +24,27 @@
         </div>
         <div class="mb-3 row">
           <div class="form-group ${status.error ? 'has-error' : ''}">
-            <f:input type="password" path="password" class="form-control" placeholder="Password" />
+            <f:input type="password" path="password" class="form-control" placeholder="Mot de passe" />
             <f:errors path="password" cssClass="invalid-feedback" />
           </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <div class="mb-3 row">
+          <div class="form-group ${status.error ? 'has-error' : ''}">
+            <f:input type="Date" path="birthAt" class="form-control" placeholder="Date de naissance" max="2020-01-01" />
+            <f:errors path="birthAt" cssClass="invalid-feedback" />
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Soumettre</button>
       </f:form>
     </div>
   </security:authorize>
 
   <security:authorize access="isAuthenticated()">
-    <h1 class="text-center mt-5 mb-1">User Already Login</h1>
-    <h2 class="text-center mt-5 mb-1">Log out =)</h2>
+    <h1 class="text-center mt-5 mb-1">Utilisateur déjà connecté</h1>
+    <h2 class="text-center mt-5 mb-1"><form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+      <button class="btn btn-link mt-3" type="submit" tabindex="3">Logout</button>
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form></h2>
   </security:authorize>
 
 </div>
