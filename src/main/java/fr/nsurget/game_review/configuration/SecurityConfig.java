@@ -16,12 +16,12 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth ->
                 auth
-                        .requestMatchers("/**").permitAll()
-
+                        .requestMatchers("/**").permitAll()   // à faire
             )
             .formLogin(formLogin ->
                 formLogin
                     .loginPage(UrlRoute.URL_LOGIN)
+                        .successForwardUrl(UrlRoute.URL_REVIEW_LIST)
                     .permitAll()
             )
             .logout(logout ->
