@@ -23,7 +23,7 @@ public class Platform implements SluggerInterface {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "platforms")
     private List<Game> games;
 
     private String slug;

@@ -19,15 +19,15 @@
 <body class="body">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
     <div class="row w-100">
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-5 d-flex align-items-center">
             <a href="${UrlRoute.URL_HOME}"><img class="logo-navbar m-3 pl-3"
-                                                src="https://seeklogo.com/images/P/Pac-Man-logo-3E5987B905-seeklogo.com.png"
+                                                src="https://i.ibb.co/0YmQCn4/Game-Review.png"
                                                 alt="Logo Home"
                                                 title="Logo Home"/></a>
         </div>
         <div class="col-5 d-flex align-items-center">
             <div class="d-flex search-bar">
-                <input type="text" class="form-control" placeholder="Région, Ville, ..."
+                <input type="text" class="form-control" placeholder="Jeux, Editeur, Platform ..."
                        data-search-bar>
                 <a class="my-auto m-3">
                     <i class="fa fa-magnifying-glass"></i>
@@ -37,7 +37,7 @@
             </div>
 
         </div>
-        <div class="col-4 d-flex align-items-center row">
+        <div class="col-2 d-flex align-items-center row">
             <div class="col-4 text-center">
                 <security:authorize access="hasRole('ROLE_ADMIN')">
                     <a class="nav-link" href="${UrlRoute.URL_ADMIN}">Admin Panel</a>
