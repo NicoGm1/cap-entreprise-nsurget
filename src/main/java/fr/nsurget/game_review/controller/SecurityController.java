@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 @Controller
 @AllArgsConstructor
 public class SecurityController {
@@ -42,11 +44,16 @@ public class SecurityController {
     }
 
     @GetMapping(value = UrlRoute.URL_LOGIN)
-    public ModelAndView login(ModelAndView mav, String error) {
+    public ModelAndView login(ModelAndView mav, String error, Principal principal) {
         if (error != null) {
             mav.addObject("error", "Your username or password is invalid.");
         }
+        if (principal != null){
+            mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_LIST);
+            return mav;
+        }
         mav.setViewName("security/login");
+
         return mav;
     }
 

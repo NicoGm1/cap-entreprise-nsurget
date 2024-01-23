@@ -1,5 +1,6 @@
 package fr.nsurget.game_review.entity;
 
+import fr.nsurget.game_review.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class Review {
+public class Review implements SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +45,12 @@ public class Review {
     @JoinColumn(nullable = false)
     private Gamer gamer;
 
+    private String slug;
 
+    @Override
+    public String getField() {
+        return "review" + id;
+    }
 
 
 }

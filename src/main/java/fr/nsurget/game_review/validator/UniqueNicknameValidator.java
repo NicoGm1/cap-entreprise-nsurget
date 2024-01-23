@@ -3,26 +3,26 @@ package fr.nsurget.game_review.validator;
 
 
 import fr.nsurget.game_review.repository.interfaces.EntityNicknameRepository;
-import fr.nsurget.game_review.validator.annotation.UniqueName;
+import fr.nsurget.game_review.validator.annotation.UniqueNickname;
 import jakarta.persistence.EntityManager;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.JpaRepositoryFactory;
 
-public class UniqueNameValidator implements ConstraintValidator<UniqueName, String> {
+public class UniqueNicknameValidator implements ConstraintValidator<UniqueNickname, String> {
 
     private Class<? extends EntityNicknameRepository<?>> repositoryClass;
 
     private final EntityManager em;
 
     @Autowired
-    UniqueNameValidator(EntityManager em) {
+    UniqueNicknameValidator(EntityManager em) {
         this.em = em;
     }
 
     @Override
-    public void initialize(UniqueName constraintAnnotation) {
+    public void initialize(UniqueNickname constraintAnnotation) {
         repositoryClass = constraintAnnotation.repositoryClass();
     }
 

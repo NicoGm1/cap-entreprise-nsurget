@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService implements UserDetailsService, DAOFindByIdOrSlugInterface<User> {
 
     private UserRepository userRepository;
 
@@ -58,5 +58,17 @@ public class UserService implements UserDetailsService {
             return List.of(new SimpleGrantedAuthority("ROLE_MODERATOR"));
         }
         return List.of(new SimpleGrantedAuthority("ROLE_GAMER"));
+    }
+
+
+    public User findById(Long id){
+        Optional<User> optionalUser = userRepository.findById(id);
+        optionalUser.orElseThrow(() -> new NotFoundException("User", "id", id));
+        return optionalUser.get();
+    }
+
+    @Override
+    public User findBySlug(String slug) {
+        return null;
     }
 }

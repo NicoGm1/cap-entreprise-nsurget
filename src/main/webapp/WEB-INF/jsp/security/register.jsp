@@ -10,9 +10,9 @@
               class="form-signin" cssClass="p-5 col-lg-6 col-md-8 col-sm-12 mx-auto">
         <div class="mb-3 row">
           <div class="form-group ${status.error ? 'has-error' : ''}">
-            <f:input type="text" path="nickname" class="form-control" placeholder="Nickname"
+            <f:input type="text" path="name" class="form-control" placeholder="Nickname"
                      autofocus="true" />
-            <f:errors path="nickname" cssClass="invalid-feedback" />
+            <f:errors path="name" cssClass="invalid-feedback" />
           </div>
         </div>
         <div class="mb-3 row">
@@ -40,12 +40,17 @@
   </security:authorize>
 
   <security:authorize access="isAuthenticated()">
-    <h1 class="text-center mt-5 mb-1">Utilisateur déjà connecté</h1>
-    <h2 class="text-center mt-5 mb-1"><form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+    <div class="bg-dark-rounded-body">
+    <h1 class="title-with-margin">Utilisateur déjà connecté</h1>
+    <h2 class="text-center"><form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
       <button class="btn btn-link mt-3" type="submit" tabindex="3">Logout</button>
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form></h2>
+      <div class="bottom-body"></div>
+    </div>
+
   </security:authorize>
+
 
 </div>
 

@@ -1,6 +1,8 @@
 package fr.nsurget.game_review.entity;
 
 import fr.nsurget.game_review.entity.interfaces.SluggerInterface;
+import fr.nsurget.game_review.repository.UserRepository;
+import fr.nsurget.game_review.validator.annotation.UniqueNickname;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,7 +42,7 @@ public abstract class User implements UserDetails, SluggerInterface {
 
     @Override
     public String getField() {
-        return nickname;
+        return "user-" + nickname;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

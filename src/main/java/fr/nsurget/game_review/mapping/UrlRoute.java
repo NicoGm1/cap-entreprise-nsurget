@@ -20,6 +20,8 @@ public class UrlRoute {
 
     public static final String URL_SEARCH = "/search";
 
+    public static final String URL_REVIEW_LIST = "/review-list";
+
 
     public String[] getSiteMapLinks() {
         return new String[]{

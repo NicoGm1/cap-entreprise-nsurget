@@ -2,13 +2,12 @@ package fr.nsurget.game_review.DTO;
 
 import fr.nsurget.game_review.repository.UserRepository;
 import fr.nsurget.game_review.validator.annotation.UniqueEmail;
-import fr.nsurget.game_review.validator.annotation.UniqueName;
+import fr.nsurget.game_review.validator.annotation.UniqueNickname;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -18,7 +17,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UserPostDTO {
 
-    @UniqueName(repositoryClass = UserRepository.class)
+    @UniqueNickname(repositoryClass = UserRepository.class)
     private String nickname;
 
     @Email
@@ -28,6 +27,8 @@ public class UserPostDTO {
     @Size(message = "The account password must have at least 5 characters", min = 5)
     private String password;
 
+    @Past
+    @NotNull
     private LocalDate birthAt;
 
 

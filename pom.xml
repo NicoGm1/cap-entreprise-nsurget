@@ -96,6 +96,13 @@
 			<version>6.1.2</version>
 		</dependency>
 
+		<!-- Dépendance pour faker generation de donnée aleatoire -->
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

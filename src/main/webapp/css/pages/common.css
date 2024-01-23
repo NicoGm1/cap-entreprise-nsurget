@@ -32,3 +32,19 @@ body {
     background: url('https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center no-repeat;
     background-size: cover;
 }
+
+.bg-dark-rounded-body {
+    background-color: #1a1e21;
+    border-radius: 3px;
+    margin-top: 3vh;
+}
+
+.title-with-margin {
+    padding-top: 8vh;
+    margin-bottom: 3vh;
+    text-align: center;
+}
+
+.bottom-body {
+    height: 2vh;
+}
