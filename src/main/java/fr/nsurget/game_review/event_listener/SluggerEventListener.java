@@ -13,28 +13,31 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class SluggerEventListener implements PreInsertEventListener,
-                                             PreUpdateEventListener
-{
+        PreUpdateEventListener {
 
     private Slugger slugger;
 
     @Override
     public boolean onPreInsert(PreInsertEvent preInsertEvent) {
-        return hasSlugify(preInsertEvent.getEntity());
+        if (preInsertEvent.getEntity() instanceof SluggerInterface && ((SluggerInterface) preInsertEvent.getEntity()).getSlug() == null) {
+            return hasSlugify((SluggerInterface) preInsertEvent.getEntity());
+        }
+        return false;
     }
 
     @Override
     public boolean onPreUpdate(PreUpdateEvent preUpdateEvent) {
-        return hasSlugify(preUpdateEvent.getEntity());
+        if (preUpdateEvent.getEntity() instanceof SluggerInterface && ((SluggerInterface) preUpdateEvent.getEntity()).getSlug() == null) {
+            return hasSlugify((SluggerInterface) preUpdateEvent.getEntity());
+        }
+        return false;
     }
 
-    private boolean hasSlugify(Object o) {
-        if (o instanceof SluggerInterface si) {
-            if (si.getField() == null) {
-                return true;
-            }
-            si.setSlug(slugger.slugify(si.getField()));
+    private boolean hasSlugify(SluggerInterface o) {
+        if (o.getField() == null) {
+            return true;
         }
+        o.setSlug(slugger.slugify(o.getField()));
         return false;
     }
 

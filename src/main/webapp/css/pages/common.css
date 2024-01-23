@@ -48,3 +48,7 @@ body {
 .bottom-body {
     height: 2vh;
 }
+
+.content-marge{
+    padding: 6vh;
+}

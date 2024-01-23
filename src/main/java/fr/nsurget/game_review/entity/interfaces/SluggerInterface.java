@@ -6,6 +6,9 @@ public interface SluggerInterface {
 
     void setSlug(String slug);
 
+    String getSlug();
+
     String getField();
+
 
 }
