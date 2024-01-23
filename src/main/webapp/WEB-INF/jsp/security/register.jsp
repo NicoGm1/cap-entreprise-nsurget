@@ -40,13 +40,13 @@
   </security:authorize>
 
   <security:authorize access="isAuthenticated()">
-    <div class="bg-dark-rounded-body">
+    <div class="bg-dark-rounded-body text-center">
     <h1 class="title-with-margin">Utilisateur déjà connecté</h1>
-      <div class="content-marge">
-    <h2 class="text-center"><form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
-      <button class="btn btn-link mt-3" type="submit" tabindex="3">Logout</button>
+      <div class="content-padding-2-5-2">
+    <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+      <button class="btn btn-link" type="submit" tabindex="3">Logout</button>
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form></h2>
+    </form>
       </div>
     </div>
 
