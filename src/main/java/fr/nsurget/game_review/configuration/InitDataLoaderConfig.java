@@ -46,6 +46,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         initBusinessModel();
         initGenre();
         initGame();
+//        initReview();
     }
 
     private void initModerator() {
@@ -347,10 +348,6 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             gameRepository.flush();
         }
 
-
-        if (needFlush) {
-            gameRepository.flush();
-        }
     }
 
 
