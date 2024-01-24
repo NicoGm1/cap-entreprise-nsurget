@@ -55,6 +55,8 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         initGenre();
         initGame();
         initReview();
+
+
     }
 
     private void initModerator() {
@@ -365,15 +367,18 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             Random random = new Random();
             Faker faker = new Faker();
             gamerRepository.findAll().forEach(g-> {
-                int randomNumber = random.nextInt(6) + 1;
+                int randomNumber = faker.number().numberBetween(50, 100);
             for (int i = 0; i < randomNumber; i++) {
                 Review review = new Review();
-                review.setRating((float) random.nextLong(20));
+                review.setRating(faker.random().nextInt(21));
                 review.setGamer(g);
-                review.setGame(gameService.findById(random.nextLong(8) + 1));
+                review.setGame(gameService.findById(faker.random().nextLong(8L) + 1L));
                 review.setDescription(awesomeDescription(review));
-                review.setModerator((Moderator) userService.findByNickname("nco"));
-                review.setModeratedAt(LocalDateTime.now());
+                if (Math.random() < 0.7){
+                    review.setModerator((Moderator) userService.findByNickname("nco"));
+                    review.setModeratedAt(LocalDateTime.now());
+                }
+                review.setCreatedAt(faker.date().birthday(0,2).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                 reviewRepository.save(review);
             }
             });
@@ -387,7 +392,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private String awesomeDescription(Review review) {
-        int rating = review.getRating().intValue();
+        int rating = review.getRating();
         String gameName = review.getGame().getName();
 
         if (rating == 0) {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(UrlRoute.URL_ERROR)    // Conflit avec l'error de l'api ... =(
+//@RequestMapping(UrlRoute.URL_ERROR)    // Conflit avec l'error de l'api ... =(
 @AllArgsConstructor
 public class CustomErrorController implements ErrorController {
 

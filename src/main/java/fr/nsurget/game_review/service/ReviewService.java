@@ -24,7 +24,10 @@ public class ReviewService {
     }
 
     public List<Review> waitingReview(String userNickname){
-        userService.findByNickname(userNickname);
+        return reviewRepository.findReviewsByGamerIdAndModeratorIsNull(userService.findByNickname(userNickname).getId());
+    }
 
+    public List<Review> validReview(String userNickname){
+        return reviewRepository.findReviewsByGamerIdAndModeratorIsNonNull(userService.findByNickname(userNickname).getId());
     }
 }

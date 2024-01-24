@@ -27,12 +27,12 @@ public class Review implements SluggerInterface {
     private String description;
 
     @Column(nullable = false)
-    private Float rating;
+    private Integer rating;
 
-    @CreationTimestamp
+//    @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
+//    @UpdateTimestamp
     private LocalDateTime moderatedAt;
 
     @ManyToOne
@@ -51,7 +51,7 @@ public class Review implements SluggerInterface {
     @Override
     public String getField() {
         Faker faker = new Faker();
-        return "review-" + game.getName() + "-" + rating/10 + "-" + faker.number().numberBetween(1, 99);
+        return "review-" + game.getName() + "-" + rating + "-" + faker.number().numberBetween(1, 99);
     }
 
 
