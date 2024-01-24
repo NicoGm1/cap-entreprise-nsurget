@@ -46,7 +46,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        initModerator();
+        initModeratorAndTestGamer();
         initGamer();
         initPlatform();
         initPublisher();
@@ -55,11 +55,9 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         initGenre();
         initGame();
         initReview();
-
-
     }
 
-    private void initModerator() {
+    private void initModeratorAndTestGamer() {
         boolean needFlush = false;
         Moderator modo1 = new Moderator();
         Optional<User> optionalModo1 = userRepository.findByNickname("nco");
@@ -83,7 +81,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             userRepository.save(modo2);
         }
 
-        Gamer gamer = new Gamer();
+        Gamer gamer = new Gamer();  // Gamer non aleatoire pour simplifier les tests
         Optional<User> optionalUser = userRepository.findByNickname("pacman");
         if (optionalUser.isEmpty()){
             needFlush = true;
@@ -101,20 +99,19 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initGamer() {
-        Faker faker = new Faker(new Locale("fr"));
-        for (long i = 4L; i <= 23; i++) {  // creation de 20 gamer aléatoire
-            if (userRepository.findById(i).isPresent()) {
-                break;
+        if (userRepository.findById(4L).isEmpty()) {
+            Faker faker = new Faker(new Locale("fr"));
+            for (long i = 4L; i <= 23; i++) {  // creation de 20 gamer aléatoire
+                Gamer gamer = new Gamer();
+                gamer.setId(i);
+                gamer.setBirthAt(LocalDate.ofInstant(faker.date().birthday(13, 80).toInstant(), ZoneId.systemDefault()));
+                gamer.setPassword(passwordEncoder.encode("12345"));
+                gamer.setNickname(faker.animal().name() + "-" + faker.lorem().word() + faker.number().numberBetween(1, 99));
+                gamer.setEmail(faker.internet().emailAddress());
+                userRepository.save(gamer);
             }
-            Gamer gamer = new Gamer();
-            gamer.setId(i);
-            gamer.setBirthAt(LocalDate.ofInstant(faker.date().birthday(13, 80).toInstant(), ZoneId.systemDefault()));
-            gamer.setPassword(passwordEncoder.encode("12345"));
-            gamer.setNickname(faker.animal().name() + "-" + faker.lorem().word() + faker.number().numberBetween(1, 99));
-            gamer.setEmail(faker.internet().emailAddress());
-            userRepository.save(gamer);
+            userRepository.flush();
         }
-        userRepository.flush();
     }
 
     private void initPlatform() {
@@ -371,6 +368,10 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
             gameRepository.save(game8);
         }
+
+
+
+
 
         if (needFlush) {
             gameRepository.flush();

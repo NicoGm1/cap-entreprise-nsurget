@@ -3,7 +3,7 @@
     --bs-body-bg: #455b7c;
     --bs-body-color: #ffffff;
     --bs-secondary: #888888;
-    --bs-primary: #c5c5c5;
+    --bs-primary: #ffd04e;
 }
 
 .btn-primary {
@@ -50,5 +50,5 @@ body {
 
 
 .content-padding-2-5-2{
-    padding: 20px 50px 20px;
+    padding: 50px 50px 50px;
 }

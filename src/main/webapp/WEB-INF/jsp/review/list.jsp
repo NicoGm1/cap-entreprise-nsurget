@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
-<c:set var="title" scope="request" value="Home - GameReview"/>
+<c:set var="title" scope="request" value="ReviewList - GameReview"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
 <div class="container">
     <h1 class="title-with-margin mb-5">Mes Review</h1>
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
-        <h2>Tes dernières reviews en cours de validation :</h2>
+        <h2>Tes dernières reviews en cours de validation : ⌚</h2>
             <div class="row">
                 <p class="d-flex justify-content-end mt-4">page ${page_waiting_review.number + 1} sur ${page_waiting_review.totalPages}</p>
                 <c:forEach items="${page_waiting_review.content}" var="review">
@@ -23,7 +23,7 @@
                                 </p>
                                 <div class="d-flex justify-content-between">
                                     <p class="${jspUtils.getCssClas(review.rating)}">
-                                            ${jspUtils.getStringRating(review.rating)} / 20
+                                            ${review.rating} / 20
                                     </p>
                                     <a class="btn-link" href="#">
                                             ${review.game.name}
@@ -33,9 +33,10 @@
                         </div>
                     </div>
                 </c:forEach>
+
             </div>
-            <c:set var="page" scope="request" value="${page_valid_review}"/>
-            <c:set var="url" scope="request" value="/"/>
+            <c:set var="page" scope="request" value="${page_waiting_review}"/>
+            <c:set var="url" scope="request" value="${UrlRoute.URL_REVIEW_LIST}"/>
             <%@ include file="../component/pagination.jsp" %>
 
         </div>
