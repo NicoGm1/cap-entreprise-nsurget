@@ -12,7 +12,8 @@
 <%@ page import="org.springframework.web.context.WebApplicationContext" %>
 <%@ page import="fr.nsurget.game_review.service.UserService" %>
 <%@ page import="fr.nsurget.game_review.entity.User" %>
-<%@ page import="fr.nsurget.game_review.service.DateUtils" %>
+<%@ page import="fr.nsurget.game_review.utils.DateUtils" %>
+<%@ page import="fr.nsurget.game_review.utils.JspUtils" %>
 
 <%--&lt;%&ndash; Renomme de manière plus simple le "pageContext.request.contextPath" &ndash;%&gt;--%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -21,6 +22,7 @@
     WebApplicationContext ctx = RequestContextUtils.findWebApplicationContext(request);
     if (ctx != null) {
         UserService userService = ctx.getBean(UserService.class);
+        request.setAttribute("jspUtils", ctx.getBean(JspUtils.class));
         if (request.getUserPrincipal() != null) {
             request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
             User user = userService.findByNickname(request.getUserPrincipal().getName());

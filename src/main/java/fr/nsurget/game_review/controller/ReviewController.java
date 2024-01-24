@@ -31,8 +31,8 @@ public class ReviewController {
               mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
               return mav;
         }
-        mav.addObject("waiting_review", reviewService.waitingReview(principal.getName()));
-        mav.addObject("valid_review", reviewService.validReview(principal.getName()));
+        mav.addObject("page_waiting_review", reviewService.waitingReview(principal.getName(),pageable));
+        mav.addObject("page_valid_review", reviewService.validReview(principal.getName(),pageable));
         mav.setViewName("review/list");
         return mav;
     }

@@ -60,9 +60,11 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initModerator() {
+        boolean needFlush = false;
         Moderator modo1 = new Moderator();
         Optional<User> optionalModo1 = userRepository.findByNickname("nco");
         if (optionalModo1.isEmpty()) {
+            needFlush = true;
             modo1.setNickname("nco");
             modo1.setEmail("nco@nco.nco");
             modo1.setPassword(passwordEncoder.encode("12345"));
@@ -71,20 +73,36 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         }
 
         Moderator modo2 = new Moderator();
-        Optional<User> optionalModo2 = userRepository.findByNickname("modo-pacman-voluptatibus66");
+        Optional<User> optionalModo2 = userRepository.findByNickname("voluptatibus66");
         if (optionalModo2.isEmpty()) {
-            modo2.setNickname("modo-pacman-voluptatibus66");
-            modo2.setEmail("pacman@pacman.pacman");
+            needFlush = true;
+            modo2.setNickname("voluptatibus66");
+            modo2.setEmail("voluptatibus66@vol.vol");
             modo2.setPassword(passwordEncoder.encode("12345"));
             modo2.setPhoneNumber("0123456789");
-            userRepository.saveAndFlush(modo2);
+            userRepository.save(modo2);
+        }
+
+        Gamer gamer = new Gamer();
+        Optional<User> optionalUser = userRepository.findByNickname("pacman");
+        if (optionalUser.isEmpty()){
+            needFlush = true;
+            gamer.setNickname("pacman");
+            gamer.setEmail("pacman@pacman.pacman");
+            gamer.setPassword(passwordEncoder.encode("12345"));
+            gamer.setBirthAt(LocalDate.ofInstant(new Faker().date().birthday(13, 80).toInstant(), ZoneId.systemDefault()));
+            userRepository.save(gamer);
+        }
+
+        if (needFlush){
+            userRepository.flush();
         }
 
     }
 
     private void initGamer() {
         Faker faker = new Faker(new Locale("fr"));
-        for (long i = 3L; i <= 12; i++) {  // creation de 10 gamer aléatoire
+        for (long i = 4L; i <= 23; i++) {  // creation de 20 gamer aléatoire
             if (userRepository.findById(i).isPresent()) {
                 break;
             }

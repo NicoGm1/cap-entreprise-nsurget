@@ -1,4 +1,4 @@
-package fr.nsurget.game_review.service;
+package fr.nsurget.game_review.utils;
 
 import org.springframework.stereotype.Service;
 
