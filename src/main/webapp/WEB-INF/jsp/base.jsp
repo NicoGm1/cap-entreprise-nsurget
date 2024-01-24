@@ -19,17 +19,17 @@
 <body class="body">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
     <div class="row w-100">
-        <div class="col-3 d-flex align-items-center">
+        <div class="col-4 d-flex align-items-center">
             <a href="${UrlRoute.URL_HOME}"><img class="logo-navbar m-3 pl-3"
-                                                src="https://seeklogo.com/images/P/Pac-Man-logo-3E5987B905-seeklogo.com.png"
+                                                src="https://i.ibb.co/cJvvmmp/Title-Game.png"
                                                 alt="Logo Home"
                                                 title="Logo Home"/></a>
         </div>
-        <div class="col-5 d-flex align-items-center">
+        <div class="col-4 d-flex align-items-center ">
             <div class="d-flex search-bar">
-                <input type="text" class="form-control" placeholder="Région, Ville, ..."
+                <input type="text" class="form-control" placeholder="Jeux, Editeur, Platforme ..."
                        data-search-bar>
-                <a class="my-auto m-3">
+                <a class="my-auto m-2">
                     <i class="fa fa-magnifying-glass"></i>
                 </a>
             </div>
@@ -51,7 +51,7 @@
                 <security:authorize access="isAuthenticated()">
                     <div class="d-flex align-items-center">
                         <div>
-                            Mon compte :
+                            Mon compte
                         </div>
                         <a class="btn btn-link" href="${UrlRoute.URL_USER}/${userLogged.nickname}">
                                     ${userLogged.nickname}
@@ -79,4 +79,7 @@
 
         </div>
     </div>
+
 </nav>
+<div class="navbar-color-line bg-red">
+</div>

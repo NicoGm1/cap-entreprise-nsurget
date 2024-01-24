@@ -1,6 +1,7 @@
 .navbar {
     height: 11vh;
-    --bs-body-bg: #1a1e21;
+    background: url('https://images.unsplash.com/photo-1637946175559-22c4fe13fc54?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center ;
+
 }
 
 .logo-navbar{
@@ -9,6 +10,12 @@
 }
 
 .search-bar{
+ margin-left: 2cm;
     height: 35%;
-    width: 75%;
+    width: 100%;
+}
+
+.navbar-color-line{
+background-color: red;
+height: 1px;
 }

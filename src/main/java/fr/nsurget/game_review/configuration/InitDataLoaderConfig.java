@@ -51,9 +51,9 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     private void initModerator() {
         Moderator modo1 = new Moderator();
-        Optional<User> optionalModo1 = userRepository.findByNickname("modo-nco-similique55");
+        Optional<User> optionalModo1 = userRepository.findByNickname("nco");
         if (optionalModo1.isEmpty()) {
-            modo1.setNickname("modo-nco-similique55");
+            modo1.setNickname("nco");
             modo1.setEmail("nco@nco.nco");
             modo1.setPassword(passwordEncoder.encode("12345"));
             modo1.setPhoneNumber("0612345678");
