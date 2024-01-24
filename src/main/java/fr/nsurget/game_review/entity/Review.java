@@ -1,5 +1,6 @@
 package fr.nsurget.game_review.entity;
 
+import com.github.javafaker.Faker;
 import fr.nsurget.game_review.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -49,7 +50,8 @@ public class Review implements SluggerInterface {
 
     @Override
     public String getField() {
-        return "review" + id;
+        Faker faker = new Faker();
+        return "review-" + game.getName() + "-" + rating/10 + "-" + faker.number().numberBetween(1, 99);
     }
 
 

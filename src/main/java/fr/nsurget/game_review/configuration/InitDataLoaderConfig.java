@@ -3,6 +3,7 @@ package fr.nsurget.game_review.configuration;
 import com.github.javafaker.Faker;
 import fr.nsurget.game_review.entity.*;
 import fr.nsurget.game_review.repository.*;
+import fr.nsurget.game_review.service.GameService;
 import fr.nsurget.game_review.service.UserService;
 import fr.nsurget.game_review.utils.Slugger;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -30,11 +32,18 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     GameRepository gameRepository;
 
+    GameService gameService;
+
     PublisherRepository publisherRepository;
+
+    GamerRepository gamerRepository;
 
     BCryptPasswordEncoder passwordEncoder;
 
+
     PlatformRepository platformRepository;
+
+    ReviewRepository reviewRepository;
 
     @Override
     public void run(String... args) {
@@ -46,7 +55,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         initBusinessModel();
         initGenre();
         initGame();
-//        initReview();
+        initReview();
     }
 
     private void initModerator() {
@@ -349,6 +358,67 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         }
 
     }
+
+    private void initReview(){
+        boolean needFlush = false;
+         if (!reviewRepository.existsById(10L)){
+            needFlush = true;
+            Random random = new Random();
+            Faker faker = new Faker();
+            gamerRepository.findAll().forEach(g-> {
+                int randomNumber = random.nextInt(6) + 1;
+            for (int i = 0; i < randomNumber; i++) {
+                Review review = new Review();
+                review.setRating((float) random.nextLong(20));
+                review.setGamer(g);
+                review.setGame(gameService.findById(random.nextLong(8) + 1));
+                review.setDescription(awesomeDescription(review));
+                review.setModerator((Moderator) userService.findByName("nco"));
+                review.setModeratedAt(LocalDateTime.now());
+                reviewRepository.save(review);
+            }
+            });
+        }
+
+        if (needFlush) {
+            reviewRepository.flush();
+        }
+
+
+    }
+
+    private String awesomeDescription(Review review) {
+        int rating = review.getRating().intValue();
+        String gameName = review.getGame().getName();
+
+        if (rating < 7) {
+            return "Oh non! C'est vraiment décevant. J'espérais mieux de " + gameName + ". Ma note : " + rating + ". " +
+                    "Le jeu a quelques problèmes, mais peut-être qu'il y a des aspects positifs à découvrir.";
+        } else if (rating >= 7 && rating <= 12) {
+            if (Math.random() < 0.5) {
+                return "Eh bien, " + gameName + " mérite " + rating + ". C'est un jeu correct, mais il y a place à l'amélioration.";
+            } else {
+                return "Hmm, " + gameName + " obtient une note de " + rating + ". Il y a quelque chose d'unique dans ce jeu, mais il peut être un peu décevant.";
+            }
+        } else if (rating > 12 && rating <= 16) {
+            if (Math.random() < 0.5) {
+                return "Bravo! " + gameName + " a obtenu une note de " + rating + ". Un excellent jeu, ça vaut le détour!";
+            } else {
+                return "Fantastique! " + gameName + " mérite vraiment sa note de " + rating + ". C'est un incontournable pour tous les joueurs.";
+            }
+        } else if (rating > 16 && rating <= 20) {
+            if (Math.random() < 0.5) {
+                return "WOW! " + gameName + " est AWESOME avec une note minimale de " + rating + ". C'est vraiment le meilleur jeu de tous les temps!";
+            } else {
+                return "Incroyable! " + gameName + " obtient une note impressionnante de " + rating + ". Ce jeu repousse les limites de l'excellence.";
+            }
+        } else {
+            // Ajoutez une gestion pour d'autres cas si nécessaire
+            return "Cette avis montre que j'ai mal codé ma methode awesomeDescription !!!!! " + gameName + ". Note qui surf sur les else if : " + rating;
+        }
+    }
+
+
 
 
 }
