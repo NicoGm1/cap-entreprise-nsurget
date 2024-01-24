@@ -45,8 +45,8 @@
             </div>
             <div class="col-8 row text-end">
                 <security:authorize access="!isAuthenticated()">
-                    <a class="nav-link" href="${UrlRoute.URL_REGISTER}"> Register</a>
-                    <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Login</a>
+                    <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Inscription</a>
+                    <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Connexion</a>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
                     <div class="d-flex align-items-center">

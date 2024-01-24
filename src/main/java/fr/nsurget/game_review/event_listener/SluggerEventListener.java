@@ -19,7 +19,7 @@ public class SluggerEventListener implements PreInsertEventListener,
 
     @Override
     public boolean onPreInsert(PreInsertEvent preInsertEvent) {
-        if (preInsertEvent.getEntity() instanceof SluggerInterface && ((SluggerInterface) preInsertEvent.getEntity()).getSlug() == null) {
+        if (preInsertEvent.getEntity() instanceof SluggerInterface) {
             return hasSlugify((SluggerInterface) preInsertEvent.getEntity());
         }
         return false;
@@ -27,7 +27,7 @@ public class SluggerEventListener implements PreInsertEventListener,
 
     @Override
     public boolean onPreUpdate(PreUpdateEvent preUpdateEvent) {
-        if (preUpdateEvent.getEntity() instanceof SluggerInterface && ((SluggerInterface) preUpdateEvent.getEntity()).getSlug() == null) {
+        if (preUpdateEvent.getEntity() instanceof SluggerInterface) {
             return hasSlugify((SluggerInterface) preUpdateEvent.getEntity());
         }
         return false;
@@ -35,6 +35,7 @@ public class SluggerEventListener implements PreInsertEventListener,
 
     private boolean hasSlugify(SluggerInterface o) {
         if (o.getField() == null) {
+            System.out.println(".getField de " + o.getClass().getSimpleName() + " return null");
             return true;
         }
         o.setSlug(slugger.slugify(o.getField()));

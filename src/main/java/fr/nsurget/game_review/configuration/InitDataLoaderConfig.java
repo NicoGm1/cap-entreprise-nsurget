@@ -391,7 +391,9 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         int rating = review.getRating().intValue();
         String gameName = review.getGame().getName();
 
-        if (rating < 7) {
+        if (rating == 0) {
+            return "renommer " + gameName + " en nul.exe ";
+        } else if (rating > 0 && rating <= 7) {
             return "Oh non! C'est vraiment décevant. J'espérais mieux de " + gameName + ". Ma note : " + rating + ". " +
                     "Le jeu a quelques problèmes, mais peut-être qu'il y a des aspects positifs à découvrir.";
         } else if (rating >= 7 && rating <= 12) {
