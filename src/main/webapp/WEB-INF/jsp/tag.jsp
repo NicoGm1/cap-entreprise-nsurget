@@ -23,7 +23,7 @@
         UserService userService = ctx.getBean(UserService.class);
         if (request.getUserPrincipal() != null) {
             request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
-            User user = userService.findByName(request.getUserPrincipal().getName());
+            User user = userService.findByNickname(request.getUserPrincipal().getName());
             request.setAttribute("userLogged", user);
         }
     }

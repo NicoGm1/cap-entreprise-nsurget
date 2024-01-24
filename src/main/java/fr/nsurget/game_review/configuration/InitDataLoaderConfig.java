@@ -5,7 +5,6 @@ import fr.nsurget.game_review.entity.*;
 import fr.nsurget.game_review.repository.*;
 import fr.nsurget.game_review.service.GameService;
 import fr.nsurget.game_review.service.UserService;
-import fr.nsurget.game_review.utils.Slugger;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -373,7 +372,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
                 review.setGamer(g);
                 review.setGame(gameService.findById(random.nextLong(8) + 1));
                 review.setDescription(awesomeDescription(review));
-                review.setModerator((Moderator) userService.findByName("nco"));
+                review.setModerator((Moderator) userService.findByNickname("nco"));
                 review.setModeratedAt(LocalDateTime.now());
                 reviewRepository.save(review);
             }

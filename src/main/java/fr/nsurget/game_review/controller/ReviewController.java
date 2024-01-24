@@ -12,14 +12,17 @@ import java.security.Principal;
 @AllArgsConstructor
 public class ReviewController {
 
+    Revi
     @GetMapping(UrlRoute.URL_REVIEW_LIST)
     public ModelAndView index(ModelAndView mav, Principal principal) {
         if (principal == null){
               mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
               return mav;
         }
-        principal.getName();
-        mav.setViewName("index");
+        mav.addObject("waiting_review", );
+        mav.addObject("valid_review",);
+
+        mav.setViewName("review/list");
         return mav;
     }
 
