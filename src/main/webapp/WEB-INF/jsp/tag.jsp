@@ -23,8 +23,8 @@
     if (ctx != null) {
         UserService userService = ctx.getBean(UserService.class);
         request.setAttribute("jspUtils", ctx.getBean(JspUtils.class));
+        request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
         if (request.getUserPrincipal() != null) {
-            request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
             User user = userService.findByNickname(request.getUserPrincipal().getName());
             request.setAttribute("userLogged", user);
         }

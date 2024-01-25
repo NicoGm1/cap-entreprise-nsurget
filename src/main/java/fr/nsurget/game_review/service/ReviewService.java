@@ -4,6 +4,7 @@ import fr.nsurget.game_review.entity.Review;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,11 @@ public class ReviewService {
         return optional.get();
     }
 
+
     public Page<Review> waitingReview(String userNickname, Pageable pageable){
         return reviewRepository.findReviewsByGamerIdAndModeratorIsNull(userService.findByNickname(userNickname).getId(), pageable);
     }
+
 
     public Page<Review> validReview(String userNickname , Pageable pageable){
         return reviewRepository.findReviewsByGamerIdAndModeratorIsNonNull(userService.findByNickname(userNickname).getId(), pageable);

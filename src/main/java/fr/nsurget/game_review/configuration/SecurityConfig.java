@@ -21,7 +21,6 @@ public class SecurityConfig {
             .formLogin(formLogin ->
                 formLogin
                     .loginPage(UrlRoute.URL_LOGIN)
-                        .successForwardUrl(UrlRoute.URL_REVIEW_LIST)
                     .permitAll()
             )
             .logout(logout ->

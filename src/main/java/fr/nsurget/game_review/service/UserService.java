@@ -43,9 +43,7 @@ public class UserService implements UserDetailsService, DAOFindByIdOrSlugInterfa
 
     @Override
     public UserDetails loadUserByUsername(String name) {
-        Optional<User> optionalUser = userRepository.findByNickname(name);
-        optionalUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        User user = optionalUser.get();
+        User user = findByNickname(name);
         return new org.springframework.security.core.userdetails.User(
                 user.getNickname(),
                 user.getPassword(),
