@@ -16,7 +16,9 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 
     @Query("SELECT r FROM Review r WHERE r.gamer.id = ?1 AND r.moderator IS NULL")
-    Page<Review> findReviewsByGamerIdAndModeratorIsNull(Long gamerId, Pageable pageable);
+    Page<Review> findReviewsByGamerIdAndModeratorIsNull(Long gamerId,Pageable pageable);
+    @Query("SELECT r FROM Review r WHERE r.gamer.id = ?1 AND r.moderator IS NULL")
+    List<Review>findReviewsByGamerIdAndModeratorIsNull(Long gamerId);
 
     @Query("SELECT r FROM Review r WHERE r.gamer.id = ?1 AND r.moderator IS NOT NULL")
     Page<Review> findReviewsByGamerIdAndModeratorIsNonNull(Long gamerId, Pageable pageable);

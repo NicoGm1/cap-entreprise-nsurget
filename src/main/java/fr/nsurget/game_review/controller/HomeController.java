@@ -18,7 +18,7 @@ public class HomeController {
               mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
               return mav;
         }
-        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_LIST);
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_OWN_LIST);
         return mav;
     }
 

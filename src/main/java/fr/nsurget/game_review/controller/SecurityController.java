@@ -49,7 +49,7 @@ public class SecurityController {
             mav.addObject("error", "Your username or password is invalid.");
         }
         if (principal != null){
-            mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_LIST);
+            mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_OWN_LIST);
             return mav;
         }
         mav.setViewName("security/login");

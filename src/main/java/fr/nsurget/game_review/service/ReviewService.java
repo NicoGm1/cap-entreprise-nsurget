@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,9 +27,12 @@ public class ReviewService {
         return optional.get();
     }
 
+    public List<Review> waitingReview(String userNickname){
+        return reviewRepository.findReviewsByGamerIdAndModeratorIsNull(userService.findByNickname(userNickname).getId());
+    }
 
     public Page<Review> waitingReview(String userNickname, Pageable pageable){
-        return reviewRepository.findReviewsByGamerIdAndModeratorIsNull(userService.findByNickname(userNickname).getId(), pageable);
+        return reviewRepository.findReviewsByGamerIdAndModeratorIsNull(userService.findByNickname(userNickname).getId(),pageable);
     }
 
 
