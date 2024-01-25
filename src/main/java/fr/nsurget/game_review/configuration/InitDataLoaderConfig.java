@@ -115,7 +115,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initPlatform() {
-        List<String> platformName = List.of("Switch", "PC", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One");
+        List<String> platformName = List.of("Switch","PC","iOS","Android", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One", "Wii U", "Nintendo Switch");
         boolean needFlush = false;
         for (int i = 1; i <= platformName.size(); i++) {
             if (platformRepository.findById((long) i).isEmpty()) {
@@ -164,7 +164,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
 
     private void initGenre() {
-        List<String> genreNames = List.of("FPS","Sandbox", "MMO", "RPG", "Strategy", "Simulation", "Sports", "Adventure","Battle Royale");
+        List<String> genreNames = List.of("FPS","Sandbox", "MMO", "RPG", "Strategy", "Simulation", "Sports", "Adventure","Battle Royale","Social Deduction");
         boolean needFlush = false;
         for (int i = 1; i <= genreNames.size(); i++) {
             if (genreRepository.findById((long) i).isEmpty()) {
@@ -182,7 +182,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
 
     private void initPublisher() {
-        List<String> publisherNames = List.of("EA", "Ubisoft", "Activision", "Rockstar", "Bethesda", "Square Enix","CD Projekt","Mojang","Epic Games","Blizzard");
+        List<String> publisherNames = List.of("EA", "Ubisoft", "Activision", "Rockstar", "Bethesda", "Square Enix","CD Projekt","Mojang","Epic Games","Blizzard", "Nintendo","Innersloth");
         boolean needFlush = false;
         for (int i = 1; i <= publisherNames.size(); i++) {
             if (publisherRepository.findById((long) i).isEmpty()) {
@@ -369,8 +369,52 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             gameRepository.save(game8);
         }
 
+        if (gameRepository.findByName("The Legend of Zelda: Breath of the Wild").isEmpty()) {
+            needFlush = true;
 
+            Game game13 = new Game();
+            game13.setName("The Legend of Zelda: Breath of the Wild");
+            game13.setDescription("Explore the vast kingdom of Hyrule in this critically acclaimed action-adventure game.");
+            game13.setPublishedAt(LocalDate.of(2017, 3, 3));
+            game13.setClassification(classificationRepository.findByName("PEGI 12").orElse(null));
+            game13.setGenre(genreRepository.findByName("Adventure").orElse(null));
+            game13.setPublisher(publisherRepository.findByName("Nintendo").orElse(null));
+            List<Platform> platformsGame13 = Arrays.asList(
+                    platformRepository.findByName("Nintendo Switch").orElse(null),
+                    platformRepository.findByName("Wii U").orElse(null)
+            );
+            platformsGame13.remove(null);
+            game13.setPlatforms(platformsGame13);
+            game13.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
+            game13.setModerator(modo);
+            game13.setImage("https://cdn2.steamgriddb.com/grid/5fe29e13bb3dbe607b05b0f2.jpg");
 
+            gameRepository.save(game13);
+        }
+
+        if (gameRepository.findByName("Among Us").isEmpty()) {
+            needFlush = true;
+
+            Game game15 = new Game();
+            game15.setName("Among Us");
+            game15.setDescription("An online multiplayer party game where players work together on a spaceship, but beware of impostors!");
+            game15.setPublishedAt(LocalDate.of(2018, 11, 16));
+            game15.setClassification(classificationRepository.findByName("PEGI 7").orElse(null));
+            game15.setGenre(genreRepository.findByName("Social Deduction").orElse(null));
+            game15.setPublisher(publisherRepository.findByName("Innersloth").orElse(null));
+            List<Platform> platformsGame15 = Arrays.asList(
+                    platformRepository.findByName("PC").orElse(null),
+                    platformRepository.findByName("iOS").orElse(null),
+                    platformRepository.findByName("Android").orElse(null)
+            );
+            platformsGame15.remove(null);
+            game15.setPlatforms(platformsGame15);
+            game15.setBusinessModel(businessModelRepository.findByName("Free to Play").orElse(null));
+            game15.setModerator(modo);
+            game15.setImage("https://cdn2.steamgriddb.com/grid/3b4a395b5169a4ac9c9f40eb30f6652e.jpg");
+
+            gameRepository.save(game15);
+        }
 
 
         if (needFlush) {
