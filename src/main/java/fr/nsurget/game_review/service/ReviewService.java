@@ -39,4 +39,8 @@ public class ReviewService {
     public Page<Review> validReview(String userNickname , Pageable pageable){
         return reviewRepository.findReviewsByGamerIdAndModeratorIsNonNull(userService.findByNickname(userNickname).getId(), pageable);
     }
+
+    public List<Review> findAll(){
+        return reviewRepository.findAll();
+    }
 }

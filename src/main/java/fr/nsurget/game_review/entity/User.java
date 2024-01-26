@@ -49,6 +49,13 @@ public abstract class User implements UserDetails, SluggerInterface {
         return null;
     }
 
+    public String getRole(){
+        if (this instanceof Moderator){
+            return "Moderator";
+        }
+        return "Gamer";
+    }
+
     @Override
     public String getUsername() {
         return nickname;

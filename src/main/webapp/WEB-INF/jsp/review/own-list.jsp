@@ -5,7 +5,7 @@
 
 
 <div class="container">
-    <h1 class="title-with-margin mb-5">Mes Review</h1>
+    <h1 class="title-with-margin">Mes Review</h1>
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
             <h2>Tes dernières reviews en ligne : ✅</h2>
@@ -32,6 +32,7 @@
                     </span>
                 </div>
             </div>
+
             <div class="row" id="dernieres-reviews-en-ligne">
                 <c:forEach items="${page_valid_review.content}" var="review">
                     <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
@@ -68,11 +69,11 @@
 
             </div>
             <c:set var="page" scope="request" value="${page_valid_review}"/>
-            <c:set var="id" scope="request" value="dernieres-reviews-en-ligne"/>
             <c:set var="url" scope="request" value="${UrlRoute.URL_REVIEW_OWN_LIST}"/>
             <%@ include file="../component/pagination.jsp" %>
 
-            <h2 class="pt-5 mt-5">Tes dernières reviews en cours de moderation : ⌚</h2>
+
+            <h2 class="pt-5 mt-5"><a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">Tes dernières reviews en cours de moderation : ⌚</a></h2>
             <div class="row">
                 <c:forEach var="i" begin="1" end="3" step="1">
                     <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
@@ -103,8 +104,8 @@
                     </div>
                 </c:forEach>
                 <div class="text-end mt-5">
-                    <a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">voir les ${waiting_review.size()}
-                        en attente de validation</a>
+                    <a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">voir tes ${waiting_review.size()}
+                        review en attente de validation</a>
                 </div>
             </div>
 
