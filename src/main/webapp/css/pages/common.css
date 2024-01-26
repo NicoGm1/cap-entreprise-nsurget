@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'crackman';
+    src: url("../../fonts/Crackman.otf");
+}
+
 
 * {
     --bs-body-bg: #455b7c;
@@ -57,11 +62,13 @@ body {
 }
 
 .title-with-margin {
+    font-family: 'crackman', serif;
     padding-top: 4vh;
+    color: #FFD77BFF;
     margin-bottom: 4vh;
     text-align: center;
     text-shadow:
-            3px 3px 0 #000,
+            2px 2px 0 #000,
             -1px -1px 0 #000,
             1px -1px 0 #000,
             -1px 1px 0 #000,
@@ -137,3 +144,5 @@ body {
 h1 .btn-link, h2 .btn-link, h3 .btn-link, h4 .btn-link, h5 .btn-link, h6 .btn-link{
     color: white;
 }
+
+

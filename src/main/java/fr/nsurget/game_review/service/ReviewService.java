@@ -43,4 +43,8 @@ public class ReviewService {
     public List<Review> findAll(){
         return reviewRepository.findAll();
     }
+
+    public List<Review> getLastReviews(Long id){
+        return reviewRepository.findTop10ByGameIdOrderByCreatedAtDesc(id);
+    }
 }

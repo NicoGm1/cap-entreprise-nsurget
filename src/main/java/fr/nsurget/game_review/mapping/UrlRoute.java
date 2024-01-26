@@ -24,6 +24,7 @@ public class UrlRoute {
     public static final String URL_REVIEW_OWN_LIST = URL_REVIEW + "/own-list";
     public static final String URL_REVIEW_OWN_WAITING_LIST = URL_REVIEW + "/own-waiting-list";
     public final static String URL_EXPORT= "/telecharger-export-excel";
+    public final static String URL_GAME= "/Game";
 
 
 

@@ -46,15 +46,16 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        initModeratorAndTestGamer();
-        initGamer();
-        initPlatform();
-        initPublisher();
-        initClassification();
-        initBusinessModel();
-        initGenre();
-        initGame();
-        initReview();
+//
+//        initModeratorAndTestGamer();
+//        initGamer();
+//        initPlatform();
+//        initPublisher();
+//        initClassification();
+//        initBusinessModel();
+//        initGenre();
+//        initGame();
+//        initReview();
     }
 
     private void initModeratorAndTestGamer() {
@@ -115,13 +116,15 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initPlatform() {
-        List<String> platformName = List.of("Switch","PC","iOS","Android", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One", "Wii U", "Nintendo Switch");
+        List<String> platformName = List.of("Switch","PC","iOS","Android", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One", "Wii U");
+        List<String> platformLogo = List.of("https://img.icons8.com/ios/40/nintendo-switch-logo.png", "https://img.icons8.com/ios/50/workstation.png","https://img.icons8.com/ios/50/iphone.png","https://img.icons8.com/ios/50/android-os.png", "https://img.icons8.com/ios/50/ps5.png","https://img.icons8.com/ios/50/ps4.png","https://img.icons8.com/ios/50/ps3.png", "https://img.icons8.com/ios/50/xbox-series-s.png", "https://img.icons8.com/ios/50/xbox.png","https://img.icons8.com/ios/50/nintendo-wii-u.png");
         boolean needFlush = false;
         for (int i = 1; i <= platformName.size(); i++) {
             if (platformRepository.findById((long) i).isEmpty()) {
                 needFlush = true;
                 Platform platform = new Platform();
                 platform.setName(platformName.get(i - 1));
+                platform.setLogo(platformLogo.get(i - 1));
                 platformRepository.save(platform);
             }
         }
@@ -380,7 +383,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game13.setGenre(genreRepository.findByName("Adventure").orElse(null));
             game13.setPublisher(publisherRepository.findByName("Nintendo").orElse(null));
             List<Platform> platformsGame13 = Arrays.asList(
-                    platformRepository.findByName("Nintendo Switch").orElse(null),
+                    platformRepository.findByName("Switch").orElse(null),
                     platformRepository.findByName("Wii U").orElse(null)
             );
             platformsGame13.remove(null);

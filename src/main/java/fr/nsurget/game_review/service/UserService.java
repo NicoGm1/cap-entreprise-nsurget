@@ -5,13 +5,13 @@ import fr.nsurget.game_review.entity.Gamer;
 import fr.nsurget.game_review.entity.Moderator;
 import fr.nsurget.game_review.entity.User;
 import fr.nsurget.game_review.exception.NotFoundException;
+import fr.nsurget.game_review.repository.GamerRepository;
 import fr.nsurget.game_review.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,8 @@ public class UserService implements UserDetailsService, DAOFindByIdOrSlugInterfa
 
     private UserRepository userRepository;
 
+    private GamerRepository gamerRepository;
+
     private BCryptPasswordEncoder passwordEncoder;
 
 
@@ -35,10 +37,16 @@ public class UserService implements UserDetailsService, DAOFindByIdOrSlugInterfa
         return userRepository.saveAndFlush(gamer);
     }
 
+    public Gamer findGamerByNickname(String nickname){
+        Optional<Gamer> optional = gamerRepository.findByNickname(nickname);
+        optional.orElseThrow(() -> new NotFoundException("Gamer", "nickname", nickname));
+        return optional.get();
+    }
+
     public User findByNickname(String nickname) {
-        Optional<User> optionalUser = userRepository.findByNickname(nickname);
-        optionalUser.orElseThrow(() -> new NotFoundException("User", "name", nickname));
-        return optionalUser.get();
+        Optional<User> optional = userRepository.findByNickname(nickname);
+        optional.orElseThrow(() -> new NotFoundException("User", "nickname", nickname));
+        return optional.get();
     }
 
     @Override

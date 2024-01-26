@@ -56,7 +56,7 @@
                                     <p class="${jspUtils.getCssClas(review.rating)}">
                                             ${review.rating} / 20
                                     </p>
-                                    <a class="btn-link" href="#">
+                                    <a class="btn-link" href="${UrlRoute.URL_GAME}/${review.game.slug}">
                                             ${review.game.name}
                                     </a>
                                 </div>
@@ -94,7 +94,7 @@
                                     <p class="${jspUtils.getCssClas(waiting_review.get(i).rating)}">
                                             ${waiting_review.get(i).rating} / 20
                                     </p>
-                                    <a class="btn-link" href="#">
+                                    <a class="btn-link" href="${UrlRoute.URL_GAME}/${waiting_review.get(i).game.slug}">
                                             ${waiting_review.get(i).game.name}
                                     </a>
                                 </div>

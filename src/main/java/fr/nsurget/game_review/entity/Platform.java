@@ -26,6 +26,8 @@ public class Platform implements SluggerInterface {
     @ManyToMany(mappedBy = "platforms")
     private List<Game> games;
 
+    private String logo;
+
     private String slug;
 
     @Override

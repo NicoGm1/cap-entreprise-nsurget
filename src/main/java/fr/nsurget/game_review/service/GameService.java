@@ -20,4 +20,10 @@ public class GameService {
         optionalGame.orElseThrow(() -> new NotFoundException("Game", "id", id));
         return optionalGame.get();
     }
+
+    public Game findBySlug(String slug){
+        Optional<Game> optionalGame = gameRepository.findBySlug(slug);
+        optionalGame.orElseThrow(() -> new NotFoundException("Game", "slug", slug));
+        return optionalGame.get();
+    }
 }
