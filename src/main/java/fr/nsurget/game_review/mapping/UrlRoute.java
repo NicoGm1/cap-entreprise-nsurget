@@ -27,9 +27,12 @@ public class UrlRoute {
 
     public String[] getSiteMapLinks() {
         return new String[]{
-                UrlRoute.URL_REGISTER,
-                UrlRoute.URL_LOGIN,
-                UrlRoute.URL_SITEMAP
+                URL_REGISTER,
+                URL_LOGIN,
+                URL_SITEMAP,
+                URL_REVIEW_OWN_LIST,
+                URL_REVIEW_OWN_WAITING_LIST,
+                URL_REVIEW
         };
     }
 

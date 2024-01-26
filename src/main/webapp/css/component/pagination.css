@@ -42,3 +42,8 @@
 .last {
     margin-left: 0.2em;
 }
+
+
+.selected-sort{
+    color: #ff8000;
+}

@@ -69,4 +69,16 @@ public class ReviewController {
         return mav;
     }
 
+    @GetMapping(UrlRoute.URL_REVIEW)
+    public ModelAndView test(ModelAndView mav,
+                             Principal principal
+    ) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        mav.setViewName("review/show");
+        return mav;
+    }
+
 }

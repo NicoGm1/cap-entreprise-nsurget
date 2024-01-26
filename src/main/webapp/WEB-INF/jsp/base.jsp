@@ -14,6 +14,9 @@
     <link href="${contextPath}/css/main.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="${contextPath}/js/page/search-bar.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/component/sortPage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.0"></script>
     <script type="text/javascript" src="../js/lib/bootstrap/bootstrap.js"></script>
 
 </head>
@@ -40,9 +43,16 @@
         </div>
         <div class="col-4 d-flex align-items-center row">
             <div class="col-4 text-center">
-                <security:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="nav-link" href="${UrlRoute.URL_ADMIN}">Admin Panel</a>
-                </security:authorize>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="col-8 row text-end">
                 <security:authorize access="!isAuthenticated()">

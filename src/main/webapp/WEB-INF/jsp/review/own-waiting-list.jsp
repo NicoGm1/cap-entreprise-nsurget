@@ -9,6 +9,27 @@
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
             <h2>Tes ${page_waiting_review.totalElements} reviews en cours de moderation : ⌚</h2>
+            <div class="d-flex">
+                <!-- Label à afficher -->
+                <c:set var="label" scope="request" value="Date"/>
+                <!-- Sur quelle propriété de l'objet on souhaite trier -->
+                <c:set var="sortable" value="createdAt"/>
+                <%@ include file="../component/sortable.jsp" %>
+
+                <c:set var="label" scope="request" value="Note"/>
+                <c:set var="sortable" value="rating"/>
+                <%@ include file="../component/sortable.jsp" %>
+
+                <c:set var="label" scope="request" value="Jeu"/>
+                <c:set var="sortable" value="game.name"/>
+                <%@ include file="../component/sortable.jsp" %>
+
+                <span class="mt-auto mb-2">
+                        <a href="${currentUrl}" class="btn-link">
+                            Reset
+                        </a>
+                    </span>
+            </div>
             <div class="row">
                 <c:forEach items="${page_waiting_review.content}" var="review">
                     <div class="col-lg-4 col-md-6 col-sm-12 mt-4">

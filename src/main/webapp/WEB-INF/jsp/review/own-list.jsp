@@ -9,6 +9,29 @@
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
             <h2>Tes dernières reviews en ligne : ✅</h2>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                    <!-- Label à afficher -->
+                    <c:set var="label" scope="request" value="Date"/>
+                    <!-- Sur quelle propriété de l'objet on souhaite trier -->
+                    <c:set var="sortable" value="createdAt"/>
+                    <%@ include file="../component/sortable.jsp" %>
+
+                    <c:set var="label" scope="request" value="Note"/>
+                    <c:set var="sortable" value="rating"/>
+                    <%@ include file="../component/sortable.jsp" %>
+
+                    <c:set var="label" scope="request" value="Jeu"/>
+                    <c:set var="sortable" value="game.name"/>
+                    <%@ include file="../component/sortable.jsp" %>
+
+                    <span class="mt-auto mb-2">
+                        <a href="${currentUrl}" class="btn-link">
+                            Reset
+                        </a>
+                    </span>
+                </div>
+            </div>
             <div class="row" id="dernieres-reviews-en-ligne">
                 <c:forEach items="${page_valid_review.content}" var="review">
                     <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
@@ -16,11 +39,11 @@
                             <p class="text-center">
                                 Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
                                 par <a class="btn-link" href="#">${review.gamer.nickname}</a> <br>
-                                <figcaption class="blockquote-footer text-center">
-                            Modéré par <cite title="Source Title">${review.moderator.nickname}</cite> - le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
-                                </figcaption>
+                            <figcaption class="blockquote-footer text-center">
+                                Modéré par <cite title="Source Title">${review.moderator.nickname}</cite> -
+                                le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
+                            </figcaption>
                             </p>
-
 
 
                             <div class="review-card w-100 d-flex flex-column">
@@ -58,7 +81,7 @@
                                 Le ${dateUtils.getDateFormat(waiting_review.get(i).createdAt, "dd/MM/yyyy")}
                                 par <a class="btn-link" href="#">${waiting_review.get(i).gamer.nickname}</a> <br>
                             <figcaption class="blockquote-footer text-center">
-                            <cite title="Source Title">En attente de moderation ⌛</cite>
+                                <cite title="Source Title">En attente de moderation ⌛</cite>
                             </figcaption>
                             </p>
                             <div class="review-card w-100 d-flex flex-column">
@@ -80,10 +103,10 @@
                     </div>
                 </c:forEach>
                 <div class="text-end mt-5">
-                    <a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">voir les ${waiting_review.size()} en attente de validation</a>
+                    <a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">voir les ${waiting_review.size()}
+                        en attente de validation</a>
                 </div>
             </div>
-
 
 
         </div>
