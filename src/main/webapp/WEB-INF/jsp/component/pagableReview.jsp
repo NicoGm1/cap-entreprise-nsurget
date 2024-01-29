@@ -40,6 +40,7 @@
                                     Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
                                     par <a class="btn-link" href="#">${review.gamer.nickname}</a> <br>
 
+
                                 <figcaption class="blockquote-footer text-center">
                                     <c:if test="${not empty review.moderator}">
                                         Modéré par <cite title="Source Title">${review.moderator.nickname}</cite> -
@@ -49,6 +50,18 @@
                                         <cite title="Source Title">En attente de moderation ⌛</cite>
                                     </c:if>
                                 </figcaption>
+                                <security:authorize access="hasRole('ROLE_MODERATOR')">
+
+                                    <a href="${UrlRoute.URL_REVIEW_DELETE}/${review.id}">
+                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                    </a>
+                                    <c:if test="${not empty review.moderator}">
+                                    <a href="${UrlRoute.URL_REVIEW_ACCEPT}/${review.id}">
+                                        <button type="submit" class="btn btn-secondary">Accepter</button>
+                                    </a>
+                                    </c:if>
+
+                                </security:authorize>
 
 
 

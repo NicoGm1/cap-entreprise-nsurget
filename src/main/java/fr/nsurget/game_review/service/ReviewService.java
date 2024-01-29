@@ -87,4 +87,9 @@ public class ReviewService {
     public void delete(Long reviewId) {
         reviewRepository.delete(findById(reviewId));
     }
+
+    public void accept(Long id, String nickname) {
+        Review review = findById(id);
+        review.setModerator(); //////////////////////
+    }
 }

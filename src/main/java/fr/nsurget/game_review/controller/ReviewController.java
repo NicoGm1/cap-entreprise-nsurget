@@ -105,6 +105,10 @@ public class ReviewController {
             ModelAndView mav,
             Principal principal
     ) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
         if (bindingResult.hasErrors()) {
             mav.setViewName("review/post");
             return mav;
@@ -138,15 +142,52 @@ public class ReviewController {
         return mav;
     }
 
-    @DeleteMapping(UrlRoute.URL_REVIEW_DELETE)
-    public ModelAndView deleteReview(@RequestParam("reviewId") Long reviewId, ModelAndView mav) {
-        // Ajoutez la logique de suppression ici
-        reviewService.delete(reviewId);
+//    @DeleteMapping(UrlRoute.URL_REVIEW_DELETE)
+//    public ModelAndView deleteReview(@RequestParam("reviewId") Long reviewId, ModelAndView mav, Principal principal) {
+//        if (principal == null){
+//            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+//            return mav;
+//        }
+//        if (userService.findByNickname(principal.getName()) instanceof Gamer){
+//            mav.setViewName("redirect:" + UrlRoute.URL_HOME);
+//            return mav;
+//        }
+//
+//        reviewService.delete(reviewId);
+//        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_MODERATOR);
+//        return mav;
+//    }
 
-        // Redirigez vers la page du modérateur après la suppression
+    @GetMapping(UrlRoute.URL_REVIEW_DELETE + "/{id}")
+    public ModelAndView delete(@PathVariable Long id, ModelAndView mav, Principal principal) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        if (userService.findByNickname(principal.getName()) instanceof Gamer){
+            mav.setViewName("redirect:" + UrlRoute.URL_HOME);
+            return mav;
+        }
+
+        reviewService.delete(id);
         mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_MODERATOR);
         return mav;
     }
 
+    @GetMapping(UrlRoute.URL_REVIEW_ACCEPT + "/{id}")
+    public ModelAndView accept(@PathVariable Long id, ModelAndView mav, Principal principal) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        if (userService.findByNickname(principal.getName()) instanceof Gamer){
+            mav.setViewName("redirect:" + UrlRoute.URL_HOME);
+            return mav;
+        }
+
+        reviewService.accept(id, principal.getName());
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_MODERATOR);
+        return mav;
+    }
 
 }
