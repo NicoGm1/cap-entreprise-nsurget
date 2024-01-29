@@ -7,6 +7,7 @@ import fr.nsurget.game_review.repository.GameRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,5 +26,16 @@ public class GameService {
         Optional<Game> optionalGame = gameRepository.findBySlug(slug);
         optionalGame.orElseThrow(() -> new NotFoundException("Game", "slug", slug));
         return optionalGame.get();
+    }
+
+    public Game findByName(String name){
+        Optional<Game> optionalGame = gameRepository.findByName(name);
+        optionalGame.orElseThrow(() -> new NotFoundException("Game", "name", name));
+        return optionalGame.get();
+    }
+
+
+    public List<Game> findAll(){
+        return gameRepository.findAll();
     }
 }

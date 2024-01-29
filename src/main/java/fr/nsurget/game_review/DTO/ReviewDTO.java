@@ -19,14 +19,13 @@ import java.time.LocalDateTime;
 @Setter
 public class ReviewDTO {
 
-
     private String description;
 
     private Integer rating;
 
     private LocalDateTime createdAt;
 
-    private Game game;
+    private String gameName;
 
     private Gamer gamer;
 

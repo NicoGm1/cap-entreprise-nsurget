@@ -15,9 +15,8 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Liens utiles</h4>
                 <nav>
-                    <a href="${UrlRoute.URL_HOME}">Accueil</a>
+                    <a href="${UrlRoute.URL_HOME}">Accueil</a> |
                     <a href="${UrlRoute.URL_SITEMAP}">Sitemap</a>
-                    <a href="${UrlRoute.URL_LOGIN}">Login</a>
                 </nav>
                 <p><a href="/privacy-policy">Politique de confidentialité</a> | <a href="/terms-of-use">Conditions
                     d'utilisation</a></p>
@@ -34,8 +33,9 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Crédits et droits d'auteur</h4>
-                <p>&copy; 2024 POEC 2024. Tous droits réservés.</p>
+                <p>&copy; 2024 Nicolas SURGET. Tous droits réservés.</p>
                 <p>Images par <a class="nav-link" href="https://unsplash.com/">Unsplash</a></p>
+                <p>Icon par <a class="nav-link" href="https://icons8.com/">Icone8</a> et <a class="nav-link" href="https://fontawesome.com/">Font Awesome</a></p>
             </div>
         </div>
     </div>

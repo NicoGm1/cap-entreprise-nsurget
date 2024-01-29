@@ -10,7 +10,7 @@
 }
 
 .main-review-card:hover {
-    background: linear-gradient(to right, #333, #444); /* Nouveau dégradé au survol */
+    background: linear-gradient(to top, #34302b, #2c1b1a); /* Nouveau dégradé au survol */
 }
 
 

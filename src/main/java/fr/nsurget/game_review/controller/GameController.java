@@ -8,6 +8,9 @@ import fr.nsurget.game_review.service.GameService;
 import fr.nsurget.game_review.service.ReviewService;
 import fr.nsurget.game_review.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,20 +35,25 @@ public class GameController {
     public ModelAndView show(
             @PathVariable String slug,
             ModelAndView mav,
-            Principal principal
+            Principal principal,
+            @PageableDefault(
+                    size = 6, // nb Element par page
+                    sort = { "createdAt" }, // order by
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
     ) {
         Game game = gameService.findBySlug(slug);
 
         if (principal != null) {
             Gamer gamer = userService.findGamerByNickname(principal.getName());
             ReviewDTO dto = new ReviewDTO();
-            dto.setGame(game);
+            dto.setGameName(game.getName());
             dto.setGamer(gamer);
             mav.addObject("reviewDto", dto);
         }
         mav.setViewName("game/show");
         mav.addObject("game", game);
-        mav.addObject("lastReview", reviewService.getLastReviews(game.getId()));
+        mav.addObject("page_game_review", reviewService.getLastReviews(game.getSlug(), pageable));
         return mav;
     }
 

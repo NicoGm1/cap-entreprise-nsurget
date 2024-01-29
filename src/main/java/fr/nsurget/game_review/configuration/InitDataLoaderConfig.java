@@ -46,16 +46,16 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-//
-//        initModeratorAndTestGamer();
-//        initGamer();
-//        initPlatform();
-//        initPublisher();
-//        initClassification();
-//        initBusinessModel();
-//        initGenre();
-//        initGame();
-//        initReview();
+    // à faire
+        initModeratorAndTestGamer();
+        initGamer();
+        initPlatform();
+        initPublisher();
+        initClassification();
+        initBusinessModel();
+        initGenre();
+        initGame();
+        initReview();
     }
 
     private void initModeratorAndTestGamer() {
@@ -220,6 +220,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game1.setPlatforms(platforms);game1.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game1.setModerator(modo);
             game1.setImage("https://cdn2.steamgriddb.com/grid/5c7f7cad63487e6d1edd8dcf48d233c9.png");
+            game1.setTrailerYt("https://www.youtube.com/embed/AQlKnowRs-4?si=hWW1x2hwAszil7L4");
 
             gameRepository.save(game1);
         }
@@ -241,6 +242,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game2.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game2.setModerator(modo);
             game2.setImage("https://cdn2.steamgriddb.com/grid/4904f82c12cecf6ec070fe77d7e913ce.png");
+            game2.setTrailerYt("https://www.youtube.com/embed/53MyR_Z3i1w?si=UuJyn93PMovWUZKG");
 
             gameRepository.save(game2);
         }
@@ -262,7 +264,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game3.setBusinessModel(businessModelRepository.findByName("Free to Play").orElse(null));
             game3.setModerator(modo);
             game3.setImage("https://cdn2.steamgriddb.com/grid/6c4d541fc68d426aa028bc05f38164d1.png");
-
+            game3.setTrailerYt("https://www.youtube.com/embed/76PMOUyZNUM?si=UfQ3itJWeDK2-3qq");
             gameRepository.save(game3);
         }
 
@@ -283,6 +285,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game4.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game4.setModerator(modo);
             game4.setImage("https://cdn2.steamgriddb.com/grid/40a2dacd0cbe9d55f22480ad9eeeb36f.jpg");
+            game4.setTrailerYt("https://www.youtube.com/embed/XhP3Xh4LMA8?si=INqYmGn9zdep9ht2");
 
             gameRepository.save(game4);
         }
@@ -304,6 +307,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game5.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game5.setModerator(modo);
             game5.setImage("https://cdn2.steamgriddb.com/grid/0ed5055450adbd836945761a6fa43ee0.jpg");
+            game5.setTrailerYt("https://www.youtube.com/embed/MmB9b5njVbA?si=ln2P9VaTAVuZQynU");
 
 
             gameRepository.save(game5);
@@ -326,6 +330,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game6.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game6.setModerator(modo);
             game6.setImage("https://cdn2.steamgriddb.com/grid/3940304b536796dcc176aa83203a3955.png");
+            game6.setTrailerYt("https://www.youtube.com/embed/gmA6MrX81z4?si=3s4qIINtHfw8Yp4V");
 
             gameRepository.save(game6);
         }
@@ -347,6 +352,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game7.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game7.setModerator(modo);
             game7.setImage("https://cdn2.steamgriddb.com/grid/f8b146b1264be1257e65f518de82a372.png");
+            game7.setTrailerYt("https://www.youtube.com/embed/FqnKB22pOC0?si=UHwSrCKcavRpFwOk");
 
             gameRepository.save(game7);
         }
@@ -368,6 +374,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game8.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game8.setModerator(modo);
             game8.setImage("https://cdn2.steamgriddb.com/grid/4030e2eebb977639f8836aa25a293e40.png");
+            game8.setTrailerYt("https://www.youtube.com/embed/8X2kIfS6fb8?si=qePMqYMYWDANq0ir");
 
             gameRepository.save(game8);
         }
@@ -391,6 +398,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game13.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game13.setModerator(modo);
             game13.setImage("https://cdn2.steamgriddb.com/grid/5fe29e13bb3dbe607b05b0f2.jpg");
+            game13.setTrailerYt("https://www.youtube.com/embed/vumJiWdxQSs?si=xyKh_2bFFSMFa8zB");
 
             gameRepository.save(game13);
         }
@@ -415,6 +423,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game15.setBusinessModel(businessModelRepository.findByName("Free to Play").orElse(null));
             game15.setModerator(modo);
             game15.setImage("https://cdn2.steamgriddb.com/grid/3b4a395b5169a4ac9c9f40eb30f6652e.jpg");
+            game15.setTrailerYt("https://www.youtube.com/embed/0YKjFoGxbec?si=7uqpt_BofXlOc4JF");
 
             gameRepository.save(game15);
         }

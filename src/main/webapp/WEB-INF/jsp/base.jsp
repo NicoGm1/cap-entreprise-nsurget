@@ -13,6 +13,7 @@
     <title>${title}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="${contextPath}/css/main.css" rel="stylesheet">
+    <link rel="icon" href="https://assets.stickpng.com/images/5a18871c8d421802430d2d05.png">
     <script type="text/javascript" src="${contextPath}/js/page/search-bar.js"></script>
     <script type="text/javascript" src="${contextPath}/js/component/sortPage.js"></script>
     <script type="text/javascript" src="${contextPath}/js/lib/bootstrap/bootstrap.js"></script>
@@ -58,7 +59,13 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="${UrlRoute.URL_USER}/${userLogged.nickname}">Mon compte</a></li>
+                            <security:authorize access="hasRole('ROLE_GAMER')">
                             <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_OWN_LIST}">Mes reviews</a></li>
+                            <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_POST}">Ajouter un commentaire</a></li>
+                            </security:authorize>
+                            <security:authorize access="hasRole('ROLE_MODERATOR')">
+                                <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_MODERATOR}">Reviews à Moderer</a></li>
+                            </security:authorize>
                             <li>
                                 <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                                     <button class="dropdown-item" type="submit" tabindex="3">Logout</button>

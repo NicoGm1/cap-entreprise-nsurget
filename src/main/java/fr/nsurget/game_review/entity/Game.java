@@ -32,6 +32,8 @@ public class Game implements SluggerInterface {
 
     private String image;
 
+    private String trailerYt;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Classification classification;
@@ -53,6 +55,8 @@ public class Game implements SluggerInterface {
 
     @OneToMany(mappedBy = "game")
     private List<Review> reviews;
+
+
 
     @ManyToOne
     @JoinColumn(nullable = false)   // modo de base on l'id User 1L et 2L (accesible avec le userRepository)

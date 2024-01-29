@@ -1,57 +1,15 @@
 
-.container-img {
-    text-align: center; /* Centrer l'image */
+.thumbnailGameShow{
+    max-height: 70vh;
 }
 
-.thumbnailShow {
-    max-height: 50vh; /* 50% de la hauteur de l'écran */
-    border-radius: 10px; /* Arrondir les bords */
-    display: block;
-    margin: auto;
+.logoPlatform {
+    height: 5vh;
+    background-color: #ffe895;
+    border-radius: 5px;
+    padding: 3px;
 }
 
-
-
-.col.infocard {
-    border: 2px solid #ffd343; /* Contour orange */
-    border-radius: 10px; /* Coins arrondis */
-    background: linear-gradient(45deg, #272727, #1a1a1a); /* Fond dégradé */
-    padding: 20px; /* Espace intérieur */
-    color: #fff; /* Couleur du texte */
-}
-
-.col.infocard h1 {
-    color: #ffb909; /* Couleur du titre */
-}
-
-.col.infocard h6 {
-    color: #ffc473; /* Couleur des sous-titres */
-}
-
-.flag {
-    width: 30px; /* Ajustez la taille des drapeaux */
-    height: auto;
-    margin-right: 5px; /* Marge entre les drapeaux */
-}
-
-
-.thumbnailShow {
-    max-width: 100%;
-    border-radius: 8px;
-}
-
-.container-img {
-    text-align: center;
-}
-
-.flag {
-    max-width: 30px;
-}
-
-.infocard {
-    padding: 10px;
-}
-
-.platform {
-    margin-bottom: 8px;
+.card{
+    --bs-card-bg: #ffe895;
 }

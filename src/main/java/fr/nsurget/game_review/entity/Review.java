@@ -29,10 +29,10 @@ public class Review implements SluggerInterface {
     @Column(nullable = false)
     private Integer rating;
 
-//    @CreationTimestamp
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
-//    @UpdateTimestamp
+    @UpdateTimestamp
     private LocalDateTime moderatedAt;
 
     @ManyToOne
