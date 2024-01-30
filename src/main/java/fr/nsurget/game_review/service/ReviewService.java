@@ -2,9 +2,7 @@ package fr.nsurget.game_review.service;
 
 import fr.nsurget.game_review.DTO.ReviewDTO;
 import fr.nsurget.game_review.DTO.UserPostDTO;
-import fr.nsurget.game_review.entity.Game;
-import fr.nsurget.game_review.entity.Gamer;
-import fr.nsurget.game_review.entity.Review;
+import fr.nsurget.game_review.entity.*;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
@@ -28,6 +26,8 @@ public class ReviewService {
     UserService userService;
 
     GameService gameService;
+
+
 
     public Review findById(Long id){
         Optional<Review> optional = reviewRepository.findById(id);
@@ -84,12 +84,17 @@ public class ReviewService {
         return reviewRepository.saveAndFlush(review);
     }
 
-    public void delete(Long reviewId) {
-        reviewRepository.delete(findById(reviewId));
+    public void delete(Review review) {
+        reviewRepository.delete(review);
     }
 
     public void accept(Long id, String nickname) {
         Review review = findById(id);
-        review.setModerator(); //////////////////////
+        User user = userService.findByNickname(nickname);
+        if (user instanceof Moderator){
+            review.setModerator((Moderator) user);
+            review.setModeratedAt(LocalDateTime.now());
+        }
+        reviewRepository.saveAndFlush(review);
     }
 }

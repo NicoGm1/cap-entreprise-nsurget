@@ -5,6 +5,8 @@ import fr.nsurget.game_review.entity.User;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.GameRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +39,9 @@ public class GameService {
 
     public List<Game> findAll(){
         return gameRepository.findAll();
+    }
+
+    public Page<Game> findAll(Pageable pageable){
+        return gameRepository.findAll(pageable);
     }
 }

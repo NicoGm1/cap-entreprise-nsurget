@@ -27,9 +27,8 @@
           </div>
         <div class="mb-3 row">
           <div class="form-group ${status.error ? 'has-error' : ''}">
-            <f:input type="text" path="description" class="form-control" placeholder="Ton commentaire..."
-                     autofocus="true" rows="3" />
-            <f:errors path="description" cssClass="invalid-feedback" />
+            <f:textarea cssClass="form-control" path="description"/>
+            <f:errors path="description" cssClass="invalid-feedback"/>
           </div>
         </div>
         <div class="mb-3 hstack">

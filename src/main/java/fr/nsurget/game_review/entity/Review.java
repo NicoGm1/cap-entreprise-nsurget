@@ -32,7 +32,7 @@ public class Review implements SluggerInterface {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @UpdateTimestamp
+
     private LocalDateTime moderatedAt;
 
     @ManyToOne

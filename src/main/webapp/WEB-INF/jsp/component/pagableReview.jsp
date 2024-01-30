@@ -50,18 +50,7 @@
                                         <cite title="Source Title">En attente de moderation ⌛</cite>
                                     </c:if>
                                 </figcaption>
-                                <security:authorize access="hasRole('ROLE_MODERATOR')">
 
-                                    <a href="${UrlRoute.URL_REVIEW_DELETE}/${review.id}">
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                    </a>
-                                    <c:if test="${not empty review.moderator}">
-                                    <a href="${UrlRoute.URL_REVIEW_ACCEPT}/${review.id}">
-                                        <button type="submit" class="btn btn-secondary">Accepter</button>
-                                    </a>
-                                    </c:if>
-
-                                </security:authorize>
 
 
 
@@ -69,10 +58,27 @@
                                 <div class="review-card w-100 d-flex flex-column">
                                     <a href="${UrlRoute.URL_REVIEW}/${review.slug}" class="nav-link">
                                     <p class="review-description">
-                                            ${jspUtils.excerpt(review.description, 209)}
+                                        <div class="content-description">
+                                            <p class="inner-description">
+                                                <span>${review.description}</span>
+                                            </p>
+                                        </div>
                                     </p>
                                     </a>
+                                    <security:authorize access="hasRole('ROLE_MODERATOR')">
+                                        <div class="d-flex align-items-center mt-auto">
+                                            <a href="${UrlRoute.URL_REVIEW_DELETE}/${review.id}">
+                                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                            </a>
+                                            <c:if test="${empty review.moderator}">
+                                                <a href="${UrlRoute.URL_REVIEW_ACCEPT}/${review.id}">
+                                                    <button type="submit" class="btn btn-secondary">Accepter</button>
+                                                </a>
+                                            </c:if>
+                                        </div>
+                                    </security:authorize>
                                     <div class="d-flex justify-content-between mt-auto">
+
                                         <p class="${jspUtils.getCssClas(review.rating)}">
                                                 ${review.rating} / 20
                                         </p>

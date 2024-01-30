@@ -22,6 +22,7 @@ public class Game implements SluggerInterface {
     private Long id;
 
     @Column(nullable = false)
+
     private String name;
 
     @Column(nullable = false)

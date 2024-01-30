@@ -58,7 +58,7 @@ public class HomeController {
 
 
     @GetMapping(UrlRoute.URL_EXPORT)
-    public void downloadExcel(HttpServletResponse response) {
+    public void downloadExcel(HttpServletResponse response,Principal principal) {
         try {
             File file = excelReviewService.writeExcel();
             ByteArrayInputStream excelToByte = new ByteArrayInputStream(

@@ -397,7 +397,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game13.setPlatforms(platformsGame13);
             game13.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
             game13.setModerator(modo);
-            game13.setImage("https://cdn2.steamgriddb.com/grid/5fe29e13bb3dbe607b05b0f2.jpg");
+            game13.setImage("https://cdn2.steamgriddb.com/grid/3c64afe806cd466dd1ffecbe3e2e8cce.png");
             game13.setTrailerYt("https://www.youtube.com/embed/vumJiWdxQSs?si=xyKh_2bFFSMFa8zB");
 
             gameRepository.save(game13);
@@ -422,7 +422,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             game15.setPlatforms(platformsGame15);
             game15.setBusinessModel(businessModelRepository.findByName("Free to Play").orElse(null));
             game15.setModerator(modo);
-            game15.setImage("https://cdn2.steamgriddb.com/grid/3b4a395b5169a4ac9c9f40eb30f6652e.jpg");
+            game15.setImage("https://cdn2.steamgriddb.com/grid/9e05a81bf70d6b1afa3b5003a504e7e2.png");
             game15.setTrailerYt("https://www.youtube.com/embed/0YKjFoGxbec?si=7uqpt_BofXlOc4JF");
 
             gameRepository.save(game15);
@@ -471,27 +471,66 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         String gameName = review.getGame().getName();
 
         if (rating == 0) {
-            return "renommer " + gameName + " en nul.exe ";
+            if (Math.random() < 0.5) {
+                return "renommer " + gameName + " en nul.exe";
+            } else {
+                return "Titre : Une Exploration Rigoureuse de l'Échec Ludique : Le Cas de "+ gameName + ""
+                        + "</br>" +
+                        "Introduction :</br>" +
+                        "Dans le vaste panorama du monde des jeux vidéo, chaque création a la possibilité de se distinguer par ses mérites exceptionnels ou de tomber dans l'oubli en raison de ses lacunes manifestes. Parmi ces œuvres numériques, "+ gameName + " émerge tel un phénomène singulier, mais non pour les raisons souhaitées par ses concepteurs. Arborant une note étonnamment modeste de 0, "+ gameName + " suscite un intérêt particulier en raison de son incapacité à s'élever au-delà de l'insignifiance ludique.\n" +
+                        "</br>" +
+                        "Contextualisation du Jeu </br>" +
+                        "Prenant place dans un univers numérique complexe et visuellement banal, "+ gameName + " se présente comme une expérience qui défie non seulement les attentes du joueur, mais également les limites même de la créativité ludique. Confronté à des défis techniques insurmontables et à une conception artistique indéfinissable, le jeu en question incarne l'épitomé du désarroi interactif.\n" +
+                        "</br>" +
+                        "Éléments Négatifs et Bugs Galore :</br>" +
+                        "Une exploration approfondie révèle une multitude de défauts flagrants qui sapent toute tentative d'immersion dans "+ gameName + ". Des bugs grotesques rendent chaque tentative de progression un exercice en frustration, tandis que l'absence totale d'une histoire captivante ou de mécanismes de jeu cohérents laisse le joueur déconcerté, cherchant désespérément un sens à son expérience.\n" +
+                        "</br>" +
+                        "Graphismes Désastreux :</br>" +
+                        "Au-delà de ses problèmes structurels, "+ gameName + " échoue lamentablement sur le plan esthétique. Les graphismes, loin d'être impressionnants, plongent le joueur dans un océan visuel dépourvu de tout charme. Les textures éculées et les modèles de personnages mal rendus évoquent plus une réminiscence des premiers jours du développement de jeux vidéo que l'avant-garde du XXIe siècle.\n" +
+                        "</br>" +
+                        "Conclusion :</br>" +
+                        "En conclusion, "+ gameName +" émerge comme une aberration dans le paysage vidéoludique contemporain, capturant l'essence de l'échec dans son ensemble. Avec une note de 0, il se positionne comme un avertissement poignant contre les dangers de la complaisance créative et de l'absence de rigueur dans le processus de développement de jeux. Bien que certains jeux puissent résister aux épreuves du temps en raison de leur excellence indéniable, d'autres, comme "+ gameName +", deviennent des monuments à la médiocrité, témoignant de l'importance cruciale de l'innovation et de la qualité dans l'industrie du jeu vidéo.";
+            }
+
         } else if (rating > 0 && rating <= 7) {
+            if (Math.random() < 0.3) {
             return "Oh non! C'est vraiment décevant. J'espérais mieux de " + gameName + ". Ma note : " + rating + ". " +
                     "Le jeu a quelques problèmes, mais peut-être qu'il y a des aspects positifs à découvrir.";
-        } else if (rating >= 7 && rating <= 12) {
-            if (Math.random() < 0.5) {
-                return "Eh bien, " + gameName + " mérite " + rating + ". C'est un jeu correct, mais il y a place à l'amélioration.";
+            } else if (Math.random() < 0.5) {
+                return "Oh non! " + gameName + " mérite une médaille pour avoir survécu à cette critique. Ma note : " + rating + ". " +
+                        "Le jeu a plus de bugs que le jardin de ma grand-mère, mais peut-être qu'il y a un trésor caché.";
             } else {
+                return "NUL pas zeroooo mais nul !" + gameName;
+            }
+        } else if (rating >= 7 && rating <= 12) {
+            if (Math.random() < 0.2) {
+                return "Eh bien, " + gameName + " mérite " + rating + ". C'est un jeu correct, mais il y a place à l'amélioration.";
+            } else if (Math.random() < 0.2){
                 return "Hmm, " + gameName + " obtient une note de " + rating + ". Il y a quelque chose d'unique dans ce jeu, mais il peut être un peu décevant.";
+            } else if (Math.random() < 0.5) {
+                return "Eh bien, " + gameName + " mérite " + rating + ". C'est comme manger une pizza sans fromage - correct, mais il y a place à l'amélioration.";
+            } else {
+                return "Hmm, " + gameName + " obtient une note de " + rating + ". C'est comme regarder un film avec une fin décevante. Peut-être qu'il y a une suite?";
             }
         } else if (rating > 12 && rating <= 16) {
-            if (Math.random() < 0.5) {
+            if (Math.random() < 0.2) {
                 return "Bravo! " + gameName + " a obtenu une note de " + rating + ". Un excellent jeu, ça vaut le détour!";
-            } else {
+            } else if (Math.random() < 0.2){
                 return "Fantastique! " + gameName + " mérite vraiment sa note de " + rating + ". C'est un incontournable pour tous les joueurs.";
+            } else if (Math.random() < 0.5) {
+                return "WOW! " + gameName + " est AWESOME avec une note minimale de " + rating + ". Même les extraterrestres aimeraient jouer!";
+            } else {
+                return "Incroyable! " + gameName + " obtient une note impressionnante de " + rating + ". C'est tellement bon que même les jeux vidéo sont jaloux!";
             }
         } else if (rating > 16 && rating <= 20) {
-            if (Math.random() < 0.5) {
+            if (Math.random() < 0.2) {
                 return "WOW! " + gameName + " est AWESOME avec une note minimale de " + rating + ". C'est vraiment le meilleur jeu de tous les temps!";
-            } else {
+            } else if (Math.random() < 0.2){
                 return "Incroyable! " + gameName + " obtient une note impressionnante de " + rating + ". Ce jeu repousse les limites de l'excellence.";
+            } else if (Math.random() < 0.5) {
+                return "WOW! " + gameName + " est AWESOME avec une note minimale de " + rating + ". Même les extraterrestres aimeraient jouer!";
+            } else {
+                return "Incroyable! " + gameName + " obtient une note impressionnante de " + rating + ". C'est tellement bon que même les jeux vidéo sont jaloux!";
             }
         } else {
             // Ajoutez une gestion pour d'autres cas si nécessaire

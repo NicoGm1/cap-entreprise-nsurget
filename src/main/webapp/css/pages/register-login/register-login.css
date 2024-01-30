@@ -1,0 +1,13 @@
+.user-form {
+    --bs-body-color: #000000;
+    color: #000000;
+}
+
+.main-title{
+    text-shadow:
+            2px 2px 0 #000,
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+}

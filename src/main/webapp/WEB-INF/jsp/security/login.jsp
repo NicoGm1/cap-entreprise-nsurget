@@ -5,19 +5,21 @@
 <div class="container main">
 
   <security:authorize access="!isAuthenticated()">
-    <h1 class="text-center mt-5 mb-1 main-title">User Login</h1>
+
+    <h1 class="text-center mt-5 mb-1 main-title">Connection</h1>
 
     <div class="form-group ${error != null ? 'has-error' : ''}">
       <span>${message}</span>
       <div class=" justify-content-md-center">
         <form method="POST" action="${UrlRoute.URL_LOGIN}"
               class="form-signin p-5 col-lg-6 col-md-8 col-sm-12 mx-auto">
-          <div class="mb-3 row">
-            <input name="username" type="text" class="form-control" placeholder="Nickname"
-                   autofocus="true" />
+          <div class="form-floating mb-3 user-form">
+            <input name="username" type="text" class="form-control" id="floatingInput" placeholder="Pseudo">
+            <label for="floatingInput">Pseudo</label>
           </div>
-          <div class="mb-3 row">
-            <input name="password" type="password" class="form-control" placeholder="Password" />
+          <div class="form-floating user-form">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
           </div>
           <p class="invalid-feedback">${error}</p>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

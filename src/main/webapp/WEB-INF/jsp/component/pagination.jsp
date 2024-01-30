@@ -3,12 +3,16 @@
 
 <core:set var="currentPage" value="${page.number + 1}"/>
 <div class="position-relative">
+<security:authorize access="hasRole('ROLE_MODERATOR')">
+    <c:if test="${!ignoreImport}">
     <div class="position-absolute align-items-center">
         <a href="${UrlRoute.URL_EXPORT}" class="btn btn-link">
             <i class="fa-solid fa-file-excel me-1"></i>
             Télécharger export Excel
         </a>
     </div>
+    </c:if>
+</security:authorize>
     <div class="navigation d-flex justify-content-center align-items-center my-4">
         <div class="pagination">
             <core:if test="${!page.first}">

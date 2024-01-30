@@ -16,6 +16,8 @@
     <link rel="icon" href="https://assets.stickpng.com/images/5a18871c8d421802430d2d05.png">
     <script type="text/javascript" src="${contextPath}/js/page/search-bar.js"></script>
     <script type="text/javascript" src="${contextPath}/js/component/sortPage.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/component/hideForm.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/component/alert.js"></script>
     <script type="text/javascript" src="${contextPath}/js/lib/bootstrap/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script type="text/javascript" src="../js/lib/bootstrap/bootstrap.bundle.js"></script>
@@ -23,15 +25,16 @@
 
 </head>
 <body class="body">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+<nav class="navbar navbar-expand-lg ">
+    <div class="content-bar">
     <div class="row">
-        <div class="col-5 d-flex align-items-center">
+        <div class="col-3 d-flex align-items-center m-3">
             <a href="${UrlRoute.URL_HOME}"><img class="logo-navbar m-3 pl-3"
                                                 src="https://i.ibb.co/3ygCD6S/Title-Game.png"
                                                 alt="Logo Home"
                                                 title="Logo Home"/></a>
         </div>
-        <div class="col-6 d-flex align-items-center">
+        <div class="col-5 d-flex align-items-center">
             <div class="d-flex search-bar">
                 <input type="text" class="form-control" placeholder="Jeux, Editeur, Platforme ..."
                        data-search-bar>
@@ -43,10 +46,7 @@
             </div>
 
         </div>
-        <div class="col-1 d-flex align-items-center">
-            <div class="col-10">
-
-            </div>
+        <div class="col-2 d-flex align-items-center ms-5 nav-menu">
             <div class="col-2 row text-end">
                 <security:authorize access="!isAuthenticated()">
                     <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Inscription</a>
@@ -54,15 +54,13 @@
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
                     <div class="dropdown text-end">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                ${userLogged.getRole()} : ${userLogged.nickname}
-                        </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="${UrlRoute.URL_USER}/${userLogged.nickname}">Mon compte</a></li>
                             <security:authorize access="hasRole('ROLE_GAMER')">
-                            <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_OWN_LIST}">Mes reviews</a></li>
-                            <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_POST}">Ajouter un commentaire</a></li>
+                                <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_POST}">Ajouter un commentaire</a></li>
+                                <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_OWN_LIST}">Mes reviews</a></li>
                             </security:authorize>
+                            <li><a class="dropdown-item" href="${UrlRoute.URL_USER}/${userLogged.nickname}">Mon compte</a></li>
+                            <li><a class="dropdown-item" href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
                             <security:authorize access="hasRole('ROLE_MODERATOR')">
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_MODERATOR}">Reviews à Moderer</a></li>
                             </security:authorize>
@@ -73,10 +71,14 @@
                                 </form>
                             </li>
                         </ul>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                ${userLogged.getRole()} : ${userLogged.nickname}
+                        </a>
                     </div>
                 </security:authorize>
             </div>
         </div>
+    </div>
     </div>
 <%--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"--%>
 <%--            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"--%>
@@ -92,3 +94,11 @@
 </nav>
 <div class="navbar-color-line bg-red">
 </div>
+<c:if test="${requestScope.get('flashMessage') != null}">
+<div class="container">
+
+        <div class="alert alert-${flashMessage.type} m-5">
+                ${flashMessage.message}
+        </div>
+</div>
+</c:if>

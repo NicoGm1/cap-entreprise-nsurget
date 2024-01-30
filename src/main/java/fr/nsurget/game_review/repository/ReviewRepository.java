@@ -17,8 +17,6 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long>, EntitySlugRepository<Review> {
 
-    Page<Review> findAll(Pageable pageable);
-
     @Query("SELECT r FROM Review r WHERE r.gamer.id = ?1 AND r.moderator IS NULL")
     Page<Review> findReviewsByGamerIdAndModeratorIsNull(Long gamerId,Pageable pageable);
 

@@ -2,13 +2,12 @@ package fr.nsurget.game_review.controller;
 
 import fr.nsurget.game_review.DTO.ReviewDTO;
 import fr.nsurget.game_review.DTO.UserPostDTO;
-import fr.nsurget.game_review.entity.Game;
-import fr.nsurget.game_review.entity.Gamer;
-import fr.nsurget.game_review.entity.Moderator;
+import fr.nsurget.game_review.entity.*;
 import fr.nsurget.game_review.mapping.UrlRoute;
 import fr.nsurget.game_review.service.GameService;
 import fr.nsurget.game_review.service.ReviewService;
 import fr.nsurget.game_review.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -102,6 +102,7 @@ public class ReviewController {
     public ModelAndView post(
             @ModelAttribute("reviewDTO") @Valid ReviewDTO reviewDTO,
             BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
             ModelAndView mav,
             Principal principal
     ) {
@@ -116,6 +117,38 @@ public class ReviewController {
 
         reviewDTO.setGamer(userService.findGamerByNickname(principal.getName()));
         reviewService.create(reviewDTO);
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Le commentaire a bien été crée !")
+        );
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_OWN_WAITING_LIST);
+        return mav;
+    }
+
+    @PostMapping(UrlRoute.URL_GAME + "/{slug}")
+    public ModelAndView postFromGame(
+            @ModelAttribute("reviewDTO") @Valid ReviewDTO reviewDTO,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            ModelAndView mav,
+            Principal principal, @PathVariable String slug
+
+    ) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        if (bindingResult.hasErrors()) {
+            mav.setViewName("review/post");
+            return mav;
+        }
+        reviewDTO.setGamer(userService.findGamerByNickname(principal.getName()));
+        reviewDTO.setGameName(gameService.findBySlug(slug).getName());
+        reviewService.create(reviewDTO);
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Votre commentaire sur "+ reviewDTO.getGameName() + " a bien été crée !" )
+        );
         mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_OWN_WAITING_LIST);
         return mav;
     }
@@ -159,7 +192,7 @@ public class ReviewController {
 //    }
 
     @GetMapping(UrlRoute.URL_REVIEW_DELETE + "/{id}")
-    public ModelAndView delete(@PathVariable Long id, ModelAndView mav, Principal principal) {
+    public ModelAndView delete(@PathVariable Long id, ModelAndView mav, Principal principal, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         if (principal == null){
             mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
             return mav;
@@ -168,14 +201,23 @@ public class ReviewController {
             mav.setViewName("redirect:" + UrlRoute.URL_HOME);
             return mav;
         }
+        Review review = reviewService.findById(id);
+        reviewService.delete(review);
 
-        reviewService.delete(id);
-        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_MODERATOR);
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("warning", "Le commentaire de " + review.getGamer() +" sur "+ review.getGame() +" a bien été supprimé !")
+        );
+        String referer = request.getHeader("Referer");
+        mav.setViewName("redirect:" + (referer != null ? referer : "/"));
         return mav;
     }
 
     @GetMapping(UrlRoute.URL_REVIEW_ACCEPT + "/{id}")
-    public ModelAndView accept(@PathVariable Long id, ModelAndView mav, Principal principal) {
+    public ModelAndView accept(@PathVariable Long id, ModelAndView mav,
+                               Principal principal,
+                               RedirectAttributes redirectAttributes,
+                               HttpServletRequest request) {
         if (principal == null){
             mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
             return mav;
@@ -186,7 +228,13 @@ public class ReviewController {
         }
 
         reviewService.accept(id, principal.getName());
-        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_MODERATOR);
+        Review review = reviewService.findById(id);
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Le commentaire a bien été modéré !")
+        );
+        String referer = request.getHeader("Referer");
+        mav.setViewName("redirect:" + (referer != null ? referer : "/"));
         return mav;
     }
 

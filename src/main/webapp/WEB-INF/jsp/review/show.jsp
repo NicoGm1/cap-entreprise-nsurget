@@ -9,7 +9,7 @@
         <div class="content-padding-2-5-2">
 
             <div class="row">
-                <div class="col-8">
+                <div class="col-9">
                     <h2 class="mb-3">Review de <a class="btn-link" href="#">${review.gamer.nickname}</a> sur <a class="btn-link"
                                                                                                                 href="#">${review.game.name}</a>
                     </h2>
@@ -25,9 +25,9 @@
                             <cite title="Source Title">En attente de moderation ⌛</cite>
                         </c:if>
                     </figcaption>
-                    <p class="reviewDescription">${jspUtils.excerpt(review.description, 209)}</p>
+                    <p class="reviewDescription">${review.description}</p>
                 </div>
-                <div class="col-4 hstack gap-1">
+                <div class="col-3 hstack gap-1">
                     <p class="display-6 rounded bg-dark p-2 ms-auto">
                         <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
                         <span> / 20 </span>
@@ -35,42 +35,33 @@
                 </div>
             </div>
 
-
-
-            <div class="review-card w-100 d-flex flex-column my-5">
-                    <div class="card mb-3 mx-5">
-                        <div class="row g-0">
-                            <div class="col-auto">
-                                <img src="${review.game.image}" class="img-fluid rounded-start thumbnailGameShow" alt="${review.game.name}">
+            <div class="col-lg-6 col-md-12 col-sm-12 mt-4">
+                <div class="main-game-card w-100 rounded">
+                    <div class="card rounded mb-3" style="max-width: 540px;">
+                        <div class="row g-0 bg-dark rounded">
+                            <div class="col-md-5">
+                                <img src="${review.game.image}" class="img-fluid img-game-card rounded-start" alt="...">
                             </div>
-                            <div class="col bg-dark rounded-end">
+                            <div class="col-md-7 d-flex flex-column">
                                 <div class="card-body">
-                                    <div class="text-center">
-                                        <h1 class="card-title mb-3">${review.game.name}</h1>
-                                        <p class="card-text"><small class="text-body-secondary">${review.game.description}</small></p>
+                                    <h5 class="card-title">${review.game.name}</h5>
+                                    <div class="content-description">
+                                        <p class="inner-description">
+                                            <span>${review.game.description}</span>
+                                        </p>
                                     </div>
-
-                                    <div class="row mt-5">
-                                        <div class="col-6">
-                                            <p class="card-text">Disponible sur :</p>
-                                            <p class="logoContainer">
-                                                <c:forEach items="${review.game.platforms}" var="platform">
-                                                    <img src="${platform.logo}" class="logoPlatform">
-                                                </c:forEach>
-                                            </p>
-                                            <p class="card-text">Modèle Économique : ${review.game.businessModel.name}</p>
-                                        </div>
-                                        <div class="col-6 text-end">
-                                            <p class="card-text">Editeur : ${review.game.publisher.name}</p>
-                                            <p class="card-text">Date de sortie : ${review.game.publishedAt}</p>
-                                            <p class="card-text">Classification : ${review.game.classification.name}</p>
-                                            <p class="card-text">Genre : ${review.game.genre.name}</p>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="ms-3 mt-auto"> <!-- Utilisez mt-auto pour aligner en bas -->
+                                    <p class="card-text"><small class="text-body-secondary">Date de sortie : ${review.game.publishedAt}</small></p>
+                                    <p class="card-text"><small class="text-body-secondary">Disponible sur : </small></p>
+                                    <p class="logoContainer">
+                                        <c:forEach items="${review.game.platforms}" var="platform">
+                                            <img src="${platform.logo}" alt="${platform.name}" title="${platform.name}" class="logoPlatform">
+                                        </c:forEach>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

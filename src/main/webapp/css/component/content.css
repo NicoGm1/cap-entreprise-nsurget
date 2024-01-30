@@ -1,0 +1,19 @@
+.content-description {
+    max-height: 6em;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    line-height: 1.5em;
+}
+
+.content-description::before {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #212529);
+    content: '\200C';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 4.5em;
+    width: 25%;
+    text-align: center;
+}
+

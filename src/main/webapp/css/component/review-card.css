@@ -5,12 +5,12 @@
     text-decoration: none;
     padding: 0.2em 0.8em;
     color: #fff;
-    background: linear-gradient(to right, #111, #222); /* Dégradé gris très foncé */
+    background: linear-gradient(to right, #111, #212529); /* Dégradé gris très foncé */
     transition: background 0.3s; /* Ajout de transition pour le changement au survol */
 }
 
 .main-review-card:hover {
-    background: linear-gradient(to top, #34302b, #2c1b1a); /* Nouveau dégradé au survol */
+    background: linear-gradient(to right, #3d392c, #212529); /* Nouveau dégradé au survol */
 }
 
 

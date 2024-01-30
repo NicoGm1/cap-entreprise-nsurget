@@ -18,17 +18,17 @@
                                 <p class="card-text"><small class="text-body-secondary">${game.description}</small></p>
                             </div>
 
-                            <div class="row mt-5">
-                                <div class="col-6">
+                            <div class="row d-flex mt-5">
+                                <div class="col-6 text-end pe-4 border-end">
                                     <p class="card-text">Disponible sur :</p>
                                     <p class="logoContainer">
                                         <c:forEach items="${game.platforms}" var="platform">
-                                            <img src="${platform.logo}" class="logoPlatform">
+                                            <img src="${platform.logo}" alt="${platform.name}" title="${platform.name}" class="logoPlatform">
                                         </c:forEach>
                                     </p>
                                     <p class="card-text">Modèle Économique : ${game.businessModel.name}</p>
                                 </div>
-                                <div class="col-6 text-end">
+                                <div class="col-6 ps-4">
                                     <p class="card-text">Editeur : ${game.publisher.name}</p>
                                     <p class="card-text">Date de sortie : ${game.publishedAt}</p>
                                     <p class="card-text">Classification : ${game.classification.name}</p>
@@ -41,206 +41,194 @@
 
             </div>
             <c:if test="${not empty game.trailerYt}">
-            <div class="content-padding-2-5-2">
-                <h2 class="mx-5 mb-5">Trailer :</h2>
-                <div class="ratio ratio-16x9">
-                    <iframe src="${game.trailerYt}" title="YouTube video" allowfullscreen></iframe>
-                </div>
-            </div>
-            </c:if>
-            <c:if test="${not empty game.reviews}">
                 <div class="content-padding-2-5-2">
-                    <h2 class="mx-5 mb-5">Les Dernieres reviews sur ${game.name}:</h2>
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex">
-                            <!-- Label à afficher -->
-                            <c:set var="label" scope="request" value="Date"/>
-                            <!-- Sur quelle propriété de l'objet on souhaite trier -->
-                            <c:set var="sortable" value="createdAt"/>
-                            <%@ include file="../component/sortable.jsp" %>
-
-                            <c:set var="label" scope="request" value="Note"/>
-                            <c:set var="sortable" value="rating"/>
-                            <%@ include file="../component/sortable.jsp" %>
-
-                            <c:set var="label" scope="request" value="Jeu"/>
-                            <c:set var="sortable" value="game.name"/>
-                            <%@ include file="../component/sortable.jsp" %>
-
-                            <span class="mt-auto mb-2">
-                        <a href="${currentUrl}" class="btn-link">
-                            Reset
-                        </a>
-                    </span>
-                        </div>
+                    <h2 class="mx-5 mb-5">Trailer :</h2>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="${game.trailerYt}" title="YouTube video" allowfullscreen></iframe>
                     </div>
-
-                    <div class="row" id="dernieres-reviews-en-ligne">
-                        <c:forEach items="${page_game_review.content}" var="review">
-                            <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-                                <div class="main-review-card w-100">
-                                    <p class="text-center">
-                                        Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
-                                        par <a class="btn-link" href="#">${review.gamer.nickname}</a> <br>
-                                    <figcaption class="blockquote-footer text-center">
-                                        Modéré par <cite title="Source Title">${review.moderator.nickname}</cite> -
-                                        le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
-                                    </figcaption>
-                                    </p>
-
-
-                                    <div class="review-card w-100 d-flex flex-column">
-                                        <p class="review-description">
-                                                ${jspUtils.excerpt(review.description, 209)}
-                                        </p>
-
-                                        <div class="d-flex justify-content-between mt-auto">
-                                            <p class="${jspUtils.getCssClas(review.rating)}">
-                                                    ${review.rating} / 20
-                                            </p>
-                                            <a class="btn-link" href="${UrlRoute.URL_GAME}/${review.game.slug}">
-                                                    ${review.game.name}
-                                            </a>
-                                        </div>
-                                    </div>
-
-
+                </div>
+            </c:if>
+            <div class="content-padding-2-5-2">
+                <h2 class="ms-5">Les Dernieres reviews sur ${game.name}:</h2>
+                <security:authorize access="hasRole('ROLE_GAMER')">
+                    <button class="btn btn-link"
+                            title="Ajouter un commentaire"
+                            data-hide-show-button="formReview"
+                    >
+                        Poster un commentaire sur ${game.name}
+                    </button>
+                    <div class="my-3 d-none"
+                         data-hide-show-container="formReview"
+                    >
+                        <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                                action="${currentUrl}"
+                                method="post"
+                                modelAttribute="reviewDto"
+                        >
+                            <div class="mb-3 row">
+                                <f:label path="description" class="col-sm-2 col-form-label text-end">Description</f:label>
+                                <div class="col-sm-10">
+                                    <f:textarea cssClass="form-control" path="description"/>
+                                    <f:errors path="description" cssClass="invalid-feedback"/>
                                 </div>
                             </div>
-                        </c:forEach>
-
+                            <div class="my-3 row">
+                                <f:label path="rating" class="col-sm-2 col-form-label text-end">Note</f:label>
+                                <div class="col-sm-10">
+                                    <div class="hstack">
+                                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                                            <f:input type="number" min="0" max="20" path="rating" class="form-control pe-3" placeholder="Note" />
+                                            <f:errors path="rating" cssClass="invalid-feedback" />
+                                        </div>
+                                        <div class="ms-3">/20</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-3 row">
+                                <div class="col-sm-2 col-form-label text-end"></div>
+                            <div class="col-sm-10">
+                            <f:button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Ajouter
+                            </f:button>
+                            </div>
+                            </div>
+                        </f:form>
                     </div>
+                </security:authorize>
+                <c:if test="${not empty game.reviews}">
                     <c:set var="page" scope="request" value="${page_game_review}"/>
                     <c:set var="url" scope="request" value="${UrlRoute.URL_GAME}/${game.slug}"/>
+                    <%@ include file="../component/pagableReview.jsp" %>
                     <%@ include file="../component/pagination.jsp" %>
-                </div>
-            </c:if>
+                </c:if>
+            </div>
+
         </div>
     </div>
 </div>
 
 
-    <%--        <div class="row gameOpener">--%>
-    <%--            <div class="col-3">--%>
-    <%--                <div class="container-img">--%>
-    <%--                    <img alt="${game.name}" src="${game.image}" class="thumbnailShow">--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--            <div class="col-9 infocard m-3">--%>
-    <%--                <div class="text-center m-4">--%>
-    <%--                    <h1>${game.name} </h1>--%>
-    <%--                </div>--%>
-    <%--                <div class="row align-items-center">--%>
-    <%--                    <div class="col-8">--%>
-    <%--                        <div class="row">--%>
-    <%--                            <c:if test="${not empty game.classification}">--%>
-    <%--                                <h6 class="col-3 mb">classification : </h6>--%>
-    <%--                                <div class="col-9">${game.classification}--%>
-    <%--                                </div>--%>
-    <%--                            </c:if>--%>
-    <%--                            <c:if test="${not empty game.platforms}">--%>
-    <%--                                <h6 class="col-3 mt-2">Platform : </h6>--%>
+<%--        <div class="row gameOpener">--%>
+<%--            <div class="col-3">--%>
+<%--                <div class="container-img">--%>
+<%--                    <img alt="${game.name}" src="${game.image}" class="thumbnailShow">--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-9 infocard m-3">--%>
+<%--                <div class="text-center m-4">--%>
+<%--                    <h1>${game.name} </h1>--%>
+<%--                </div>--%>
+<%--                <div class="row align-items-center">--%>
+<%--                    <div class="col-8">--%>
+<%--                        <div class="row">--%>
+<%--                            <c:if test="${not empty game.classification}">--%>
+<%--                                <h6 class="col-3 mb">classification : </h6>--%>
+<%--                                <div class="col-9">${game.classification}--%>
+<%--                                </div>--%>
+<%--                            </c:if>--%>
+<%--                            <c:if test="${not empty game.platforms}">--%>
+<%--                                <h6 class="col-3 mt-2">Platform : </h6>--%>
 
-    <%--                                <div class="col-9 mt-2">--%>
-    <%--                                    <c:forEach items="${game.platforms}" var="platform">--%>
-    <%--                                        <div>--%>
-    <%--                                            <a class="link-if" href="#">--%>
-    <%--                                                    <img src="${platform.logo}">--%>
-    <%--                                            </a>--%>
-    <%--                                        </div>--%>
-    <%--                                    </c:forEach>--%>
-    <%--                                </div>--%>
-    <%--                            </c:if>--%>
-    <%--                        </div>--%>
-    <%--                    </div>--%>
-    <%--                    <div class="col-4">--%>
-    <%--                        <h3 class="display-6 text-center">OK</h3>--%>
-    <%--                    </div>--%>
-    <%--                </div>--%>
-    <%--                <div>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--    </div>--%>
+<%--                                <div class="col-9 mt-2">--%>
+<%--                                    <c:forEach items="${game.platforms}" var="platform">--%>
+<%--                                        <div>--%>
+<%--                                            <a class="link-if" href="#">--%>
+<%--                                                    <img src="${platform.logo}">--%>
+<%--                                            </a>--%>
+<%--                                        </div>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </div>--%>
+<%--                            </c:if>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-4">--%>
+<%--                        <h3 class="display-6 text-center">OK</h3>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
 
-    <%--    <h2 class="m-5">Description</h2>--%>
+<%--    <h2 class="m-5">Description</h2>--%>
 
-    <%--    <div class="text-center">--%>
-    <%--        <c:out value="${game.description}" escapeXml="false"/>--%>
+<%--    <div class="text-center">--%>
+<%--        <c:out value="${game.description}" escapeXml="false"/>--%>
 
-    <%--    </div>--%>
+<%--    </div>--%>
 
 
-    <%--    <c:if test="${lastReview.size() > 0}">--%>
-    <%--        <h2 class="m-5">Commentaires</h2>--%>
-    <%--        <div class="row">--%>
-    <%--            <c:forEach items="${lastReview}" var="review">--%>
+<%--    <c:if test="${lastReview.size() > 0}">--%>
+<%--        <h2 class="m-5">Commentaires</h2>--%>
+<%--        <div class="row">--%>
+<%--            <c:forEach items="${lastReview}" var="review">--%>
 
-    <%--                <div class="col-3 align-items-center">--%>
-    <%--                    <h2 class="display-6">${review.rating}/5</h2>--%>
-    <%--                </div>--%>
-    <%--                <figure class="col-8 text-end">--%>
-    <%--                    <blockquote class="blockquote">--%>
-    <%--                        <p>"${review.description}"</p>--%>
-    <%--                    </blockquote>--%>
-    <%--                    <figcaption class="blockquote-footer">--%>
-    <%--                        <a class="link-if" href="${UrlRoute.URL_USER}/${review.gamer.nickname}}">--%>
-    <%--                                ${review.gamer.nickname}--%>
-    <%--                        </a> - <cite title="Source Title">${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}</cite>--%>
-    <%--                    </figcaption>--%>
-    <%--                </figure>--%>
+<%--                <div class="col-3 align-items-center">--%>
+<%--                    <h2 class="display-6">${review.rating}/5</h2>--%>
+<%--                </div>--%>
+<%--                <figure class="col-8 text-end">--%>
+<%--                    <blockquote class="blockquote">--%>
+<%--                        <p>"${review.description}"</p>--%>
+<%--                    </blockquote>--%>
+<%--                    <figcaption class="blockquote-footer">--%>
+<%--                        <a class="link-if" href="${UrlRoute.URL_USER}/${review.gamer.nickname}}">--%>
+<%--                                ${review.gamer.nickname}--%>
+<%--                        </a> - <cite title="Source Title">${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}</cite>--%>
+<%--                    </figcaption>--%>
+<%--                </figure>--%>
 
-    <%--            </c:forEach>--%>
-    <%--        </div>--%>
-    <%--    </c:if>--%>
-    <%--    <h2 class="mt-5">Poster un Commentaires :</h2>--%>
-    <%--    <security:authorize access="!isAuthenticated()">--%>
-    <%--        <div class="d-flex mt-1 mb-10">--%>
-    <%--            <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Register</a><span>&thinsp;ou&thinsp;</span><a--%>
-    <%--                class="nav-link" href="${UrlRoute.URL_LOGIN}">Login</a>--%>
-    <%--        </div>--%>
-    <%--    </security:authorize>--%>
-    <%--    <security:authorize access="isAuthenticated()">--%>
-    <%--        <p1>**FORM HERE**</p1>--%>
-    <%--        <f:form modelAttribute="reviewDto" method="post"--%>
-    <%--                action="${s:mvcUrl('AppReview#create').arg(0, game.slug).build()}"--%>
-    <%--                cssClass="p-5 col-lg-6 col-md-8 col-sm-12 mx-auto">--%>
+<%--            </c:forEach>--%>
+<%--        </div>--%>
+<%--    </c:if>--%>
+<%--    <h2 class="mt-5">Poster un Commentaires :</h2>--%>
+<%--    <security:authorize access="!isAuthenticated()">--%>
+<%--        <div class="d-flex mt-1 mb-10">--%>
+<%--            <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Register</a><span>&thinsp;ou&thinsp;</span><a--%>
+<%--                class="nav-link" href="${UrlRoute.URL_LOGIN}">Login</a>--%>
+<%--        </div>--%>
+<%--    </security:authorize>--%>
+<%--    <security:authorize access="isAuthenticated()">--%>
+<%--        <p1>**FORM HERE**</p1>--%>
+<%--        <f:form modelAttribute="reviewDto" method="post"--%>
+<%--                action="${s:mvcUrl('AppReview#create').arg(0, game.slug).build()}"--%>
+<%--                cssClass="p-5 col-lg-6 col-md-8 col-sm-12 mx-auto">--%>
 
-    <%--            <div class="mb-3 row">--%>
-    <%--                <f:label path="title" class="col-sm-2 col-form-label text-end">Title :</f:label>--%>
-    <%--                <div class="col-sm-10">--%>
-    <%--                    <f:input type="text" class="form-control" path="title" placeholder="Titre de ma review"/>--%>
-    <%--                    <f:errors path="title" class="invalid-feedback"/>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
+<%--            <div class="mb-3 row">--%>
+<%--                <f:label path="title" class="col-sm-2 col-form-label text-end">Title :</f:label>--%>
+<%--                <div class="col-sm-10">--%>
+<%--                    <f:input type="text" class="form-control" path="title" placeholder="Titre de ma review"/>--%>
+<%--                    <f:errors path="title" class="invalid-feedback"/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-    <%--            <div class="mb-3 row">--%>
-    <%--                <f:label path="content" class="col-sm-2 col-form-label text-end">Content :</f:label>--%>
-    <%--                <div class="col-sm-10">--%>
-    <%--                    <f:textarea class="form-control" path="content" rows="2" placeholder="Ce jeu est super !"/>--%>
-    <%--                    <f:errors path="content" class="invalid-feedback"/>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
+<%--            <div class="mb-3 row">--%>
+<%--                <f:label path="content" class="col-sm-2 col-form-label text-end">Content :</f:label>--%>
+<%--                <div class="col-sm-10">--%>
+<%--                    <f:textarea class="form-control" path="content" rows="2" placeholder="Ce jeu est super !"/>--%>
+<%--                    <f:errors path="content" class="invalid-feedback"/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-    <%--            <div class="mb-3 row">--%>
-    <%--                <f:label path="rating" class="col-sm-2 col-form-label text-end">Rating :</f:label>--%>
-    <%--                <div class="col-5">--%>
-    <%--                    <div class="input-group">--%>
-    <%--                        <f:input type="number" class="form-control" path="rating" placeholder="4.5" step="0.1"--%>
-    <%--                                 value="4.5" max="5"/>--%>
-    <%--                        <div class="input-group-append col-2">--%>
-    <%--                            <div class="m-1">/5</div>--%>
-    <%--                        </div>--%>
-    <%--                    </div>--%>
-    <%--                    <f:errors path="rating" class="invalid-feedback"/>--%>
-    <%--                </div>--%>
-    <%--            </div>--%>
-    <%--            <f:input type="number" path="gamer" hidden="hidden"/>--%>
-    <%--            <f:input type="number" path="game" hidden="hidden"/>--%>
-    <%--            <f:button class="btn btn-secondary" type="reset">Reset</f:button>--%>
-    <%--            <f:button class="btn btn-primary" type="submit">Submit</f:button>--%>
-    <%--        </f:form>--%>
-    <%--    </security:authorize>--%>
-    <%--</div>--%>
+<%--            <div class="mb-3 row">--%>
+<%--                <f:label path="rating" class="col-sm-2 col-form-label text-end">Rating :</f:label>--%>
+<%--                <div class="col-5">--%>
+<%--                    <div class="input-group">--%>
+<%--                        <f:input type="number" class="form-control" path="rating" placeholder="4.5" step="0.1"--%>
+<%--                                 value="4.5" max="5"/>--%>
+<%--                        <div class="input-group-append col-2">--%>
+<%--                            <div class="m-1">/5</div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <f:errors path="rating" class="invalid-feedback"/>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <f:input type="number" path="gamer" hidden="hidden"/>--%>
+<%--            <f:input type="number" path="game" hidden="hidden"/>--%>
+<%--            <f:button class="btn btn-secondary" type="reset">Reset</f:button>--%>
+<%--            <f:button class="btn btn-primary" type="submit">Submit</f:button>--%>
+<%--        </f:form>--%>
+<%--    </security:authorize>--%>
+<%--</div>--%>
 
 <%@ include file="../footer.jsp" %>

@@ -2,3 +2,5 @@
 @import url("index.css");
 @import url("error.css");
 @import url("game/show.css");
+@import url("game/list.css");
+@import url("register-login/register-login.css");
