@@ -51,7 +51,7 @@ public class Review implements SluggerInterface {
     @Override
     public String getField() {
         Faker faker = new Faker();
-        return "review-" + game.getName() + "-" + rating + "-" + faker.number().numberBetween(1, 99);
+        return "review-" + game.getName() + "-" + rating + "-" + faker.number().numberBetween(1, 999);
     }
 
 

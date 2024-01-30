@@ -206,7 +206,7 @@ public class ReviewController {
 
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
-                new FlashMessage("warning", "Le commentaire de " + review.getGamer() +" sur "+ review.getGame() +" a bien été supprimé !")
+                new FlashMessage("warning", "Le commentaire de " + review.getGamer().getNickname() +" sur "+ review.getGame().getName() +" a bien été supprimé !")
         );
         String referer = request.getHeader("Referer");
         mav.setViewName("redirect:" + (referer != null ? referer : "/"));
@@ -231,7 +231,7 @@ public class ReviewController {
         Review review = reviewService.findById(id);
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
-                new FlashMessage("success", "Le commentaire a bien été modéré !")
+                new FlashMessage("success", "Le commentaire de " + review.getGamer().getNickname() +" sur "+ review.getGame().getName() +" a bien été validé !")
         );
         String referer = request.getHeader("Referer");
         mav.setViewName("redirect:" + (referer != null ? referer : "/"));

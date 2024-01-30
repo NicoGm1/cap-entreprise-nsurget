@@ -40,9 +40,10 @@ public class ExcelReviewService {
             ws.value(0, 0, "Date d'envoi");
             ws.value(0, 1, "Jeu");
             ws.value(0, 2, "Joueur");
-            ws.value(0, 3, "Note");
-            ws.value(0, 4, "Statut");
-            ws.value(0, 5, "Date modération");
+            ws.value(0, 3, "Description");
+            ws.value(0, 4, "Note");
+            ws.value(0, 5, "Statut");
+            ws.value(0, 6, "Date modération");
 
             List<Review> reviews = reviewService.findAll();
             for (int i = 1; i <= reviews.size(); i++) {
@@ -51,9 +52,11 @@ public class ExcelReviewService {
                 ws.value(i, 0, dateUtils.getDateFormat(review.getCreatedAt(), "dd/MM/YYYY"));
                 ws.value(i, 1, review.getGame().getName());
                 ws.value(i, 2, review.getGamer().getNickname());
-                ws.value(i, 3, review.getRating());
-                ws.value(i, 4, isModerated ? "À modérer" : "Modéré");
-                ws.value(i, 5, isModerated ? "" : dateUtils.getDateFormat(review.getModeratedAt(), "dd/MM/YYYY"));
+                ws.value(i, 3, review.getDescription());
+                ws.value(i, 4, review.getRating());
+                ws.value(i, 5, isModerated ? "À modérer" : "Modéré");
+                ws.value(i, 6, isModerated ? "" : dateUtils.getDateFormat(review.getModeratedAt(), "dd/MM/YYYY"));
+
             }
             wb.finish();
             return serverFile;

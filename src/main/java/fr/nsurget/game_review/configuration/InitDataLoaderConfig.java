@@ -453,7 +453,6 @@ public class InitDataLoaderConfig implements CommandLineRunner {
                     review.setModerator((Moderator) userService.findByNickname("nco"));
                     review.setModeratedAt(LocalDateTime.now());
                 }
-                review.setCreatedAt(faker.date().birthday(0,2).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
                 reviewRepository.save(review);
             }
             });
@@ -461,6 +460,10 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
         if (needFlush) {
             reviewRepository.flush();
+            Faker faker = new Faker();
+            reviewRepository.findAll().forEach(r-> r.setCreatedAt(faker.date().birthday(0,2).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()));
+            reviewRepository.flush();
+
         }
 
 
@@ -475,19 +478,19 @@ public class InitDataLoaderConfig implements CommandLineRunner {
                 return "renommer " + gameName + " en nul.exe";
             } else {
                 return "Titre : Une Exploration Rigoureuse de l'Échec Ludique : Le Cas de "+ gameName + ""
-                        + "</br>" +
+                        + "</br></br>" +
                         "Introduction :</br>" +
                         "Dans le vaste panorama du monde des jeux vidéo, chaque création a la possibilité de se distinguer par ses mérites exceptionnels ou de tomber dans l'oubli en raison de ses lacunes manifestes. Parmi ces œuvres numériques, "+ gameName + " émerge tel un phénomène singulier, mais non pour les raisons souhaitées par ses concepteurs. Arborant une note étonnamment modeste de 0, "+ gameName + " suscite un intérêt particulier en raison de son incapacité à s'élever au-delà de l'insignifiance ludique.\n" +
-                        "</br>" +
+                        "</br></br>" +
                         "Contextualisation du Jeu </br>" +
                         "Prenant place dans un univers numérique complexe et visuellement banal, "+ gameName + " se présente comme une expérience qui défie non seulement les attentes du joueur, mais également les limites même de la créativité ludique. Confronté à des défis techniques insurmontables et à une conception artistique indéfinissable, le jeu en question incarne l'épitomé du désarroi interactif.\n" +
-                        "</br>" +
+                        "</br></br>" +
                         "Éléments Négatifs et Bugs Galore :</br>" +
                         "Une exploration approfondie révèle une multitude de défauts flagrants qui sapent toute tentative d'immersion dans "+ gameName + ". Des bugs grotesques rendent chaque tentative de progression un exercice en frustration, tandis que l'absence totale d'une histoire captivante ou de mécanismes de jeu cohérents laisse le joueur déconcerté, cherchant désespérément un sens à son expérience.\n" +
-                        "</br>" +
+                        "</br></br>" +
                         "Graphismes Désastreux :</br>" +
                         "Au-delà de ses problèmes structurels, "+ gameName + " échoue lamentablement sur le plan esthétique. Les graphismes, loin d'être impressionnants, plongent le joueur dans un océan visuel dépourvu de tout charme. Les textures éculées et les modèles de personnages mal rendus évoquent plus une réminiscence des premiers jours du développement de jeux vidéo que l'avant-garde du XXIe siècle.\n" +
-                        "</br>" +
+                        "</br></br>" +
                         "Conclusion :</br>" +
                         "En conclusion, "+ gameName +" émerge comme une aberration dans le paysage vidéoludique contemporain, capturant l'essence de l'échec dans son ensemble. Avec une note de 0, il se positionne comme un avertissement poignant contre les dangers de la complaisance créative et de l'absence de rigueur dans le processus de développement de jeux. Bien que certains jeux puissent résister aux épreuves du temps en raison de leur excellence indéniable, d'autres, comme "+ gameName +", deviennent des monuments à la médiocrité, témoignant de l'importance cruciale de l'innovation et de la qualité dans l'industrie du jeu vidéo.";
             }

@@ -35,6 +35,7 @@
                                                 title="Logo Home"/></a>
         </div>
         <div class="col-5 d-flex align-items-center">
+            <security:authorize access="isAuthenticated()">
             <div class="d-flex search-bar">
                 <input type="text" class="form-control" placeholder="Jeux, Editeur, Platforme ..."
                        data-search-bar>
@@ -44,16 +45,17 @@
             </div>
             <div class="search-response-container">
             </div>
-
+            </security:authorize>
         </div>
-        <div class="col-2 d-flex align-items-center ms-5 nav-menu">
-            <div class="col-2 row text-end">
+        <div class="col-3 d-flex align-items-center ms-5 nav-menu bg-danger">
+            <div class="col-11"></div>
+            <div class="col-1 row text-end">
                 <security:authorize access="!isAuthenticated()">
                     <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Inscription</a>
                     <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Connexion</a>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
-                    <div class="dropdown text-end">
+                    <div class="dropdown">
                         <ul class="dropdown-menu">
                             <security:authorize access="hasRole('ROLE_GAMER')">
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_POST}">Ajouter un commentaire</a></li>

@@ -5,8 +5,9 @@
 }
 
 .logo-navbar{
-    height: 11vh;
-    border-radius: 10px;
+    height: 9vh;
+
+    max-width: 100%;
 }
 
 .search-bar{

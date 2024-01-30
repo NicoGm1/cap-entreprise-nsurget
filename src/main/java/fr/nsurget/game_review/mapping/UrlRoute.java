@@ -14,7 +14,7 @@ public class UrlRoute {
     public final static String URL_ADMIN = "/administrateur";
     public final static String URL_USER = "/utilisateur";
 
-    public static final String URL_ERROR = "/erreur";
+    public static final String URL_ERROR = "/error";
 
     public static final String URL_SITEMAP = "/plan-du-site";
 

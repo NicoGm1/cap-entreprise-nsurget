@@ -41,8 +41,8 @@
 
             </div>
             <c:if test="${not empty game.trailerYt}">
-                <div class="content-padding-2-5-2">
-                    <h2 class="mx-5 mb-5">Trailer :</h2>
+                <div class="content-padding-2-5-2 pt-0">
+                    <h2 class="title-with-margin">Trailer :</h2>
                     <div class="ratio ratio-16x9">
                         <iframe src="${game.trailerYt}" title="YouTube video" allowfullscreen></iframe>
                     </div>

@@ -51,7 +51,7 @@ public abstract class User implements UserDetails, SluggerInterface {
 
     public String getRole(){
         if (this instanceof Moderator){
-            return "Moderator";
+            return "Moderateur";
         }
         return "Gamer";
     }

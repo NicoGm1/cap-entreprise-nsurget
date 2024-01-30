@@ -15,6 +15,13 @@
                     <c:set var="sortable" value="name"/>
                     <%@ include file="../component/sortable.jsp" %>
 
+                    <c:set var="label" scope="request" value="Editeur"/>
+                    <c:set var="sortable" value="publisher"/>
+                    <%@ include file="../component/sortable.jsp" %>
+
+                    <c:set var="label" scope="request" value="Date de sortie"/>
+                    <c:set var="sortable" value="publishedAt"/>
+                    <%@ include file="../component/sortable.jsp" %>
                     <span class="mt-auto mb-2">
                         <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
                             <i class="fa fa-filter-circle-xmark"></i>
