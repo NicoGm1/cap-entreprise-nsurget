@@ -52,7 +52,7 @@ public class GameDTO {
 
     @NotNull
     @NotBlank
-    private BusinessModel businessModel;
+    private String businessModelName;
 
     private Moderator moderator;
 

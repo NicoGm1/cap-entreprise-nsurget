@@ -20,13 +20,13 @@ public class UrlRoute {
 
     public static final String URL_SEARCH = "/recherche";
 
-    public static final String URL_REVIEW = "/review";
-    public static final String URL_REVIEW_OWN_LIST = URL_REVIEW + "/mes-review";
+    public static final String URL_REVIEW = "/avis";
+    public static final String URL_REVIEW_OWN_LIST = URL_REVIEW + "/mes-avis";
     public static final String URL_REVIEW_MODERATOR = URL_REVIEW + "/moderation";
     public static final String URL_REVIEW_OWN_WAITING_LIST = URL_REVIEW + "/en-attente";
     public static final String URL_REVIEW_POST = URL_REVIEW + "/ajouter-un-commentaire";
     public final static String URL_EXPORT= "/telecharger-export-excel";
-    public final static String URL_GAME= "/game";
+    public final static String URL_GAME= "/jeu";
     public static final String URL_REVIEW_DELETE = URL_REVIEW + "/suppression";
     public static final String URL_REVIEW_ACCEPT = URL_REVIEW + "/validation";
     public static final String URL_GAME_POST = URL_GAME + "/Ajout-d-un-jeu";

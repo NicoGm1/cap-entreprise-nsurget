@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,17 @@ import java.util.Optional;
 public class GameService {
 
     GameRepository gameRepository;
+
+    ClassificationService classificationService;
+
+    PublisherService publisherService;
+
+    GenreService genreService;
+
+    BusinessModelService businessModelService;
+
+
+
 
     public Game findById(Long id){
         Optional<Game> optionalGame = gameRepository.findById(id);
@@ -51,6 +63,18 @@ public class GameService {
     public Game create(GameDTO gameDTO) {
         Game game = new Game();
         game.setName(gameDTO.getName());
+        game.setPublisher(publisherService.findByName(gameDTO.getPublisherName()));
+        game.setPublishedAt(LocalDate.now());
+        if(gameDTO.getPublishedAt() != null){
+            game.setPublishedAt(gameDTO.getPublishedAt());
+        }
+        game.setDescription(gameDTO.getDescription());
+        game.setGenre(genreService.findByName(gameDTO.getGenreName()));
+        game.setClassification(classificationService.findByName(gameDTO.getClassificationName()));
+        game.setPlatforms(gameDTO.getPlatforms());
+        game.setBusinessModel(businessModelService.findByName(gameDTO.getBusinessModelName()));
+        game.setImage(gameDTO.getImage());
+        game.setTrailerYt(gameDTO.getTrailerYt());
 
 
 
