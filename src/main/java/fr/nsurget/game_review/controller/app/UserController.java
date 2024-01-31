@@ -22,7 +22,7 @@ public class UserController {
 
  UserService userService;
  ReviewService reviewService;
-    @GetMapping(UrlRoute.URL_USER+"/{slug}")
+    @GetMapping(UrlRoute.URL_USER + "/{slug}")
     public ModelAndView show(ModelAndView mav, Principal principal,@PathVariable String slug,@PageableDefault(
             size = 6,
             sort = { "createdAt" }, // order by

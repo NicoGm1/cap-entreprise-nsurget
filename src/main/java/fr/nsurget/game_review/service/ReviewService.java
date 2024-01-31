@@ -81,6 +81,7 @@ public class ReviewService {
         review.setRating(dto.getRating());
         review.setGame(gameService.findByName(dto.getGameName()));
         review.setGamer(dto.getGamer());
+        review.setCreatedAt(LocalDateTime.now());
         return reviewRepository.saveAndFlush(review);
     }
 

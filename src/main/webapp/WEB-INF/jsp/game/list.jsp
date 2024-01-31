@@ -77,7 +77,7 @@
                             <div class="Moderator-option row">
                                 <span class="col-3 d-flex align-items-center mt-auto"><small class="text-body-secondary">Option de moderation </small></span>
                                 <span class="col-8 d-flex align-items-center mt-auto ps-3">
-                                        <a href="${UrlRoute.URL_GAME}/${game.slug}">
+                                        <a href="${UrlRoute.URL_GAME_DELETE}/${game.slug}">
                                             <button type="submit" class="btn btn-danger">Supprimer</button>
                                         </a>
                                         <a href="${UrlRoute.URL_GAME_PUT}/${game.slug}">
@@ -101,6 +101,11 @@
         </div>
 
         </c:if>
+        <security:authorize access="hasRole('ROLE_MODERATOR')">
+            <a href="${UrlRoute.URL_GAME_POST}" class="nav-link ms-2">
+                Ajouter un jeu
+            </a>
+        </security:authorize></h2>
     </div>
 
 </div>

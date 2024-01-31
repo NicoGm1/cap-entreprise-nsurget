@@ -69,13 +69,18 @@ public class Game implements SluggerInterface {
     public Double rating(){
 
         double rating = 0;
-        if (reviews.isEmpty()){
+        int validReview = 0;
+
+        for (Review review : reviews){
+            if (review.getModerator() != null){
+                rating += review.getRating();
+                validReview++;
+            }
+        }
+        if (validReview == 0){
             return null;
         }
-        for (Review review : reviews){
-            rating += review.getRating();
-        }
-        return Math.round(rating/reviews.size()*100.0)/100.0;
+        return Math.round(rating/validReview*10.0)/10.0;
     }
     @Override
     public String getField() {

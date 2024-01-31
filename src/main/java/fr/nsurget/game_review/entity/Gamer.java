@@ -25,5 +25,20 @@ public class Gamer extends User {
     @OneToMany(mappedBy = "gamer")
     private List<Review> reviews;
 
+    public Double rating(){
+        double rating = 0;
+        int validReview = 0;
+
+        for (Review review : reviews){
+            if (review.getModerator() != null){
+                rating += review.getRating();
+                validReview++;
+            }
+        }
+        if (validReview == 0){
+            return null;
+        }
+        return Math.round(rating/validReview*10.0)/10.0;
+    }
 
 }

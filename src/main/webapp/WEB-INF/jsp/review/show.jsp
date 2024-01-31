@@ -10,7 +10,7 @@
 
             <div class="row">
                 <div class="col-9">
-                    <h2 class="mb-3">Review de <a class="btn-link" href="#">${review.gamer.nickname}</a> sur <a class="btn-link"
+                    <h2 class="mb-3">Review de <a class="btn-link" href="${UrlRoute.URL_USER}/${review.gamer.slug}">${review.gamer.nickname}</a> sur <a class="btn-link"
                                                                                                                 href="${UrlRoute.URL_GAME}/${review.game.slug}">${review.game.name}</a>
                     </h2>
                     <div class="row">

@@ -5,28 +5,31 @@
 <div class="container pt-5">
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
-            <h1 class="text-center mb-5">Oops! erreur inattendue s'est produite. 😞</h1>
-            <div class="row">
-                <div class="col-6">
-                    <p>Nous sommes désolés. Veuillez réessayer plus tard.</p>
-                    <p>Error : ${code}</p>
-                    <c:if test="${content} != null">
-                        <p>Error message : ${content}</p>
-                    </c:if>
-                    <p>Essaye les autres lien : <a href="${UrlRoute.URL_SITEMAP}" class="btn-primary">Tous les liens
-                        disponible !</a></p>
+            <h1 class="text-center">Conditions d'Utilisation</h1>
+            <div class="content-padding-2-5-2">
+            <p><strong>Dernière mise à jour :</strong> [Date]</p>
 
-                    <div class="p-5">
-                        <a href="${UrlRoute.URL_HOME}" class="btn btn-primary">Retour à la page d'accueil</a>
-                    </div>
-                </div>
+            <h2>1. Acceptation des Conditions</h2>
+            <p>1.1 En utilisant ce site, vous acceptez les présentes conditions d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le site.</p>
 
-                <div class="col-6">
-                    <img class="error-picture"
-                         src="https://http.cat/images/${code}.jpg"
-                         alt="Cat error picture"
-                         title="Cat error picture"/>
-                </div>
+            <h2>2. Utilisation du Contenu</h2>
+            <p>2.1 Le contenu de ce site est destiné à des fins d'information et de divertissement. Vous ne pouvez pas utiliser le contenu à des fins illégales ou non autorisées.</p>
+
+            <h2>3. Compte Utilisateur</h2>
+            <p>3.1 Vous êtes responsable de la sécurité de votre compte utilisateur. Ne partagez pas vos informations d'identification avec d'autres personnes.</p>
+
+            <h2>4. Contenu Utilisateur</h2>
+            <p>4.1 En soumettant du contenu sur ce site, vous garantissez que le contenu est original et que vous avez le droit de le publier. Le site se réserve le droit de supprimer tout contenu enfreignant les règles communautaires.</p>
+
+            <h2>5. Confidentialité</h2>
+            <p>5.1 Consultez notre <a href="[URL_vers_politique_de_confidentialite]">Politique de Confidentialité</a> pour comprendre comment nous collectons, utilisons et protégeons vos informations.</p>
+
+            <h2>6. Modifications des Conditions</h2>
+            <p>6.1 Nous nous réservons le droit de modifier ces conditions d'utilisation à tout moment. Les modifications seront publiées sur le site avec la date de mise à jour.</p>
+
+            <footer class="mt-5 text-muted text-center">
+                <p>Contactez-nous si vous avez des questions ou des préoccupations concernant nos conditions d'utilisation.</p>
+            </footer>
             </div>
         </div>
 

@@ -29,7 +29,6 @@ public class Review implements SluggerInterface {
     @Column(nullable = false)
     private Integer rating;
 
-    @CreationTimestamp
     private LocalDateTime createdAt;
 
 

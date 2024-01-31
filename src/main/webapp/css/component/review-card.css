@@ -9,7 +9,7 @@
     transition: background 0.3s; /* Ajout de transition pour le changement au survol */
 }
 
-.main-review-card:hover {
+.hover-card:hover {
     background: linear-gradient(to right, #3d392c, #212529); /* Nouveau dégradé au survol */
 }
 

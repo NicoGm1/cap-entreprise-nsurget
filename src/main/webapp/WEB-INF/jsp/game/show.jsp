@@ -53,6 +53,9 @@
                                         <a href="${UrlRoute.URL_GAME_PUT}/${game.slug}">
                                             <button type="submit" class="btn btn-secondary ms-3">Modifier</button>
                                         </a>
+                                <a href="${UrlRoute.URL_GAME_UPLOAD_IMAGE}/${game.slug}">
+                                            <button type="submit" class="btn btn-secondary ms-3">Uploader une image</button>
+                                        </a>
                     <a class="ms-1 link-green" href="${UrlRoute.URL_GAME_UPLOAD_IMAGE}/${game.slug}">
                         <i class="fa-solid fa-upload"></i>
                     </a>
@@ -70,6 +73,7 @@
                     </div>
                 </div>
             </c:if>
+
             <div class="content-padding-2-5-2">
                 <h2 class="ms-2">Les Dernieres reviews sur ${game.name} :</h2>
                 <security:authorize access="hasRole('ROLE_GAMER')">
@@ -117,12 +121,21 @@
                         </f:form>
                     </div>
                 </security:authorize>
-                <c:if test="${not empty game.reviews}">
+                <c:if test="${not empty page_game_review.content}">
                     <c:set var="page" scope="request" value="${page_game_review}"/>
                     <c:set var="hideJeu" scope="request" value="true"/>
                     <c:set var="url" scope="request" value="${UrlRoute.URL_GAME}/${game.slug}"/>
                     <%@ include file="../component/pagableReview.jsp" %>
                     <%@ include file="../component/pagination.jsp" %>
+                </c:if>
+                <c:if test="${empty page_game_review.content}">
+                    <div class="text-center mt-5">
+                        <p class="h3">Aucun votre avis sur ${game.name}!</p>
+                        <p class="lead">Partage ton opinion sur ton jeu préféré et aide la communauté à découvrir de nouvelles expériences.</p>
+                        <p class="mt-3 text-muted">C'est rapide, simple et contribue à enrichir notre communauté de gamers !</p>
+                        <img src="https://static.hitek.fr/img/actualite/2016/07/13/fb_cat-gamer-1920x1200.jpg" alt="Image Rigolote de chat" class="rounded img-review-what">
+                    </div>
+
                 </c:if>
             </div>
         </div>

@@ -18,7 +18,7 @@ function initSearchBar() {
 
 function launchSearch(value) {
     if (value.trim()) {
-        location.href = "/search/" + value;
+        location.href = "/recherche/" + value;
     }
 }
 

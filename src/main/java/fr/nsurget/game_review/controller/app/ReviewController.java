@@ -192,7 +192,11 @@ public class ReviewController {
 //    }
 
     @GetMapping(UrlRoute.URL_REVIEW_DELETE + "/{id}")
-    public ModelAndView delete(@PathVariable Long id, ModelAndView mav, Principal principal, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+    public ModelAndView delete(@PathVariable Long id,
+                               ModelAndView mav,
+                               Principal principal,
+                               RedirectAttributes redirectAttributes,
+                               HttpServletRequest request) {
         if (principal == null){
             mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
             return mav;

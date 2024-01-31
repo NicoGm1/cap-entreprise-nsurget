@@ -6,6 +6,7 @@ import fr.nsurget.game_review.entity.*;
 import fr.nsurget.game_review.service.*;
 import fr.nsurget.game_review.utils.DateUtils;
 import fr.nsurget.game_review.utils.FileUploadService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -229,6 +230,33 @@ public class GameController {
                 new FlashMessage("success", "Image téléversée avec succès !")
         );
         mav.setViewName("redirect:" + UrlRoute.URL_GAME + "/" + slug);
+        return mav;
+    }
+
+    @GetMapping(UrlRoute.URL_GAME_DELETE + "/{slug}")
+    public ModelAndView delete(@PathVariable String slug,
+                               ModelAndView mav,
+                               Principal principal,
+                               RedirectAttributes redirectAttributes,
+                               HttpServletRequest request) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        if (userService.findByNickname(principal.getName()) instanceof Gamer){
+            mav.setViewName("redirect:" + UrlRoute.URL_HOME);
+            return mav;
+        }
+
+        Game game = gameService.findBySlug(slug);
+        gameService.delete(game);
+
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("warning", "Le Jeu " + game.getName() + "a bien été supprimé !")
+        );
+
+        mav.setViewName("redirect:" + UrlRoute.URL_GAME);
         return mav;
     }
 }

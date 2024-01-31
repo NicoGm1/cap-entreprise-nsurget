@@ -37,7 +37,6 @@ public abstract class User implements UserDetails, SluggerInterface {
 
     protected String slug;
 
-
 //    protected String image;
 
     @Override
@@ -53,7 +52,7 @@ public abstract class User implements UserDetails, SluggerInterface {
         if (this instanceof Moderator){
             return "Moderateur";
         }
-        return "Gamer";
+        return "Joueur";
     }
 
     @Override

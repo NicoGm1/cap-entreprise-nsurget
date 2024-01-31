@@ -37,15 +37,15 @@
         </div>
         <div class="col-5 d-flex align-items-center">
             <security:authorize access="isAuthenticated()">
-<%--            <div class="d-flex search-bar">--%>
-<%--                <input type="text" class="form-control" placeholder="Jeux, Editeur, Platforme ..."--%>
-<%--                       data-search-bar>--%>
-<%--                <a class="my-auto m-2">--%>
-<%--                    <i class="fa fa-magnifying-glass"></i>--%>
-<%--                </a>--%>
-<%--            </div>--%>
-<%--            <div class="search-response-container">--%>
-<%--            </div>--%>
+            <div class="d-flex search-bar">
+                <input type="text" class="form-control" placeholder="Jeux, Editeur, Platforme ..."
+                       data-search-bar>
+                <a class="my-auto m-2">
+                    <i class="fa fa-magnifying-glass"></i>
+                </a>
+            </div>
+            <div class="search-response-container">
+            </div>
             </security:authorize>
         </div>
         <div class="col-3 d-flex align-items-center ms-5 nav-menu">
@@ -64,7 +64,7 @@
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_POST}">Ajouter un commentaire</a></li>
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_OWN_LIST}">Mes reviews</a></li>
                             </security:authorize>
-                            <li><a class="dropdown-item ms" href="${UrlRoute.URL_USER}/${userLogged.nickname}">Mon compte</a></li>
+                            <li><a class="dropdown-item ms" href="${UrlRoute.URL_USER}/${userLogged.slug}">Mon compte</a></li>
                             <li><a class="dropdown-item" href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
                             <security:authorize access="hasRole('ROLE_MODERATOR')">
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_MODERATOR}">Reviews à Moderer</a></li>

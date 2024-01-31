@@ -7,6 +7,7 @@ import fr.nsurget.game_review.entity.Review;
 import fr.nsurget.game_review.entity.User;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.GameRepository;
+import fr.nsurget.game_review.repository.ReviewRepository;
 import fr.nsurget.game_review.utils.DateUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,8 @@ public class GameService {
     private BusinessModelService businessModelService;
 
     private DateUtils dateUtils;
+
+    private ReviewRepository reviewRepository;
 
 
 
@@ -106,5 +109,14 @@ public class GameService {
         Game game = findBySlug(slug);
         game.setImage(fileName);
         gameRepository.flush();
+    }
+
+    public void delete(Game game) {
+        reviewRepository.deleteAll(game.getReviews());
+        gameRepository.delete(game);
+    }
+
+    public Page<Game> getSearch(String s, Pageable pageable) {
+        return gameRepository.findByNameIsContainingIgnoreCaseOrClassificationNameIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCaseOrPublisherNameIsContainingIgnoreCaseOrGenreNameIsContainingIgnoreCase(s,s,s,s,s,pageable);
     }
 }

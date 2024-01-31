@@ -35,6 +35,7 @@ public class UrlRoute {
     public final static String URL_GAME_UPLOAD_IMAGE_PATH = URL_GAME + "/upload-image/{slug}";
     public static final String URL_POLITIQUE_CONFIDENTIALITE = "/politique-de-confidentialite";
     public static final String URL_COND_UTILISATION = "/conditions-d-utilisation";
+    public static final String URL_GAME_DELETE = URL_GAME + "/supprimer";
 
 
     public String[] getSiteMapLinks() {
