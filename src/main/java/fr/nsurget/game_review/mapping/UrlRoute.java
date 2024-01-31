@@ -28,7 +28,8 @@ public class UrlRoute {
     public final static String URL_EXPORT= "/telecharger-export-excel";
     public final static String URL_GAME= "/game";
     public static final String URL_REVIEW_DELETE = URL_REVIEW + "/suppression";
-    public static final String URL_REVIEW_ACCEPT = "/validation";
+    public static final String URL_REVIEW_ACCEPT = URL_REVIEW + "/validation";
+    public static final String URL_GAME_POST = URL_GAME + "/Ajout-d-un-jeu";
 
 
     public String[] getSiteMapLinks() {

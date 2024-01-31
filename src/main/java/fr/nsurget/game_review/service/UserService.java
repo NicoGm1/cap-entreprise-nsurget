@@ -37,6 +37,12 @@ public class UserService implements UserDetailsService, DAOFindByIdOrSlugInterfa
         return userRepository.saveAndFlush(gamer);
     }
 
+    public Moderator findModeratorByNickname(String nickname) {
+        Optional<User> optional = userRepository.findByNickname(nickname);
+        optional.orElseThrow(() -> new NotFoundException("User", "nickname", nickname));
+        return (Moderator) optional.get();
+    }
+
     public Gamer findGamerByNickname(String nickname){
         Optional<Gamer> optional = gamerRepository.findByNickname(nickname);
         optional.orElseThrow(() -> new NotFoundException("Gamer", "nickname", nickname));

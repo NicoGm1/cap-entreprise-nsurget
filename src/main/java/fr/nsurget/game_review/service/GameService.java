@@ -1,6 +1,9 @@
 package fr.nsurget.game_review.service;
 
+import fr.nsurget.game_review.DTO.GameDTO;
+import fr.nsurget.game_review.DTO.ReviewDTO;
 import fr.nsurget.game_review.entity.Game;
+import fr.nsurget.game_review.entity.Review;
 import fr.nsurget.game_review.entity.User;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.GameRepository;
@@ -43,5 +46,15 @@ public class GameService {
 
     public Page<Game> findAll(Pageable pageable){
         return gameRepository.findAll(pageable);
+    }
+
+    public Game create(GameDTO gameDTO) {
+        Game game = new Game();
+        game.setName(gameDTO.getName());
+
+
+
+        return gameRepository.saveAndFlush(game);
+
     }
 }

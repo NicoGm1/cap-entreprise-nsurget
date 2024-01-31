@@ -1,23 +1,22 @@
 package fr.nsurget.game_review.controller;
 
+import fr.nsurget.game_review.DTO.GameDTO;
 import fr.nsurget.game_review.DTO.ReviewDTO;
-import fr.nsurget.game_review.entity.Game;
-import fr.nsurget.game_review.entity.Gamer;
-import fr.nsurget.game_review.entity.Moderator;
-import fr.nsurget.game_review.entity.User;
+import fr.nsurget.game_review.entity.*;
 import fr.nsurget.game_review.service.GameService;
 import fr.nsurget.game_review.service.ReviewService;
 import fr.nsurget.game_review.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import fr.nsurget.game_review.mapping.UrlRoute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -76,6 +75,33 @@ public class GameController {
 
         mav.addObject("games", gameService.findAll(pageable));
         mav.setViewName("game/list");
+        return mav;
+    }
+
+    @PostMapping(UrlRoute.URL_GAME_POST)
+    public ModelAndView post(
+            @ModelAttribute("gameDTO") @Valid GameDTO gameDTO,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            ModelAndView mav,
+            Principal principal
+    ) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        if (bindingResult.hasErrors()) {
+            mav.setViewName("game/post");
+            return mav;
+        }
+
+        gameDTO.setModerator(userService.findModeratorByNickname(principal.getName()));
+        mav.addObject("createGame", gameService.create(gameDTO));
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Le commentaire a bien été crée !")
+        );
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW_OWN_WAITING_LIST);
         return mav;
     }
 

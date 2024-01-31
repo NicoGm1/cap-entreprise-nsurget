@@ -1,5 +1,6 @@
 package fr.nsurget.game_review.repository;
 
+import fr.nsurget.game_review.entity.Moderator;
 import fr.nsurget.game_review.entity.User;
 import fr.nsurget.game_review.repository.interfaces.EntityNicknameRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long>, EntityNicknameRepository<User> {
 
     Optional<User> findByEmail(String email);
+
+
 }
