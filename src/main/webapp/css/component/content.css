@@ -7,7 +7,7 @@
 }
 
 .content-description::before {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #212529);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #212529); /* #212529 le bg de la card */
     content: '\200C';
     display: block;
     position: absolute;

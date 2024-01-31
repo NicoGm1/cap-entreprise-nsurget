@@ -8,6 +8,7 @@ import fr.nsurget.game_review.repository.BusinessModelRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,9 @@ public class BusinessModelService implements DAOFindByNameInterface<BusinessMode
         Optional<BusinessModel> optional = businessModelRepository.findByName(name);
         optional.orElseThrow(() -> new NotFoundException("BusinessModel", "name", name));
         return optional.get();
+    }
+
+    public List<BusinessModel> findAll(){
+        return businessModelRepository.findAll();
     }
 }

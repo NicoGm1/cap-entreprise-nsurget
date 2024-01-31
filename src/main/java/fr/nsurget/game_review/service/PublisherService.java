@@ -1,11 +1,13 @@
 package fr.nsurget.game_review.service;
 
+import fr.nsurget.game_review.entity.Genre;
 import fr.nsurget.game_review.entity.Publisher;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.PublisherRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +22,9 @@ public class PublisherService implements DAOFindByNameInterface<Publisher>{
         Optional<Publisher> optional = publisherRepository.findByName(name);
         optional.orElseThrow(() -> new NotFoundException("Publisher", "name", name));
         return optional.get();
+    }
+
+    public List<Publisher> findAll(){
+        return publisherRepository.findAll();
     }
 }

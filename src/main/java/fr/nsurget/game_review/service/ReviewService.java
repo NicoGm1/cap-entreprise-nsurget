@@ -57,8 +57,8 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
-    public Page<Review> findAll(Pageable pageable){
-        return reviewRepository.findAll(pageable);
+    public Page<Review> findAllModerate(Pageable pageable){
+        return reviewRepository.findAllByModeratorNotNull(pageable);
     }
 
     public Page<Review> getLastReviews(String slug, Pageable pageable){

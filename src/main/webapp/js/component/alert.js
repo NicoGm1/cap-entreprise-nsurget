@@ -3,7 +3,7 @@ function initAlert() {
     alerts.forEach((alert) => {
         setTimeout(() => {
             alert.classList.add('d-none');
-        }, 8000);
+        }, 6000);
     });
 }
 

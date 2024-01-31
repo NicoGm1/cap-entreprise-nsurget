@@ -9,7 +9,9 @@
             <div class="card mb-3 mx-5">
                 <div class="row g-0">
                     <div class="col-auto">
+                        <c:if test="${not empty game.image}">
                         <img src="${game.image}" class="img-fluid rounded-start thumbnailGameShow" alt="${game.name}">
+                        </c:if>
                     </div>
                     <div class="col bg-dark rounded-end">
                         <div class="card-body">
@@ -33,10 +35,30 @@
                                     <p class="card-text">Date de sortie : ${game.publishedAt}</p>
                                     <p class="card-text">Classification : ${game.classification.name}</p>
                                     <p class="card-text">Genre : ${game.genre.name}</p>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+                    <security:authorize access="hasRole('ROLE_MODERATOR')">
+                        <div class="Moderator-option row">
+                            <span class="col-2 d-flex align-items-center "><small class="text-body-secondary">Option de moderation </small></span>
+                            <span class="col-8 d-flex align-items-center ps-3">
+                                        <a href="${UrlRoute.URL_GAME}/${game.slug}">
+                                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        </a>
+                                        <a href="${UrlRoute.URL_GAME_PUT}/${game.slug}">
+                                            <button type="submit" class="btn btn-secondary ms-3">Modifier</button>
+                                        </a>
+                    <a class="ms-1 link-green" href="${UrlRoute.URL_GAME_UPLOAD_IMAGE}/${game.slug}">
+                        <i class="fa-solid fa-upload"></i>
+                    </a>
+                                    </span>
+                        </div>
+                    </security:authorize>
                 </div>
 
             </div>
@@ -49,7 +71,7 @@
                 </div>
             </c:if>
             <div class="content-padding-2-5-2">
-                <h2 class="ms-5">Les Dernieres reviews sur ${game.name}:</h2>
+                <h2 class="ms-2">Les Dernieres reviews sur ${game.name} :</h2>
                 <security:authorize access="hasRole('ROLE_GAMER')">
                     <button class="btn btn-link"
                             title="Ajouter un commentaire"
@@ -97,6 +119,8 @@
                 </security:authorize>
                 <c:if test="${not empty game.reviews}">
                     <c:set var="page" scope="request" value="${page_game_review}"/>
+                    <c:set var="hideJeu" scope="request" value="true"/>
+
                     <c:set var="url" scope="request" value="${UrlRoute.URL_GAME}/${game.slug}"/>
                     <%@ include file="../component/pagableReview.jsp" %>
                     <%@ include file="../component/pagination.jsp" %>

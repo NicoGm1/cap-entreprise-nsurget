@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Informations de contact</h4>
-                <p>Contactez-nous : toto@toto.to</p>
-                <p>Téléphone : +123 456 7890</p>
+                <p>Contactez-nous : ncsrgt@gmail.com</p>
+                <p>Github : NicoGm1</p>
                 <p>Adresse : 123 Rue des Taux, Totocity </p>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -18,7 +18,7 @@
                     <a href="${UrlRoute.URL_HOME}">Accueil</a> |
                     <a href="${UrlRoute.URL_SITEMAP}">Sitemap</a>
                 </nav>
-                <p><a href="/privacy-policy">Politique de confidentialité</a> | <a href="/terms-of-use">Conditions
+                <p><a href="${UrlRoute.URL_POLITIQUE_CONFIDENTIALITE}">Politique de confidentialité</a> | <a href="${UrlRoute.URL_COND_UTILISATION}">Conditions
                     d'utilisation</a></p>
             </div>
             <div class="col-lg-3 col-md-6">

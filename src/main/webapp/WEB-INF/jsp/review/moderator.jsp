@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
-<c:set var="title" scope="request" value="ReviewList - GameReview"/>
+<c:set var="title" scope="request" value="Moderation des avis"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
 
@@ -12,6 +12,7 @@
 
             <c:set var="page" scope="request" value="${waiting_review}"/>
             <c:set var="url" scope="request" value="${UrlRoute.URL_REVIEW_MODERATOR}"/>
+            <c:set var="addModeratorFilter" scope="request" value="true"/>
             <%@ include file="../component/pagableReview.jsp" %>
             <%@ include file="../component/pagination.jsp" %>
         </div>

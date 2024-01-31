@@ -47,7 +47,7 @@ public class HomeController {
         }
 
         if (userService.findByNickname(principal.getName()) instanceof Moderator){
-            mav.addObject("reviews", reviewService.findAll(pageable));
+            mav.addObject("reviews", reviewService.findAllModerate(pageable));
         } else {
             mav.addObject("reviews", reviewService.findAllAndGamerWaitingReview(principal.getName(),pageable));
         }

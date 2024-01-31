@@ -30,6 +30,11 @@ public class UrlRoute {
     public static final String URL_REVIEW_DELETE = URL_REVIEW + "/suppression";
     public static final String URL_REVIEW_ACCEPT = URL_REVIEW + "/validation";
     public static final String URL_GAME_POST = URL_GAME + "/Ajout-d-un-jeu";
+    public static final String URL_GAME_PUT = URL_GAME + "/Modification-d-un-jeu";
+    public final static String URL_GAME_UPLOAD_IMAGE = URL_GAME + "/upload-image";
+    public final static String URL_GAME_UPLOAD_IMAGE_PATH = URL_GAME + "/upload-image/{slug}";
+    public static final String URL_POLITIQUE_CONFIDENTIALITE = "/politique-de-confidentialite";
+    public static final String URL_COND_UTILISATION = "/conditions-d-utilisation";
 
 
     public String[] getSiteMapLinks() {

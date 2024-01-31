@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
+<c:set var="title" scope="request" value="Creation d'un avis"/>
 <jsp:include flush="true" page="../base.jsp"/>
 
 <div class="container">

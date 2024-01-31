@@ -116,8 +116,8 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initPlatform() {
-        List<String> platformName = List.of("Switch","PC","iOS","Android", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One", "Wii U");
-        List<String> platformLogo = List.of("https://img.icons8.com/ios/40/nintendo-switch-logo.png", "https://img.icons8.com/ios/50/workstation.png","https://img.icons8.com/ios/50/iphone.png","https://img.icons8.com/ios/50/android-os.png", "https://img.icons8.com/ios/50/ps5.png","https://img.icons8.com/ios/50/ps4.png","https://img.icons8.com/ios/50/ps3.png", "https://img.icons8.com/ios/50/xbox-series-s.png", "https://img.icons8.com/ios/50/xbox.png","https://img.icons8.com/ios/50/nintendo-wii-u.png");
+        List<String> platformName = List.of("Autre","Switch","PC","iOS","Android", "PS5", "PS4", "PS3", "XBOX Series X", "XBOX One", "Wii U");
+        List<String> platformLogo = List.of("https://img.icons8.com/ios/50/file--v1.png","https://img.icons8.com/ios/40/nintendo-switch-logo.png", "https://img.icons8.com/ios/50/workstation.png","https://img.icons8.com/ios/50/iphone.png","https://img.icons8.com/ios/50/android-os.png", "https://img.icons8.com/ios/50/ps5.png","https://img.icons8.com/ios/50/ps4.png","https://img.icons8.com/ios/50/ps3.png", "https://img.icons8.com/ios/50/xbox-series-s.png", "https://img.icons8.com/ios/50/xbox.png","https://img.icons8.com/ios/50/nintendo-wii-u.png");
         boolean needFlush = false;
         for (int i = 1; i <= platformName.size(); i++) {
             if (platformRepository.findById((long) i).isEmpty()) {
@@ -134,7 +134,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initClassification() {
-        List<String> classificationNames = List.of("PEGI 3", "PEGI 7", "PEGI 12", "PEGI 16", "PEGI 18");
+        List<String> classificationNames = List.of("Autre","PEGI 3", "PEGI 7", "PEGI 12", "PEGI 16", "PEGI 18");
         boolean needFlush = false;
         for (int i = 1; i <= classificationNames.size(); i++) {
             if (classificationRepository.findById((long) i).isEmpty()) {
@@ -150,7 +150,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void initBusinessModel() {
-        List<String> businessModelNames = List.of("Free to Play", "Pay to Play");
+        List<String> businessModelNames = List.of("Autre","Free to Play", "Pay to Play");
         boolean needFlush = false;
         for (int i = 1; i <= businessModelNames.size(); i++) {
             if (businessModelRepository.findById((long) i).isEmpty()) {
@@ -167,7 +167,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
 
     private void initGenre() {
-        List<String> genreNames = List.of("FPS","Sandbox", "MMO", "RPG", "Strategy", "Simulation", "Sports", "Adventure","Battle Royale","Social Deduction");
+        List<String> genreNames = List.of("Autre","FPS","Sandbox", "MMO", "RPG", "Strategy", "Simulation", "Sports", "Adventure","Battle Royale","Social Deduction");
         boolean needFlush = false;
         for (int i = 1; i <= genreNames.size(); i++) {
             if (genreRepository.findById((long) i).isEmpty()) {
@@ -185,7 +185,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
 
     private void initPublisher() {
-        List<String> publisherNames = List.of("EA", "Ubisoft", "Activision", "Rockstar", "Bethesda", "Square Enix","CD Projekt","Mojang","Epic Games","Blizzard", "Nintendo","Innersloth");
+        List<String> publisherNames = List.of("Autre","EA", "Ubisoft", "Activision", "Rockstar", "Bethesda", "Square Enix","CD Projekt","Mojang","Epic Games","Blizzard", "Nintendo","Innersloth");
         boolean needFlush = false;
         for (int i = 1; i <= publisherNames.size(); i++) {
             if (publisherRepository.findById((long) i).isEmpty()) {
@@ -447,7 +447,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
                 Review review = new Review();
                 review.setRating(faker.random().nextInt(21));
                 review.setGamer(g);
-                review.setGame(gameService.findById(faker.random().nextLong(8L) + 1L));
+                review.setGame(gameService.findById(faker.random().nextLong(9L) + 1L));
                 review.setDescription(awesomeDescription(review));
                 if (Math.random() < 0.7){
                     review.setModerator((Moderator) userService.findByNickname("nco"));

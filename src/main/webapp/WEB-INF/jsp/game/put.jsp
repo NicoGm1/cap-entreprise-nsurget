@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
-<c:set var="title" scope="request" value="Creation d'un jeu"/>
+<c:set var="title" scope="request" value="${gameDTO.name} Modification"/>
 <jsp:include flush="true" page="../base.jsp"/>
 
 <div class="container">
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
-            <h1 class="text-center main-title">Poster un jeu</h1>
+            <h1 class="text-center main-title">Modifier ${game.name}</h1>
             <div class="justify-content-md-center">
 
-                <f:form modelAttribute="gameDTO" method="post" action="${UrlRoute.URL_GAME_POST}"
+                <f:form modelAttribute="gameDTO" method="post" action="${UrlRoute.URL_GAME_PUT}/${game.slug}"
                         class="form" cssClass="p-5 col-lg-8 col-md-10 col-sm-12 mx-auto">
                 <div class="mb-3 row">
                     <div class="col-lg-3 col-md-3 col-sm-12 text-end">Nom*
@@ -26,7 +26,8 @@
                             <div class="col-lg-8 col-md-8 col-sm-12 form-group ${status.error ? 'has-error' : ''}">
                                 <f:input type="date" path="publishedAt"
                                          class="form-control"
-                                         autofocus="true"/>
+                                         autofocus="true"
+                                />
                                 <f:errors path="publishedAt" cssClass="invalid-feedback"/>
                             </div>
                         </div>
@@ -91,7 +92,7 @@
                               Plateforme(s)*
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-12 form-group ${status.error ? 'has-error' : ''}">
-                                    <input class="form-control" data-multiple-select-input="platforms"/>
+                                <input class="form-control" data-multiple-select-input="platforms"/>
                                 <f:select path="platforms"
                                           items="${platforms}"
                                           cssClass="form-select"
@@ -138,7 +139,7 @@
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-12">
                         <button class="btn btn-lg btn-primary btn-block"
-                                type="submit">Soumettre
+                                type="submit">Modifier
                         </button>
                   </div>
                         </f:form>

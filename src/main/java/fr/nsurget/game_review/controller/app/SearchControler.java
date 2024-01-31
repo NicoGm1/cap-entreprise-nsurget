@@ -1,4 +1,4 @@
-package fr.nsurget.game_review.controller;
+package fr.nsurget.game_review.controller.app;
 
 import fr.nsurget.game_review.mapping.UrlRoute;
 import lombok.AllArgsConstructor;

@@ -17,6 +17,7 @@
     <script type="text/javascript" src="${contextPath}/js/page/search-bar.js"></script>
     <script type="text/javascript" src="${contextPath}/js/component/sortPage.js"></script>
     <script type="text/javascript" src="${contextPath}/js/component/hideForm.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/component/select.js"></script>
     <script type="text/javascript" src="${contextPath}/js/component/alert.js"></script>
     <script type="text/javascript" src="${contextPath}/js/lib/bootstrap/bootstrap.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
@@ -47,14 +48,18 @@
             </div>
             </security:authorize>
         </div>
-        <div class="col-3 d-flex align-items-center ms-5 nav-menu bg-danger">
-            <div class="col-11"></div>
-            <div class="col-1 row text-end">
+        <div class="col-3 d-flex align-items-center ms-5 nav-menu">
+
+
                 <security:authorize access="!isAuthenticated()">
+                    <div class="col-9"></div>
+                    <div class="col-1 row text-end">
                     <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Inscription</a>
                     <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Connexion</a>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
+                        <div class="col-7"></div>
+                        <div class="col-1 row text-end">
                     <div class="dropdown">
                         <ul class="dropdown-menu">
                             <security:authorize access="hasRole('ROLE_GAMER')">
@@ -65,6 +70,7 @@
                             <li><a class="dropdown-item" href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
                             <security:authorize access="hasRole('ROLE_MODERATOR')">
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_REVIEW_MODERATOR}">Reviews à Moderer</a></li>
+                                <li><a class="dropdown-item" href="${UrlRoute.URL_GAME_POST}">Ajouter un jeu</a></li>
                             </security:authorize>
                             <li>
                                 <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">

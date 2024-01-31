@@ -31,4 +31,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long>, EntitySlu
     Page<Review> findByModeratorIsNotNullOrGamer(Gamer gamer, Pageable pageable);
 
     Page<Review> findReviewsByModeratorIsNull(Pageable pageable);
+
+    Page<Review> findAllByModeratorNotNull(Pageable pageable);
 }

@@ -42,3 +42,9 @@
 .rating-20 {
     color: green;
 }
+
+.Moderator-option{
+    padding: 0.2em 0.8em;
+    border-radius: 1em;
+    color: #1a1e21;
+}

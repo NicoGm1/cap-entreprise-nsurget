@@ -2,16 +2,14 @@ package fr.nsurget.game_review.DTO;
 
 import fr.nsurget.game_review.entity.*;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -20,39 +18,31 @@ import java.util.List;
 @Setter
 public class GameDTO {
 
-    @NotNull
     @NotBlank
     private String name;
 
-    @NotNull
     @NotBlank
     private String description;
 
-    @Past
-    private LocalDate publishedAt;
-
-    private String image;
+    @NotBlank
+    private String publishedAt;
 
     private String trailerYt;
 
-    @NotNull
-    @NotBlank
-    private String classificationName;
-
-    @NotNull
-    @NotBlank
-    private String genreName;
-
-    @NotNull
-    @NotBlank
-    private String publisherName;
-
-    @Size(min = 1)
+    @NotEmpty
     private List<Platform> platforms;
 
     @NotNull
-    @NotBlank
-    private String businessModelName;
+    private Classification classification;
+
+    @NotNull
+    private Genre genre;
+
+    @NotNull
+    private BusinessModel businessModel;
+
+    @NotNull
+    private Publisher publisher;
 
     private Moderator moderator;
 

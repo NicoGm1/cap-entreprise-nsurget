@@ -21,7 +21,7 @@
             <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
-          <p class="invalid-feedback">${error}</p>
+          <p class="invalid-feedback mt-2 bg-dark rounded">${error}</p>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
           <div class="row ">
             <div class="col-md-4 mt-2">

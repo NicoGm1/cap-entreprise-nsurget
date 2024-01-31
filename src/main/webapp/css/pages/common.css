@@ -9,6 +9,7 @@
     --bs-body-color: #ffffff;
     --bs-secondary: #888888;
     --bs-primary: #ffd04e;
+    --bs-link-hover-color: #ffa900;
 }
 
 .btn-primary {
@@ -152,6 +153,10 @@ body {
 
 h1 .btn-link, h2 .btn-link, h3 .btn-link, h4 .btn-link, h5 .btn-link, h6 .btn-link{
     color: white;
+}
+
+.card{
+    --bs-card-bg: #ffe991;
 }
 
 

@@ -7,12 +7,14 @@ import fr.nsurget.game_review.entity.Review;
 import fr.nsurget.game_review.entity.User;
 import fr.nsurget.game_review.exception.NotFoundException;
 import fr.nsurget.game_review.repository.GameRepository;
+import fr.nsurget.game_review.utils.DateUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,15 +22,17 @@ import java.util.Optional;
 @AllArgsConstructor
 public class GameService {
 
-    GameRepository gameRepository;
+    private GameRepository gameRepository;
 
-    ClassificationService classificationService;
+    private ClassificationService classificationService;
 
-    PublisherService publisherService;
+    private PublisherService publisherService;
 
-    GenreService genreService;
+    private GenreService genreService;
 
-    BusinessModelService businessModelService;
+    private BusinessModelService businessModelService;
+
+    private DateUtils dateUtils;
 
 
 
@@ -60,25 +64,47 @@ public class GameService {
         return gameRepository.findAll(pageable);
     }
 
-    public Game create(GameDTO gameDTO) {
+    public Game create(GameDTO gameDTO, String slug) {
         Game game = new Game();
+        if (slug != null){
+            game = findBySlug(slug);
+        }
         game.setName(gameDTO.getName());
-        game.setPublisher(publisherService.findByName(gameDTO.getPublisherName()));
+        game.setPublisher(gameDTO.getPublisher());
         game.setPublishedAt(LocalDate.now());
         if(gameDTO.getPublishedAt() != null){
-            game.setPublishedAt(gameDTO.getPublishedAt());
+            game.setPublishedAt(LocalDate.parse(gameDTO.getPublishedAt()));
         }
         game.setDescription(gameDTO.getDescription());
-        game.setGenre(genreService.findByName(gameDTO.getGenreName()));
-        game.setClassification(classificationService.findByName(gameDTO.getClassificationName()));
+        game.setGenre(gameDTO.getGenre());
+        game.setClassification(gameDTO.getClassification());
         game.setPlatforms(gameDTO.getPlatforms());
-        game.setBusinessModel(businessModelService.findByName(gameDTO.getBusinessModelName()));
-        game.setImage(gameDTO.getImage());
+        game.setBusinessModel(gameDTO.getBusinessModel());
         game.setTrailerYt(gameDTO.getTrailerYt());
-
-
-
+        game.setModerator(gameDTO.getModerator());
+        if (game.getImage() == null){
+            game.setImage("https://i.ibb.co/smj74vB/noimage.png");
+        }
         return gameRepository.saveAndFlush(game);
+    }
 
+    public GameDTO getGameDTO(Game game) {
+        GameDTO gameDTO = new GameDTO();
+        gameDTO.setName(game.getName());
+        gameDTO.setPublisher(game.getPublisher());
+        gameDTO.setPublishedAt(dateUtils.getDateFormat(game.getPublishedAt(),"yyyy-MM-dd"));
+        gameDTO.setDescription(game.getDescription());
+        gameDTO.setGenre(game.getGenre());
+        gameDTO.setClassification(game.getClassification());
+        gameDTO.setPlatforms(game.getPlatforms());
+        gameDTO.setBusinessModel(game.getBusinessModel());
+        gameDTO.setTrailerYt(game.getTrailerYt());
+        return gameDTO;
+    }
+
+    public void saveImageToGame(String fileName, String slug) {
+        Game game = findBySlug(slug);
+        game.setImage(fileName);
+        gameRepository.flush();
     }
 }

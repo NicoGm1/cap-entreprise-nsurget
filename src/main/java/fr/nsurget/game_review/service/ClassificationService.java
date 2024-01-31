@@ -9,6 +9,7 @@ import fr.nsurget.game_review.repository.ClassificationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,5 +24,9 @@ public class ClassificationService implements DAOFindByNameInterface<Classificat
         Optional<Classification> optional = classificationRepository.findByName(name);
         optional.orElseThrow(() -> new NotFoundException("Classification", "name", name));
         return optional.get();
+    }
+
+    public List<Classification> findAll(){
+        return classificationRepository.findAll();
     }
 }

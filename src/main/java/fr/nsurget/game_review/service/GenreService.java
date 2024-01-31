@@ -7,6 +7,7 @@ import fr.nsurget.game_review.repository.GenreRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,5 +21,9 @@ public class GenreService implements DAOFindByNameInterface<Genre>{
         Optional<Genre> optional = genreRepository.findByName(name);
         optional.orElseThrow(() -> new NotFoundException("Genre", "name", name));
         return optional.get();
+    }
+
+    public List<Genre> findAll(){
+        return genreRepository.findAll();
     }
 }
