@@ -4,8 +4,11 @@
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
 <div class="container">
-    <h2 class="my-5 mt-5">🕵️ Resultat de la recherche : "${search}"</h2>
-        <c:if test="${not empty games}">
+
+        <div class="bg-dark-rounded-body">
+            <div class="content-padding-2-5-2">
+                <h2>🕵️ Resultat de la recherche : "${search}"</h2>
+                <c:if test="${not empty games.content}">
             <div class="content-padding-2-5-2">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
@@ -93,6 +96,20 @@
                 <%@ include file="../component/pagination.jsp" %>
             </div>
         </c:if>
+<c:if test="${empty games.content}">
+    <h2 class="my-5 mt-5">Aucune resource trouvé 😭 </h2>
+    <div class="row">
+        <div class="col-6">
+            <p class="lead">Nous sommes désolés, mais nous n'avons pas pu trouver la ressource que vous cherchez.</p>
+            <p>Vous pouvez essayer une autre recherche ou revenir plus tard.</p>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4"><img src="https://pbs.twimg.com/media/DhsFwgXWsAIwaqw.jpg" alt="Image Rigolote de chat" class="rounded-4 img-review-what"></div>
+    </div>
+        </c:if>
 </div>
+        </div>
+</div>
+
 
 <%@ include file="../footer.jsp" %>

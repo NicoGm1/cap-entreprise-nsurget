@@ -71,8 +71,8 @@
                                 <li><a class="dropdown-item" href="${UrlRoute.URL_GAME_POST}">Ajouter un jeu</a></li>
                             </security:authorize>
                             <li>
-                                <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
-                                    <button class="dropdown-item" type="submit" tabindex="3">Logout</button>
+                                <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off" class="logout-button">
+                                    <button class="dropdown-item logout-button" type="submit" tabindex="3">Logout</button>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                             </li>
@@ -103,7 +103,7 @@
 <c:if test="${requestScope.get('flashMessage') != null}">
 <div class="container">
 
-        <div class="alert alert-${flashMessage.type} m-5">
+        <div class="alert alert-${flashMessage.type} m-3">
                 ${flashMessage.message}
         </div>
 </div>

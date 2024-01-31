@@ -131,6 +131,11 @@ public class GameController {
         }
         if (bindingResult.hasErrors()) {
             mav.setViewName("game/post");
+            mav.addObject("platforms", platformService.findAll());
+            mav.addObject("publishers", publisherService.findAll());
+            mav.addObject("genres", genreService.findAll());
+            mav.addObject("classifications", classificationService.findAll());
+            mav.addObject("businessModels", businessModelService.findAll());
             return mav;
         }
 
@@ -199,16 +204,17 @@ public class GameController {
         return mav;
     }
 
-    @GetMapping(value = UrlRoute.URL_GAME_UPLOAD_IMAGE_PATH)
+    @GetMapping(value = UrlRoute.URL_GAME_UPLOAD_IMAGE_PATH+"/{slug}")
     public ModelAndView uploadImage(
             ModelAndView mav,
             @PathVariable String slug
     ) {
         mav.setViewName("game/upload-image");
+        mav.addObject("game", gameService.findBySlug(slug));
         return mav;
     }
 
-    @PostMapping(value = UrlRoute.URL_GAME_UPLOAD_IMAGE_PATH)
+    @PostMapping(value = UrlRoute.URL_GAME_UPLOAD_IMAGE_PATH + "/{slug}")
     public ModelAndView uploadImage(
             ModelAndView mav,
             @RequestParam("file") MultipartFile file,

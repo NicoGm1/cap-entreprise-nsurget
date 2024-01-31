@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class UrlRoute {
 
     public final static String URL_HOME = "/";
+
     public final static String URL_LOGIN = "/login";
     public final static String URL_LOGOUT = "/logout";
     public final static String URL_REGISTER = "/s-inscrire";
@@ -32,7 +33,7 @@ public class UrlRoute {
     public static final String URL_GAME_POST = URL_GAME + "/Ajout-d-un-jeu";
     public static final String URL_GAME_PUT = URL_GAME + "/Modification-d-un-jeu";
     public final static String URL_GAME_UPLOAD_IMAGE = URL_GAME + "/upload-image";
-    public final static String URL_GAME_UPLOAD_IMAGE_PATH = URL_GAME + "/upload-image/{slug}";
+    public final static String URL_GAME_UPLOAD_IMAGE_PATH = URL_GAME + "/upload-image";
     public static final String URL_POLITIQUE_CONFIDENTIALITE = "/politique-de-confidentialite";
     public static final String URL_COND_UTILISATION = "/conditions-d-utilisation";
     public static final String URL_GAME_DELETE = URL_GAME + "/supprimer";
@@ -42,11 +43,16 @@ public class UrlRoute {
         return new String[]{
                 URL_REGISTER,
                 URL_LOGIN,
-                URL_SITEMAP,
+                URL_REVIEW_POST,
+                URL_USER + "/nco",
                 URL_REVIEW_OWN_LIST,
                 URL_REVIEW_OWN_WAITING_LIST,
                 URL_REVIEW,
-                URL_GAME
+                URL_GAME,
+                URL_GAME + "/fornite",
+                URL_COND_UTILISATION,
+                URL_POLITIQUE_CONFIDENTIALITE,
+                URL_ERROR
         };
     }
 

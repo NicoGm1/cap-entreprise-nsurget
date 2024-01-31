@@ -27,13 +27,23 @@
                     </div>
                 </div>
             </div>
-            <c:if test="${not empty userReviews}">
+            <c:if test="${not empty userReviews.content}">
             <h2 class="mt-5">Les ${userReviews.totalElements} reviews en ligne de ${user.nickname} : <i class="fa-solid fa-ghost"></i></h2>
             <c:set var="page" scope="request" value="${userReviews}"/>
             <c:set var="url" scope="request" value="${currentPath}"/>
             <%@ include file="../component/pagableReview.jsp" %>
             <%@ include file="../component/pagination.jsp" %>
             </c:if>
+<security:authorize access="hasRole('ROLE_MODERATOR')">
+            <c:if test="${not empty page_waiting_review.content}">
+            <h2>Ces ${page_waiting_review.totalElements} reviews en cours de moderation : ⌚</h2>
+
+            <c:set var="page" scope="request" value="${page_waiting_review}"/>
+            <c:set var="url" scope="request" value="${currentPath}"/>
+            <%@ include file="../component/pagableReview.jsp" %>
+            <%@ include file="../component/pagination.jsp" %>
+            </c:if>
+</security:authorize>
             <c:if test="${user.getRole() eq 'Moderateur'}">
                 <h1 class="title-with-margin display-1">Moderateur</h1>
 

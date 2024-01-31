@@ -7,14 +7,14 @@
     <h1 class="title-with-margin">Review</h1>
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
-
-            <div class="row">
-                <div class="col-9">
-                    <h2 class="mb-3">Review de <a class="btn-link" href="${UrlRoute.URL_USER}/${review.gamer.slug}">${review.gamer.nickname}</a> sur <a class="btn-link"
-                                                                                                                href="${UrlRoute.URL_GAME}/${review.game.slug}">${review.game.name}</a>
-                    </h2>
-                    <div class="row">
-                        <p class="col-2">
+            <h2 class="mb-3">Review de <a class="btn-link" href="${UrlRoute.URL_USER}/${review.gamer.slug}">${review.gamer.nickname}</a> sur <a class="btn-link"
+                                                                                                                                                href="${UrlRoute.URL_GAME}/${review.game.slug}">${review.game.name}</a>
+            </h2>
+<div class="row">
+            <div class="col-6 row">
+                <div class="col-12">
+                    <div class="row mt-5">
+                        <p class="col-4 ">
                             Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
                         </p>
                         <figcaption class="col blockquote-footer">
@@ -28,9 +28,9 @@
                         </figcaption>
                     </div>
 
-                    <p class="reviewDescription">${review.description}</p>
+                    <p class="reviewDescription p-2 bg-dark rounded"><i class="fa-solid fa-quote-left"></i> - ${review.description} - <i class="fa-solid fa-quote-right"></i></p>
                 </div>
-                <div class="col-3 hstack gap-1">
+                <div class="col-3 gap-1">
                     <p class="display-6 rounded bg-dark p-2 ms-auto">
                         <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
                         <span> / 20 </span>
@@ -77,6 +77,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

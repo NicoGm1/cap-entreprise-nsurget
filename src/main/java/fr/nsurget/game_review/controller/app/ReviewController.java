@@ -114,6 +114,10 @@ public class ReviewController {
             mav.setViewName("review/post");
             return mav;
         }
+        if (userService.findByNickname(principal.getName()) instanceof Moderator){
+            mav.setViewName("redirect:" + UrlRoute.URL_HOME);
+            return mav;
+        }
 
         reviewDTO.setGamer(userService.findGamerByNickname(principal.getName()));
         reviewService.create(reviewDTO);

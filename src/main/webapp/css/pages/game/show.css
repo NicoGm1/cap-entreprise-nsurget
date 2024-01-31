@@ -10,6 +10,9 @@
     padding: 3px;
 }
 
+.logoPlatform:hover{
+    background-color: #ffa13e;
+}
 
 
 .middle-line{

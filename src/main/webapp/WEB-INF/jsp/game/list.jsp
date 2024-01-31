@@ -57,10 +57,12 @@
                                             </div>
                                         </div>
                                         <div class="ms-3 mt-auto"> <!-- Utilisez mt-auto pour aligner en bas -->
+                                            <c:if test="${game.rating() != null}">
                                             <p>
                                                 <span class="${jspUtils.getCssClas(game.rating())}">${game.rating()}</span>
                                                 <span> / 20 </span>
                                             </p>
+                                            </c:if>
                                             <p class="card-text"><small class="text-body-secondary">Date de sortie : ${game.publishedAt}</small></p>
                                             <p class="card-text"><small class="text-body-secondary">Disponible sur : </small></p>
                                             <p class="logoContainer">
@@ -101,13 +103,7 @@
         </div>
 
         </c:if>
-        <security:authorize access="hasRole('ROLE_MODERATOR')">
-            <a href="${UrlRoute.URL_GAME_POST}" class="nav-link ms-2">
-                Ajouter un jeu
-            </a>
-        </security:authorize></h2>
     </div>
-
 </div>
 
 <%@ include file="../footer.jsp" %>

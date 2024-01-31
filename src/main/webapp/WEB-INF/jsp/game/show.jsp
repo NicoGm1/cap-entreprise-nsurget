@@ -25,20 +25,33 @@
                                     <p class="card-text">Disponible sur :</p>
                                     <p class="logoContainer">
                                         <c:forEach items="${game.platforms}" var="platform">
+                                            <a href="${UrlRoute.URL_SEARCH}/${platform.name}" class="nav-link">
                                             <img src="${platform.logo}" alt="${platform.name}" title="${platform.name}" class="logoPlatform">
+                                            </a>
                                         </c:forEach>
                                     </p>
-                                    <p class="card-text">Modèle Économique : ${game.businessModel.name}</p>
+
+
+                                    <p class="card-text">Modèle Économique : <a href="${UrlRoute.URL_SEARCH}/${game.businessModel.name}">${game.businessModel.name}</a></p>
+
                                 </div>
                                 <div class="col-6 ps-4">
-                                    <p class="card-text">Editeur : ${game.publisher.name}</p>
+                                    <p class="card-text">Editeur : <a href="${UrlRoute.URL_SEARCH}/${game.publisher.name}">${game.publisher.name}</a></p>
                                     <p class="card-text">Date de sortie : ${game.publishedAt}</p>
-                                    <p class="card-text">Classification : ${game.classification.name}</p>
-                                    <p class="card-text">Genre : ${game.genre.name}</p>
-
+                                    <p class="card-text">Classification : <a href="${UrlRoute.URL_SEARCH}/${game.classification.name}">${game.classification.name}</a></p>
+                                    <p class="card-text">Genre : <a href="${UrlRoute.URL_SEARCH}/${game.genre.name}">${game.genre.name}</a></p>
+                                    <p class="card-text">Nombres d'avis : ${page_game_review.totalElements}</p>
                                 </div>
 
                             </div>
+                            <c:if test="${game.rating() != null}">
+                                <div class="display-6">
+                                    <p>
+                                        <span class="${jspUtils.getCssClas(game.rating())}">${game.rating()}</span>
+                                        <span> / 20 </span>
+                                    </p>
+                                </div>
+                            </c:if>
 
                         </div>
 

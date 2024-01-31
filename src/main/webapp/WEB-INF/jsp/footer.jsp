@@ -9,8 +9,7 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Informations de contact</h4>
                 <p>Contactez-nous : ncsrgt@gmail.com</p>
-                <p>Github : NicoGm1</p>
-                <p>Adresse : 123 Rue des Taux, Totocity </p>
+                <p>Github : <a href="https://github.com/NicoGm1/cap-entreprise-nsurget" class="nav-link">NicoGm1</a></p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Liens utiles</h4>

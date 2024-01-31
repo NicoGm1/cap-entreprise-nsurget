@@ -51,8 +51,7 @@ public class JspUtils {
             }
         }
         String urlOut = url.toUriString();
-        System.out.println("- URL en sortie : " + urlOut);
-        return urlOut;
+        return urlOut + "#card-page";
     }
 
     private UriComponentsBuilder addQueryParam(UriComponentsBuilder uri, String queryParamName, String queryParamValue) {

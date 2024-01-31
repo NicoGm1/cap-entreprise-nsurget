@@ -9,11 +9,12 @@
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
             <h2>Tes ${page_waiting_review.totalElements} reviews en cours de moderation : ⌚</h2>
-
+<c:if test="${not empty page_waiting_review.content}">
             <c:set var="page" scope="request" value="${page_waiting_review}"/>
             <c:set var="url" scope="request" value="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}"/>
             <%@ include file="../component/pagableReview.jsp" %>
             <%@ include file="../component/pagination.jsp" %>
+</c:if>
         </div>
     </div>
 </div>

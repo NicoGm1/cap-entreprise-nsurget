@@ -405,7 +405,6 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
         if (gameRepository.findByName("Among Us").isEmpty()) {
             needFlush = true;
-
             Game game15 = new Game();
             game15.setName("Among Us");
             game15.setDescription("An online multiplayer party game where players work together on a spaceship, but beware of impostors!");
@@ -446,13 +445,32 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             for (int i = 0; i < randomNumber; i++) {
                 Review review = new Review();
                 review.setRating(faker.random().nextInt(21));
+
+                if (review.getRating()<10 && Math.random() < 0.6){
+                    review.setRating(review.getRating() + 10);
+                }
+                if (review.getRating()<17 && Math.random() < 0.8){
+                    review.setRating(review.getRating() + 3);
+                }
                 review.setGamer(g);
                 review.setGame(gameService.findById(faker.random().nextLong(9L) + 1L));
+                if(review.getRating() > 12 && Math.random() < 0.8){
+                    if (Math.random() < 0.2){
+                        review.setGame(gameService.findById(8L));
+                    } else if (Math.random() < 0.2) {
+                        review.setGame(gameService.findById(6L));
+                    } else if (Math.random() < 0.5) {
+                        review.setGame(gameService.findById(5L));
+                    } else {
+                        review.setGame(gameService.findById(3L));
+                    }
+                }
                 review.setDescription(awesomeDescription(review));
-                if (Math.random() < 0.7){
+                if (Math.random() < 0.9){
                     review.setModerator((Moderator) userService.findByNickname("nco"));
                     review.setModeratedAt(LocalDateTime.now());
                 }
+                review.setCreatedAt(LocalDateTime.ofInstant(faker.date().birthday(0,2).toInstant(),ZoneId.systemDefault()));
                 reviewRepository.save(review);
             }
             });
@@ -463,10 +481,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             Faker faker = new Faker();
             reviewRepository.findAll().forEach(r-> r.setCreatedAt(faker.date().birthday(0,2).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()));
             reviewRepository.flush();
-
         }
-
-
     }
 
     private String awesomeDescription(Review review) {

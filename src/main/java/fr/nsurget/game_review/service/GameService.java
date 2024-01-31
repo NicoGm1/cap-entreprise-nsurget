@@ -117,6 +117,6 @@ public class GameService {
     }
 
     public Page<Game> getSearch(String s, Pageable pageable) {
-        return gameRepository.findByNameIsContainingIgnoreCaseOrClassificationNameIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCaseOrPublisherNameIsContainingIgnoreCaseOrGenreNameIsContainingIgnoreCase(s,s,s,s,s,pageable);
+        return gameRepository.findByPlatformsNameIsContainingIgnoreCaseOrNameIsContainingIgnoreCaseOrClassificationNameIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCaseOrPublisherNameIsContainingIgnoreCaseOrGenreNameIsContainingIgnoreCase(s,s,s,s,s,s,pageable);
     }
 }

@@ -17,12 +17,22 @@ import java.security.Principal;
 public class LegalController implements ErrorController {
 
     @GetMapping(UrlRoute.URL_POLITIQUE_CONFIDENTIALITE)
-    public ModelAndView handleError(ModelAndView mav, Principal principal) {
+    public ModelAndView poli(ModelAndView mav, Principal principal) {
         if (principal == null){
             mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
             return mav;
         }
         mav.setViewName("utils/politique-de-confidentialite");
+        return mav;
+    }
+
+    @GetMapping(UrlRoute.URL_COND_UTILISATION)
+    public ModelAndView cond(ModelAndView mav, Principal principal) {
+        if (principal == null){
+            mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
+            return mav;
+        }
+        mav.setViewName("utils/conditions-d-utilisation");
         return mav;
     }
 

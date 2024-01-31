@@ -52,7 +52,7 @@
     <c:forEach items="${page.content}" var="review">
         <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
             <div class="main-game-card w-100 rounded">
-                <div class="card rounded mb-2">
+                <div class="card rounded mb-2" id="card-page">
                     <div class="row g-0 bg-dark rounded hover-card">
                         <p class="text-center pt-2">
                             Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}

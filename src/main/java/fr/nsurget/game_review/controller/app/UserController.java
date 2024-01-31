@@ -36,6 +36,7 @@ public class UserController {
         User user = userService.findBySlug(slug);
         if (user instanceof Gamer){
             mav.addObject("userReviews", reviewService.validReview(user.getNickname(), pageable));
+            mav.addObject("page_waiting_review", reviewService.waitingReview(user.getNickname(),pageable));
         }
         mav.addObject("user",user);
         mav.setViewName("user/show");
