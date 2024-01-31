@@ -56,7 +56,7 @@
                     <div class="row g-0 bg-dark rounded">
                         <p class="text-center pt-2">
                             Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
-                            par <a class="btn-link" href="#">${review.gamer.nickname}</a> <br>
+                            par <a class="btn-link" href="${UrlRoute.URL_USER}/${review.gamer.slug}">${review.gamer.nickname}</a> <br>
                         <figcaption class="blockquote-footer text-center">
                             <c:if test="${not empty review.moderator}">
                                 Modéré par <cite title="Source Title">${review.moderator.nickname}</cite> -

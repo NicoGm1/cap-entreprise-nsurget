@@ -81,6 +81,8 @@ public class UserService implements UserDetailsService, DAOFindByIdOrSlugInterfa
 
     @Override
     public User findBySlug(String slug) {
-        return null;
+        Optional<User> optionalUser = userRepository.findBySlug(slug);
+        optionalUser.orElseThrow(() -> new NotFoundException("User", "slug", slug));
+        return optionalUser.get();
     }
 }

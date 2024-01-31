@@ -15,4 +15,5 @@ public interface UserRepository extends JpaRepository<User, Long>, EntityNicknam
     Optional<User> findByEmail(String email);
 
 
+    Optional<User> findBySlug(String slug);
 }
