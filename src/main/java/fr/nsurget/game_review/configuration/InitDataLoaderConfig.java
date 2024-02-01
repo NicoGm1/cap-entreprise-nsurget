@@ -44,9 +44,9 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     ReviewRepository reviewRepository;
 
+
     @Override
     public void run(String... args) {
-    // à faire
         initModeratorAndTestGamer();
         initGamer();
         initPlatform();
@@ -167,7 +167,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
 
     private void initGenre() {
-        List<String> genreNames = List.of("Autre","MOBA","FPS","Sandbox", "MMO", "RPG", "Strategy", "Simulation", "Sports", "Adventure","Battle Royale","Social Deduction");
+        List<String> genreNames = List.of("Autre","MOBA","FPS","Sandbox", "MMO", "RPG", "Strategy", "Simulation", "Sports", "Adventure","Battle Royale","Social Deduction","Action");
         boolean needFlush = false;
         for (int i = 1; i <= genreNames.size(); i++) {
             if (genreRepository.findById((long) i).isEmpty()) {
@@ -185,7 +185,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
 
     private void initPublisher() {
-        List<String> publisherNames = List.of("Autre","Valve","EA", "Ubisoft", "Activision", "Rockstar", "Bethesda", "Square Enix","CD Projekt","Mojang","Epic Games","Blizzard", "Nintendo","Innersloth");
+        List<String> publisherNames = List.of("Autre","Coffee Stain Studios","Valve","EA", "Ubisoft", "Activision", "Rockstar", "Bethesda", "Square Enix","CD Projekt","Mojang","Epic Games","Blizzard", "Nintendo","Innersloth");
         boolean needFlush = false;
         for (int i = 1; i <= publisherNames.size(); i++) {
             if (publisherRepository.findById((long) i).isEmpty()) {
@@ -379,6 +379,77 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             gameRepository.save(game8);
         }
 
+        if (gameRepository.findByName("Apex Legends").isEmpty()) {
+            needFlush = true;
+
+            Game game9 = new Game();
+            game9.setName("Apex Legends");
+            game9.setDescription("Join the battle in this fast-paced battle royale game set in the Titanfall universe.");
+            game9.setPublishedAt(LocalDate.of(2019, 2, 4));
+            game9.setClassification(classificationRepository.findByName("PEGI 16").orElse(null));
+            game9.setGenre(genreRepository.findByName("Battle Royale").orElse(null));
+            game9.setPublisher(publisherRepository.findByName("EA").orElse(null));
+            List<Platform> platformsGame9 = Arrays.asList(platformRepository.findByName("PC").orElse(null), platformRepository.findByName("PS4").orElse(null), platformRepository.findByName("Xbox One").orElse(null));
+            platformsGame9.remove(null);
+            game9.setPlatforms(platformsGame9);
+            game9.setBusinessModel(businessModelRepository.findByName("Free to Play").orElse(null));
+            game9.setModerator(modo);
+            game9.setImage("https://cdn2.steamgriddb.com/grid/0d7a3aef18b1eb97e70a5148e2a2646f.jpg");
+            game9.setTrailerYt("https://www.youtube.com/embed/67G_RUc_PJQ?si=l_WIep0seY9L2Xj8");
+
+            gameRepository.save(game9);
+        }
+
+
+
+        // Example Game 11
+        if (gameRepository.findByName("Grand Theft Auto V").isEmpty()) {
+            needFlush = true;
+
+            Game game11 = new Game();
+            game11.setName("Grand Theft Auto V");
+            game11.setDescription("Experience the open-world action-adventure game that lets you explore the fictional state of San Andreas.");
+            game11.setPublishedAt(LocalDate.of(2013, 9, 17));
+            game11.setClassification(classificationRepository.findByName("PEGI 18").orElse(null));
+            game11.setGenre(genreRepository.findByName("Action").orElse(null));
+            game11.setPublisher(publisherRepository.findByName("Rockstar").orElse(null));
+            List<Platform> platformsGame11 = Arrays.asList(platformRepository.findByName("PC").orElse(null), platformRepository.findByName("PS4").orElse(null), platformRepository.findByName("Xbox One").orElse(null));
+            platformsGame11.remove(null);
+            game11.setPlatforms(platformsGame11);
+            game11.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
+            game11.setModerator(modo);
+            game11.setImage("https://cdn2.steamgriddb.com/grid/7a87609a1305e8c75748d20fd3a410ba.jpg");
+            game11.setTrailerYt("https://www.youtube.com/embed/QkkoHAzjnUs?si=t8lPyg949h71plq-");
+
+            gameRepository.save(game11);
+        }
+
+// Example Game 12
+        if (gameRepository.findByName("Satisfactory").isEmpty()) {
+            needFlush = true;
+
+            Game game12 = new Game();
+            game12.setName("Satisfactory");
+            game12.setDescription("Build massive factories, explore a vast alien world, and automate to your heart's content in this first-person factory building game.");
+            game12.setPublishedAt(LocalDate.of(2020, 3, 19));
+            game12.setClassification(classificationRepository.findByName("PEGI 7").orElse(null));
+            game12.setGenre(genreRepository.findByName("Simulation").orElse(null));
+            game12.setPublisher(publisherRepository.findByName("Coffee Stain Studios").orElse(null));
+            List<Platform> platformsGame12 = Arrays.asList(platformRepository.findByName("PC").orElse(null), platformRepository.findByName("PS4").orElse(null), platformRepository.findByName("Xbox One").orElse(null));
+            platformsGame12.remove(null);
+            game12.setPlatforms(platformsGame12);
+            game12.setBusinessModel(businessModelRepository.findByName("Pay to Play").orElse(null));
+            game12.setModerator(modo);
+            game12.setImage("https://cdn2.steamgriddb.com/grid/8966c43f9e5bdc2365f0b745971bf846.webp");
+            game12.setTrailerYt("https://www.youtube.com/embed/QvWaV4qshZQ?si=ppELLsEptyXiqUdm");
+
+            gameRepository.save(game12);
+        }
+
+
+
+
+
         if (gameRepository.findByName("The Legend of Zelda: Breath of the Wild").isEmpty()) {
             needFlush = true;
 
@@ -436,7 +507,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     private void initReview(){
         boolean needFlush = false;
-         if (!reviewRepository.existsById(10L)){
+         if (reviewRepository.findAll().size() < 500){
             needFlush = true;
             Random random = new Random();
             Faker faker = new Faker();
@@ -453,16 +524,16 @@ public class InitDataLoaderConfig implements CommandLineRunner {
                     review.setRating(review.getRating() + 3);
                 }
                 review.setGamer(g);
-                review.setGame(gameService.findById(faker.random().nextLong(9L) + 1L));
+                review.setGame(gameService.findById(faker.random().nextLong(13L) + 1L));
                 if(review.getRating() > 12 && Math.random() < 0.8){
                     if (Math.random() < 0.2){
                         review.setGame(gameService.findById(8L));
                     } else if (Math.random() < 0.2) {
                         review.setGame(gameService.findById(6L));
                     } else if (Math.random() < 0.5) {
-                        review.setGame(gameService.findById(5L));
+                        review.setGame(gameService.findById(11L));
                     } else {
-                        review.setGame(gameService.findById(3L));
+                        review.setGame(gameService.findById(10L));
                     }
                 }
                 review.setDescription(awesomeDescription(review));

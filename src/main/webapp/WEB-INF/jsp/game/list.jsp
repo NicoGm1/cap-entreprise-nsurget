@@ -4,11 +4,11 @@
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
 <div class="container main">
-    <h1 class="title-with-margin">Les jeux !</h1>
+    <h1 class="title-with-margin">Tous les jeux !</h1>
     <div class="bg-dark-rounded-body">
         <c:if test="${not empty games}">
         <div class="content-padding-2-5-2">
-            <h2 class="mx-3 mb-3">Tous les jeux : 🎮
+            <h2 class="mx-3 mb-3">les ${games.totalElements} jeux disponibles : 🎮
                 <security:authorize access="hasRole('ROLE_MODERATOR')">
                 <a href="${UrlRoute.URL_GAME_POST}" class="ms-2">
                     <i class="fa fa-circle-plus link-green"></i>
@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <c:forEach items="${games.content}" var="game">
-                    <div class="col-lg-6 col-md-12 col-sm-12 mt-3">
+                    <div class="col-lg-6 col-md-12 col-sm-12 mt-3" id="card-page">
                         <div class="main-game-card w-100 rounded">
                             <div class="card rounded mb-2">
                                 <div class="row g-0 bg-dark rounded">

@@ -25,21 +25,21 @@
                                     <p class="card-text">Disponible sur :</p>
                                     <p class="logoContainer">
                                         <c:forEach items="${game.platforms}" var="platform">
-                                            <a href="${UrlRoute.URL_SEARCH}/${platform.name}" class="nav-link">
-                                            <img src="${platform.logo}" alt="${platform.name}" title="${platform.name}" class="logoPlatform">
+                                            <a href="${UrlRoute.URL_SEARCH}/${platform.slug}" class="nav-link">
+                                            <img src="${platform.logo}" alt="${platform.slug}" title="${platform.name}" class="logoPlatform">
                                             </a>
                                         </c:forEach>
                                     </p>
 
 
-                                    <p class="card-text">Modèle Économique : <a href="${UrlRoute.URL_SEARCH}/${game.businessModel.name}">${game.businessModel.name}</a></p>
+                                    <p class="card-text">Modèle Économique : <a href="${UrlRoute.URL_SEARCH}/${game.businessModel.slug}">${game.businessModel.name}</a></p>
 
                                 </div>
                                 <div class="col-6 ps-4">
-                                    <p class="card-text">Editeur : <a href="${UrlRoute.URL_SEARCH}/${game.publisher.name}">${game.publisher.name}</a></p>
+                                    <p class="card-text">Editeur : <a href="${UrlRoute.URL_SEARCH}/${game.publisher.slug}">${game.publisher.name}</a></p>
                                     <p class="card-text">Date de sortie : ${game.publishedAt}</p>
-                                    <p class="card-text">Classification : <a href="${UrlRoute.URL_SEARCH}/${game.classification.name}">${game.classification.name}</a></p>
-                                    <p class="card-text">Genre : <a href="${UrlRoute.URL_SEARCH}/${game.genre.name}">${game.genre.name}</a></p>
+                                    <p class="card-text">Classification : <a href="${UrlRoute.URL_SEARCH}/${game.classification.slug}">${game.classification.name}</a></p>
+                                    <p class="card-text">Genre : <a href="${UrlRoute.URL_SEARCH}/${game.genre.slug}">${game.genre.name}</a></p>
                                     <p class="card-text">Nombres d'avis : ${page_game_review.totalElements}</p>
                                 </div>
 

@@ -8,7 +8,7 @@
     <div class="bg-dark-rounded-body">
         <div class="content-padding-2-5-2">
             <c:if test="${not empty reviews}">
-            <h2 class="mx-3 mb-3">Toutes les reviews : 📰</h2>
+            <h2 class="mx-3 mb-3">Toutes les reviews (${reviews.totalElements} avis) :  📰</h2>
                 <c:set var="page" scope="request" value="${reviews}"/>
                 <c:set var="addModeratorFilter" scope="request" value="true"/>
                 <c:set var="url" scope="request" value="${UrlRoute.URL_HOME}"/>

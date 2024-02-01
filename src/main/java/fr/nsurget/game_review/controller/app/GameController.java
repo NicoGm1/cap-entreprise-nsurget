@@ -199,7 +199,7 @@ public class GameController {
         mav.setViewName("redirect:" + UrlRoute.URL_GAME +"/" + gameService.create(gameDTO, slug).getSlug());
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
-                new FlashMessage("success", "Le jeu a bien été crée !")
+                new FlashMessage("success", "Le jeu" + gameDTO.getName() +" a bien été modifié !")
         );
         return mav;
     }

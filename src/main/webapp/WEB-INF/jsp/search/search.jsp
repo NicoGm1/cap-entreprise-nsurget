@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <c:forEach items="${games.content}" var="game">
-                        <div class="col-lg-6 col-md-12 col-sm-12 mt-3">
+                        <div class="col-lg-6 col-md-12 col-sm-12 mt-3" id="card-page">
                             <div class="main-game-card w-100 rounded">
                                 <div class="card rounded mb-2">
                                     <div class="row g-0 bg-dark rounded">
@@ -52,7 +52,7 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="ms-3 mt-auto"> <!-- Utilisez mt-auto pour aligner en bas -->
+                                            <div class="ms-3 mt-auto">
                                                 <p>
                                                     <span class="${jspUtils.getCssClas(game.rating())}">${game.rating()}</span>
                                                     <span> / 20 </span>
@@ -92,7 +92,7 @@
 
                 <c:set var="page" scope="request" value="${games}"/>
                 <c:set var="ignoreImport" scope="request" value="true"/>
-                <c:set var="url" scope="request" value="${UrlRoute.URL_GAME}"/>
+                <c:set var="url" scope="request" value="${currentUrl}"/>
                 <%@ include file="../component/pagination.jsp" %>
             </div>
         </c:if>

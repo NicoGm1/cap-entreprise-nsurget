@@ -9,9 +9,9 @@
 <div class="bg-dark-rounded-body">
 
 <div class="content-padding-2-5-2">
-    <h2>Tes dernières reviews en ligne : ✅</h2>
 <c:if test="${not empty page_valid_review.content}">
-<c:set var="page" scope="request" value="${page_valid_review}"/>
+    <h2>Tes dernières reviews en ligne (${page_valid_review.totalElements}) : ✅</h2>
+    <c:set var="page" scope="request" value="${page_valid_review}"/>
     <c:set var="url" scope="request" value="${UrlRoute.URL_REVIEW_OWN_LIST}"/>
     <%@ include file="../component/pagableReview.jsp" %>
     <%@ include file="../component/pagination.jsp" %>
@@ -28,7 +28,8 @@
             <img src="https://static.hitek.fr/img/actualite/pi4eathbsutml0hd4olq.jpg" class="rounded img-review-what">
         </div>
     </c:if>
-<c:if test="${not empty waiting_review}">
+
+<c:if test="${waiting_review.size() >= 3}">
     <h2 class="pt-5 mt-5"><a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">Tes dernières reviews en cours de moderation : ⌚</a></h2>
     <div class="row">
     <c:forEach var="i" begin="1" end="3" step="1">
@@ -55,16 +56,18 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </c:forEach>
+</c:if>
+<c:if test="${waiting_review.size() > 0}">
     <div class="text-end mt-5">
-    <a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">voir tes ${waiting_review.size()}
-    review en attente de validation</a>
-    </div>
+    <a class="btn-link" href="${UrlRoute.URL_REVIEW_OWN_WAITING_LIST}">voir tes review en attente de validation</a>
     </div>
 </c:if>
+    </div>
+
+
 
 
     </div>

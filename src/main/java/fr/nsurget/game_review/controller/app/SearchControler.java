@@ -25,7 +25,7 @@ public class SearchControler {
             size = 4, // nb Element par page
             sort = { "name" }, // order by
             direction = Sort.Direction.DESC)
-    Pageable pageable) {
+    Pageable pageable){
         if (principal == null){
             mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
             return mav;

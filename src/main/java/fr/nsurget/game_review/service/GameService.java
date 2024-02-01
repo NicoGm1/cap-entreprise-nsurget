@@ -11,6 +11,7 @@ import fr.nsurget.game_review.repository.ReviewRepository;
 import fr.nsurget.game_review.utils.DateUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -117,6 +118,10 @@ public class GameService {
     }
 
     public Page<Game> getSearch(String s, Pageable pageable) {
-        return gameRepository.findAllByNameIsContainingIgnoreCaseOrSlugIsContainingIgnoreCaseOrPublisherSlugIsContainingIgnoreCaseOrGenreSlugIsContainingIgnoreCaseOrPlatformsSlugIsContainingIgnoreCaseOrClassificationSlugIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCase(s,s,s,s,s,s,s,pageable);
+        List<Game> games = gameRepository.findAllByBusinessModelNameOrPlatformsNameIsContainingIgnoreCaseOrNameIsContainingIgnoreCaseOrSlugIsContainingIgnoreCaseOrClassificationNameIsContainingIgnoreCaseOrClassificationSlugIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCaseOrBusinessModelSlugIsContainingIgnoreCaseOrPublisherNameIsContainingIgnoreCaseOrPublisherSlugIsContainingIgnoreCaseOrGenreNameIsContainingIgnoreCaseOrGenreSlugIsContainingIgnoreCase(s,s,s,s,s,s,s,s,s,s,s,s);
+        int start = (int)pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), games.size());
+        return new PageImpl<>(games.subList(start, end), pageable, games.size());
+//        return gameRepository.findAllByBusinessModelNameOrPlatformsNameIsContainingIgnoreCaseOrNameIsContainingIgnoreCaseOrSlugIsContainingIgnoreCaseOrClassificationNameIsContainingIgnoreCaseOrClassificationSlugIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCaseOrBusinessModelSlugIsContainingIgnoreCaseOrPublisherNameIsContainingIgnoreCaseOrPublisherSlugIsContainingIgnoreCaseOrGenreNameIsContainingIgnoreCaseOrGenreSlugIsContainingIgnoreCase(s,s,s,s,s,s,s,s,s,s,s,s,pageable);
     }
 }

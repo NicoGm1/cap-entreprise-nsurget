@@ -19,7 +19,9 @@
                     <div class="col-6">
                         <c:if test="${user.getRole() eq 'Joueur'}">
                         <p>Nombre de Review : ${userReviews.totalElements}</p>
+                            <c:if test="${user.rating() != null}">
                         <p>Moyenne des avis : ${user.rating()}</p>
+                            </c:if>
                         </c:if>
                         <c:if test="${user.getRole() eq 'Moderateur'}">
                             <img src="https://img.freepik.com/photos-premium/chat-est-patron-principal-costume-dans-chaise-cuir-regardant-camera-portrait-homme-affaires-bureau-chef-entreprise-drole-genere-par-ia_287527-1417.jpg" alt="Image Rigolote de chat" class="rounded-4 img-review-what">

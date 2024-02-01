@@ -31,7 +31,7 @@
                     <p class="reviewDescription p-2 bg-dark rounded"><i class="fa-solid fa-quote-left"></i> - ${review.description} - <i class="fa-solid fa-quote-right"></i></p>
                 </div>
                 <div class="col-3 gap-1">
-                    <p class="display-6 rounded bg-dark p-2 ms-auto">
+                    <p class="display-6 rounded bg-dark p-1 ms-auto">
                         <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
                         <span> / 20 </span>
                     </p>
