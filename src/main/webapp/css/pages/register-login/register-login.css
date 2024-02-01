@@ -11,3 +11,12 @@
             -1px 1px 0 #000,
             1px 1px 0 #000;
 }
+
+.black-bg {
+    height: 100%;
+    width: 100%;
+    background-attachment: fixed;
+    background-color: #1a1e21;
+    opacity: 0.3;
+    z-index: -1;
+}

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="d-flex justify-content-between">
-    <div class="d-flex">
+<div class="d-flex justify-content-between row">
+    <div class="d-flex col-lg-5 col-md-7 col-sm-12">
         <!-- Label à afficher -->
         <c:set var="label" scope="request" value="Date"/>
         <!-- Sur quelle propriété de l'objet on souhaite trier -->
@@ -22,14 +22,15 @@
         <c:set var="sortable" value="gamer.nickname"/>
         <%@ include file="../component/sortable.jsp" %>
 
-        <span class="mt-auto mb-2">
+        <div class="mt-auto mb-2">
                         <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
     <i class="fa fa-filter-circle-xmark"></i>
 </a>
-                    </span>
+    </div>
+    </div>
         <security:authorize access="hasRole('ROLE_MODERATOR')">
             <c:if test="${addModeratorFilter}">
-                    <span class="mt-auto ms-5">
+                    <div class="col-lg-7 col-md-5 col-sm-12 mt-auto ps-5">
                         <div class="dropdown">
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="${UrlRoute.URL_HOME}">Tout les avis</a></li>
@@ -41,10 +42,10 @@
                                 Filtre moderation
                         </a>
                     </div>
-                    </span>
+                    </div>
             </c:if>
         </security:authorize>
-    </div>
+
 </div>
 
 

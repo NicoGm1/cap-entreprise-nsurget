@@ -1,10 +1,10 @@
-package fr.kevin.exam;
+package fr.nsurget.game_review;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExamApplicationTests {
+class GameReviewTests {
 
 	@Test
 	void contextLoads() {

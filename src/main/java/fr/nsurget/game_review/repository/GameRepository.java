@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long>, EntityNameRepository<Game>, EntitySlugRepository<Game> {
 
-    Page<Game> findByPlatformsNameIsContainingIgnoreCaseOrNameIsContainingIgnoreCaseOrClassificationNameIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCaseOrPublisherNameIsContainingIgnoreCaseOrGenreNameIsContainingIgnoreCase(String s1, String s2, String s3, String s4, String s5,String s6, Pageable pageable);
+    Page<Game> findAllByNameIsContainingIgnoreCaseOrSlugIsContainingIgnoreCaseOrPublisherSlugIsContainingIgnoreCaseOrGenreSlugIsContainingIgnoreCaseOrPlatformsSlugIsContainingIgnoreCaseOrClassificationSlugIsContainingIgnoreCaseOrBusinessModelNameIsContainingIgnoreCase(String s1, String s2, String s3, String s4, String s5,String s6,String s7, Pageable pageable);
 
 }

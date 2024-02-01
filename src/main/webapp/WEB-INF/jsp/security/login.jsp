@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
 <jsp:include flush="true" page="../base.jsp"/>
-
+<div class="position-relative"></div>
+<div class="black-bg position-absolute"></div>
 <div class="container main">
 
   <security:authorize access="!isAuthenticated()">
@@ -21,7 +22,7 @@
             <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Password</label>
           </div>
-          <p class="invalid-feedback mt-2 bg-dark rounded">${error}</p>
+          <p class="invalid-feedback mt-3 bg-dark rounded text-center">${error}</p>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
           <div class="row ">
             <div class="col-md-4 mt-2">
@@ -50,6 +51,7 @@
     </div>
 
   </security:authorize>
+
 </div>
 
 <%@ include file="../footer.jsp" %>

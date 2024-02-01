@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Informations de contact</h4>
                 <p>Contactez-nous : ncsrgt@gmail.com</p>
-                <p>Github : <a href="https://github.com/NicoGm1/cap-entreprise-nsurget" class="nav-link">NicoGm1</a></p>
+                <p>Github : <a href="https://github.com/NicoGm1/cap-entreprise-nsurget" class="nav-link">Cap-enterprise-poec-nsurget</a></p>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Liens utiles</h4>
@@ -23,10 +23,10 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="mb-3">Réseaux sociaux</h4>
                 <ul class="list-unstyled">
-                    <li><a href="https://fr-fr.facebook.com/HBCOMPETENCES/"><i class="fab fa-facebook-f"></i></a>&thinsp;- <a
-                            href="https://fr-fr.facebook.com/HBCOMPETENCES/">Toto</a></li>
-                    <li><a href="https://twitter.com"><i class="fa-brands fa-x-twitter"></i></a>&thinsp;- <a
-                            href="https://twitter.com">Toto</a></li>
+                    <li><a href="https://www.linkedin.com/in/nicolas-surget-94435b281/"><i class="fa-brands fa-linkedin"></i></a>&thinsp;- <a
+                            href="https://www.linkedin.com/in/nicolas-surget-94435b281/">Nsurget</a></li>
+                    <li><a href="https://github.com/NicoGm1"><i class="fa-brands fa-github"></i></a>&thinsp;- <a
+                            href="https://github.com/NicoGm1">NicoGm1</a></li>
 
                 </ul>
             </div>

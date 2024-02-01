@@ -7,7 +7,7 @@
 
         <div class="bg-dark-rounded-body">
             <div class="content-padding-2-5-2">
-                <h2>🕵️ Resultat de la recherche : "${search}"</h2>
+                <h2>🕵️ ${games.totalElements} Resultat pour la recherche : "${search}"</h2>
                 <c:if test="${not empty games.content}">
             <div class="content-padding-2-5-2">
                 <div class="d-flex justify-content-between">
