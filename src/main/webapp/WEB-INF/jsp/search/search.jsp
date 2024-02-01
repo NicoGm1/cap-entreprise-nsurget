@@ -9,7 +9,7 @@
             <div class="content-padding-2-5-2">
                 <h2>🕵️ ${games.totalElements} Resultat pour la recherche : "${search}"</h2>
                 <c:if test="${not empty games.content}">
-            <div class="content-padding-2-5-2">
+
                 <div class="d-flex justify-content-between">
                     <div class="d-flex">
                         <c:set var="label" scope="request" value="Name"/>
@@ -94,7 +94,7 @@
                 <c:set var="ignoreImport" scope="request" value="true"/>
                 <c:set var="url" scope="request" value="${currentUrl}"/>
                 <%@ include file="../component/pagination.jsp" %>
-            </div>
+
         </c:if>
 <c:if test="${empty games.content}">
     <h2 class="my-5 mt-5">Aucune resource trouvé 😭 </h2>

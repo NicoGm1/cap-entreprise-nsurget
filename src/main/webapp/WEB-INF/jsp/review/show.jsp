@@ -13,6 +13,12 @@
 <div class="row">
             <div class="col-6 row">
                 <div class="col-12">
+                    <div class="col-3 gap-1">
+                        <p class="display-6 rounded bg-dark p-1 ms-auto">
+                            <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
+                            <span> / 20 </span>
+                        </p>
+                    </div>
                     <div class="row mt-5">
                         <p class="col-4 ">
                             Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
@@ -30,12 +36,7 @@
 
                     <p class="reviewDescription p-2 bg-dark rounded"><i class="fa-solid fa-quote-left"></i> - ${review.description} - <i class="fa-solid fa-quote-right"></i></p>
                 </div>
-                <div class="col-3 gap-1">
-                    <p class="display-6 rounded bg-dark p-1 ms-auto">
-                        <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
-                        <span> / 20 </span>
-                    </p>
-                </div>
+
             </div>
 
             <div class="col-lg-6 col-md-12 col-sm-12 mt-5">
