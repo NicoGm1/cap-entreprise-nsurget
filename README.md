@@ -6,23 +6,23 @@ GAMEREVIEW (CAP ENTREPRISE – POEC DÉVELOPPEUR JAVA)
 ## Description
 
 Ce projet, réalisé dans le cadre du projet CAP ENTREPRISE – POEC JAVA,
-C'est une application Web permettant la creation et la gestion d'avis sur des jeux vidéos. 
+est une application web permettant la création et la gestion d'avis sur des jeux vidéos. 
 L'application utilise le framework Springboot, Hibernate et les JSP pour offrir une interface web aux joueurs et modérateurs.
 
 ## Table des matières
 
-- Aperçus & Fonctionnalités Principales
-- Installation & Configuration
-- Architecture Logicielle et Technologies utilisées
+- Aperçus & fonctionnalités principales
+- Installation & configuration
+- Architecture logicielle et technologies utilisées
 - Auteur
 
-## Aperçus & Fonctionnalités Principales
+## Aperçus & Fonctionnalités principales
 
 - Lorsque l'on n'est pas connecté, le site nous redirige automatiquement vers la page de connexion et propose un lien vers une page d'inscription.
 
 ![Capture d'écran page connexion](Screen%20GameReview/Capture%20d’écran%202024-02-18%20171125.jpg)
 
-- La page d'accueil regroupe tous les avis disponibles sur le site (affichage d'une liste d'avis paginé avec filtres).
+- La page d'accueil regroupe tous les avis disponibles sur le site (affichage d'une liste d'avis sous forme de page avec filtres).
 
 - Dans la barre de navigation en haut à droite, un bouton déroulant de navigation permet d'accéder à :
   - Ajouter un commentaire
@@ -50,7 +50,7 @@ L'application utilise le framework Springboot, Hibernate et les JSP pour offrir 
 ![Capture d'écran page connexion](Screen%20GameReview/Capture%20d’écran%202024-02-18%20172620.jpg)
 ![Capture d'écran page connexion](Screen%20GameReview/Capture%20d’écran%202024-02-18%20172959.jpg)
 
-- On peut acceder à la page de chaque utilisateur
+- On peut accéder à la page de chaque utilisateur
 
 ![Capture d'écran page connexion](Screen%20GameReview/Capture%20d’écran%202024-02-18%20173126.jpg)
 
@@ -61,7 +61,7 @@ L'application utilise le framework Springboot, Hibernate et les JSP pour offrir 
 
 2. Utiliser Wampserver (ou un autre serveur MySQL de votre choix) pour créer une base de données MySQL vierge en local, nommée "db_game_review".
 
-3. Dans `application.properties`, vous pouvez configurez la base de données :
+3. Dans `application.properties`, vous pouvez configurer la base de données :
    ```properties
    spring.datasource.url=jdbc:mysql://localhost:3306/db_game_review
    ...
@@ -98,7 +98,3 @@ Technologies utilisées :
 
 Surget Nicolas - 2024 POEC JAVA  
  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nicolas-surget-94435b281/)
-
-
-
-
