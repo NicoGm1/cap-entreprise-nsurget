@@ -39,7 +39,6 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     BCryptPasswordEncoder passwordEncoder;
 
-
     PlatformRepository platformRepository;
 
     ReviewRepository reviewRepository;

@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="mb-3 row">
-          <div class="col-lg-3 col-md-3 col-sm-12 text-end">Nom*
+          <div class="col-lg-3 col-md-3 col-sm-12 text-end">E-mail*
           </div>
           <div class="col-lg-8 col-md-8 col-sm-12 form-group ${status.error ? 'has-error' : ''}">
             <f:input type="text" path="email" class="form-control" placeholder="Email"

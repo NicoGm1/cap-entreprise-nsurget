@@ -82,7 +82,7 @@
                 <div class="content-padding-2-5-2 pt-0">
                     <h2 class="title-with-margin">Trailer :</h2>
                     <div class="ratio ratio-16x9">
-                        <iframe src="${game.trailerYt}" title="YouTube video" allowfullscreen></iframe>
+                        <iframe src="${game.trailerYt}&autoplay=1&mute=1" title="YouTube video" allowfullscreen></iframe>
                     </div>
                 </div>
             </c:if>
