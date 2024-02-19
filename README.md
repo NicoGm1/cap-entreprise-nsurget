@@ -11,10 +11,10 @@ L'application utilise le framework Springboot, Hibernate et les JSP pour offrir 
 
 ## Table des matières
 
-- Aperçus & fonctionnalités principales
-- Installation & configuration
-- Architecture logicielle et technologies utilisées
-- Auteur
+- [Aperçus & fonctionnalités principales](?tab=readme-ov-file#aperçus--fonctionnalités-principales)
+- [Installation & configuration](?tab=readme-ov-file#installation--configuration)
+- [Architecture logicielle et technologies utilisées](?tab=readme-ov-file#architecture-logicielle-et-technologies-utilisées)
+- [Auteur](?tab=readme-ov-file#auteur)
 
 ## Aperçus & Fonctionnalités principales
 
